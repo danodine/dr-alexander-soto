@@ -3,5 +3,9 @@
     "api/**/*.ts": {
       "runtime": "nodejs20.x"
     }
-  }
+  },
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
