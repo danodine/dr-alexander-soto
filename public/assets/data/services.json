@@ -1,0 +1,310 @@
+[
+  {
+    "id": "fracturas-tobillo-pie",
+    "title": "Fracturas de tobillo y pie",
+    "image": "../assets/icons/fracturas-de-tobillo-pie.png",
+    "description": "Roturas en los huesos del tobillo o del pie, generalmente causadas por traumatismos o caídas.",
+    "symptoms": [
+      "Dolor intenso, especialmente al intentar mover el pie o cargar peso",
+      "Hinchazón y hematomas alrededor del área afectada",
+      "Deformidad visible en casos graves",
+      "Dificultad o imposibilidad para caminar"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/fracturas-tobillo-pie-1.png"
+      },
+      {
+        "image": "../assets/images/fracturas-tobillo-pie-2.png"
+      },
+      {
+        "image": "../assets/images/fracturas-tobillo-pie-3.png"
+      },
+      {
+        "image": "../assets/images/fracturas-tobillo-pie-4.png"
+      }
+    ],
+    "descriptionLarga": "Las fracturas de tobillo y pie pueden ocurrir debido a impactos directos, caídas o movimientos bruscos. Dependiendo del tipo de fractura (estable o inestable), el tratamiento puede incluir inmovilización con yeso, férula o incluso cirugía. La recuperación varía de semanas a meses, y en muchos casos, se requiere fisioterapia para restaurar la movilidad y fuerza.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "lesiones-osteocondrales",
+    "title": "Lesiones osteocondrales",
+    "image": "../assets/icons/lesiones-osteocondrales.png",
+    "description": "Daños en el cartílago y el hueso subyacente del astrágalo, que pueden resultar de traumatismos repetitivos, inestabilidad de la articulacion del tobillo o incluso problemas vasculares.",
+    "symptoms": [
+      "Dolor en el tobillo que empeora con la actividad",
+      "Inflamación y rigidez en la articulación",
+      "Sensación de bloqueo o inestabilidad del tobillo"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/lesiones-osteocondrales-1.png"
+      },
+      {
+        "image": "../assets/images/lesiones-osteocondrales-2.png"
+      },
+      {
+        "image": "../assets/images/lesiones-osteocondrales-3.png"
+      }
+    ],
+    "descriptionLarga": "Las lesiones osteocondrales suelen afectar la superficie articular del astrágalo y pueden ser causadas por impactos repetitivos, inestabilidad del tobillo o por una reducción del flujo sanguíneo al hueso. El tratamiento varía desde terapias conservadoras (reposo, fisioterapia) hasta procedimientos quirúrgicos como la artroscopia para eliminar fragmentos sueltos o regenerar el cartílago, la reconstrucción ligamentaria, la implantación de injerto osteocondral propia del mismo paciente o el reemplazo articular mediante prótesis.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "juanetes",
+    "title": "Juanetes (Hallux Valgus)",
+    "image": "../assets/icons/Hallux-Valgus.png",
+    "description": "Deformidad del dedo gordo del pie que se desvía hacia los otros dedos, formando una protuberancia interna en la base del dedo (articulación metatarso-falángica).",
+    "symptoms": [
+      "Dolor y sensibilidad en el área del juanete",
+      "Inflamación y enrojecimiento en la base del dedo gordo",
+      "Dificultad para usar calzado ajustado",
+      "Desviación progresiva del dedo gordo"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/juanetes-1.png"
+      },
+      {
+        "image": "../assets/images/juanetes-2.png"
+      },
+      {
+        "image": "../assets/images/juanetes-3.png"
+      },
+      {
+        "image": "../assets/images/juanetes-4.png"
+      }
+    ],
+    "descriptionLarga": "Los juanetes son una afección común que puede desarrollarse debido a factores genéticos, uso de calzado inadecuado o ciertas condiciones médicas. En sus primeras etapas, se pueden tratar con cambios en el calzado, férulas nocturnas y fisioterapia. En casos avanzados y con presencia de dolor, se requiere cirugía correctiva para realinear el hueso.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "tendinopatia-aquiles",
+    "title": "Tendinopatía de Aquiles",
+    "image": "../assets/icons/tendinopatia-Aquiles.png",
+    "description": "Inflamación o degeneración del tendón de Aquiles, que provoca dolor en la parte posterior del tobillo.",
+    "symptoms": [
+      "Dolor en la parte posterior del tobillo o en la pantorrilla, especialmente al caminar o correr",
+      "Rigidez matutina en el tendón de Aquiles que mejora con la actividad",
+      "Hinchazón y sensibilidad en la zona afectada",
+      "Engrosamiento del tendón en casos avanzados"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/tendinopatia-aquiles-1.png"
+      },
+      {
+        "image": "../assets/images/tendinopatia-aquiles-2.png"
+      },
+      {
+        "image": "../assets/images/tendinopatia-aquiles-3.png"
+      },
+      {
+        "image": "../assets/images/tendinopatia-aquiles-4.png"
+      }
+    ],
+    "descriptionLarga": "La tendinopatía de Aquiles es una afección común en deportistas y personas activas, causada por el uso excesivo, microtraumas repetitivos o falta de flexibilidad en la pantorrilla y contracturas  (retracciones) en el sistema gastro-soleo-aquileano-plantar. Puede manifestarse como inflamación aguda (tendinitis) o degeneración crónica del tendón (tendinosis). El tratamiento incluye reposo, fisioterapia, estiramientos, fortalecimiento muscular y, en casos graves, cirugía. La recuperación varía según la severidad del daño, pero suele requerir varias semanas o meses.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "lesiones-ligamentarias",
+    "title": "Lesiones ligamentarias",
+    "image": "../assets/icons/lesiones-ligamentarias.png",
+    "description": "Daños en los ligamentos del tobillo o del pie, a menudo debido a esguinces o torceduras.",
+    "symptoms": [
+      "Dolor intenso en el tobillo o pie, especialmente al moverlo o apoyarlo",
+      "Inflamación y enrojecimiento en la zona afectada",
+      "Hematomas o cambios de color en la piel debido a la ruptura de vasos sanguíneos",
+      "Inestabilidad crónica del tobillo (esguinces a repetición)"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/lesiones-ligamentarias-1.png"
+      },
+      {
+        "image": "../assets/images/lesiones-ligamentarias-2.png"
+      },
+      {
+        "image": "../assets/images/lesiones-ligamentarias-3.png"
+      },
+      {
+        "image": "../assets/images/lesiones-ligamentarias-4.png"
+      }
+    ],
+    "descriptionLarga": "Las lesiones ligamentarias del tobillo y pie ocurren cuando los ligamentos se estiran demasiado o se desgarran debido a una torcedura, impacto o esfuerzo excesivo. Se clasifican en tres grados: leve (distensión), moderado (ruptura parcial) y severo (ruptura total). El tratamiento inicial incluye reposo, hielo, compresión y elevación (protocolo RICE), seguido de fisioterapia para restaurar la movilidad y estabilidad. En casos graves, puede requerirse inmovilización prolongada o cirugía especialmente cuando se diagnostica de una inestabilidad secuelar o ya existe lesión osteocondral especialmente del tobillo.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "inestabilidad-tobillo",
+    "title": "Inestabilidad de tobillo",
+    "image": "../assets/icons/inestabilidad-tobillo.png",
+    "description": "Sensación de que el tobillo se 'dobla' o es inestable, generalmente como resultado de esguinces repetidos o lesiones ligamentarias.",
+    "symptoms": [
+      "Dolor recurrente en el tobillo, especialmente al caminar o estar de pie",
+      "Senasación de falta de confianza o miedo para caminar",
+      "Debilidad en la articulación, con tendencia a sufrir nuevos esguinces"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/inestabilidad-tobillo-1.png"
+      },
+      {
+        "image": "../assets/images/inestabilidad-tobillo-2.png"
+      },
+      {
+        "image": "../assets/images/inestabilidad-tobillo-3.png"
+      }
+    ],
+    "descriptionLarga": "La inestabilidad de tobillo ocurre cuando los ligamentos no logran mantener la estabilidad de la articulación, lo que provoca episodios frecuentes de torceduras o caídas. Es común en personas con antecedentes de esguinces mal curados o repetitivos. El tratamiento incluye fisioterapia para fortalecer los músculos estabilizadores, uso de ortesis o vendajes y, en casos severos, cirugía para reparar o reconstruir los ligamentos dañados.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "artroscopia-tobillo",
+    "title": "Artroscopía de tobillo",
+    "image": "../assets/icons/artroscopia-tobillo.png",
+    "description": "Procedimiento quirúrgico mínimamente invasivo que permite diagnosticar y tratar problemas dentro de la articulación del tobillo mediante una cámara y herramientas especializadas.",
+    "symptoms": [
+      "Dolor en el tobillo persistente debido a lesiones o desgaste articular",
+      "Inflamación crónica en la articulación del tobillo",
+      "Dificultad para mover el pie o rigidez en la articulación",
+      "Sensible reducción de la movilidad del tobillo"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/artroscopia-tobillo-1.png"
+      },
+      {
+        "image": "../assets/images/artroscopia-tobillo-2.png"
+      },
+      {
+        "image": "../assets/images/artroscopia-tobillo-3.png"
+      },
+      {
+        "image": "../assets/images/artroscopia-tobillo-4.png"
+      }
+    ],
+    "descriptionLarga": "La artroscopía de tobillo es una técnica quirúrgica que se realiza mediante pequeñas incisiones, introduciendo una cámara diminuta (artroscopio) y herramientas especializadas para visualizar, diagnosticar y tratar problemas articulares. Se utiliza para tratar afecciones como lesiones de cartílago, cuerpos sueltos en la articulación, sinovitis o inestabilidad crónica. Es una alternativa menos invasiva en comparación con la cirugía abierta, permitiendo una recuperación más rápida y con menos complicaciones.",
+    "categoria": "tratamiento"
+  },
+  {
+    "id": "reemplazo-protesico",
+    "title": "Reemplazo protésico",
+    "image": "../assets/icons/reemplazoprotesico.png",
+    "description": "Sustitución de una articulación dañada del tobillo por una prótesis artificial para restaurar la función y aliviar el dolor.",
+    "symptoms": [
+      "Dolor persistente. Este dolor puede ser causado por el aflojamiento de la prótesis"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/reemplazo-protesico-1.png"
+      }
+    ],
+    "descriptionLarga": "El reemplazo protésico del tobillo es un procedimiento quirúrgico en el que se sustituye la articulación dañada por una prótesis artificial de metal y plástico. Se recomienda para pacientes con artritis severa o lesiones degenerativas que afectan la movilidad y calidad de vida. A diferencia de la artrodesis (fusión de la articulación), esta cirugía busca preservar el movimiento del tobillo. La rehabilitación es clave para recuperar la funcionalidad, y el éxito del procedimiento depende del estado óseo y muscular del paciente.",
+    "categoria": "tratamiento"
+  },
+  {
+    "id": "pie-plano-adulto",
+    "title": "Pie plano del adulto",
+    "image": "../assets/icons/pie-plano-adulto.png",
+    "description": "Condición en la que el arco del pie se aplana, causando que toda la planta del pie toque el suelo debido a que no hay arco interno.",
+    "symptoms": [
+      "Dolor en la parte interna del pie o en el arco plantar",
+      "Inflamación en la zona del tobillo o en el arco del pie",
+      "Cansancio o fatiga en los pies después de estar de pie por largos períodos",
+      "Desgaste anormal del calzado debido a una mala distribución del peso"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/pie-plano-adulto-1.png"
+      },
+      {
+        "image": "../assets/images/pie-plano-adulto-2.png"
+      },
+      {
+        "image": "../assets/images/pie-plano-adulto-3.png"
+      },
+      {
+        "image": "../assets/images/pie-plano-adulto-4.png"
+      }
+    ],
+    "descriptionLarga": "El pie plano en adultos puede ser causado por diversos factores, como la debilidad del tendón tibial posterior, el envejecimiento, la obesidad o el uso inadecuado de calzado. Puede generar dolor, alteraciones en la marcha y afectar la alineación del cuerpo. El tratamiento varía según la severidad, incluyendo el uso de plantillas ortopédicas, fisioterapia para fortalecer los músculos del pie y, en casos graves, cirugía correctiva para restaurar la estructura del arco.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "pie-plano-nino",
+    "title": "Pie plano del niño",
+    "image": "../assets/icons/pie-plano-del-nino.png",
+    "description": "Similar al pie plano del adulto, pero se presenta en niños y puede corregirse con el crecimiento o requerir tratamiento.",
+    "symptoms": [
+      "Dolor en el arco del pie o en los tobillos, especialmente después de actividad física",
+      "Inflamación en la parte interna del pie",
+      "Alteraciones en la forma de caminar, como una pisada inestable o torpeza"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/pie-plano-nino-1.png"
+      },
+      {
+        "image": "../assets/images/pie-plano-nino-2.png"
+      },
+      {
+        "image": "../assets/images/pie-plano-nino-3.png"
+      }
+    ],
+    "descriptionLarga": "El pie plano en niños es una condición común en la infancia, donde el arco plantar no está completamente desarrollado. En muchos casos, se corrige de manera natural a medida que el niño crece. Sin embargo, si el pie plano es rígido, causa dolor o afecta la movilidad, puede ser necesario un tratamiento con ejercicios, plantillas ortopédicas o en casos más severos, intervención quirúrgica. Es importante el seguimiento médico para evaluar la evolución del desarrollo del pie y descartar la presencia de coaliciones tarsianas (barras tarsianas o puentes oseos-fibrosos o cartilaginosos) que lo vuelven al pie rígido.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "fascitis-plantar",
+    "title": "Fascitis plantar",
+    "image": "../assets/icons/fascitis-plantar.png",
+    "description": "Inflamación de la fascia plantar, el tejido que conecta el talón con los dedos, causando dolor en la planta del pie, se relaciona tambien con contracturas o falta de estiramiento del sistema gastro (gastrocnemios)-soleo-aquileano-plantar que en muchas ocasiones dan lugar a la formación del conocido ESPOLÓN CALCÁNEO.",
+    "symptoms": [
+      "Dolor agudo en la planta del pie, especialmente en el talón, al dar los primeros pasos por la mañana",
+      "Inflamación y sensibilidad en la base del pie",
+      "Rigidez en la planta del pie, especialmente después del reposo"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/fascitis-plantar-1.png"
+      },
+      {
+        "image": "../assets/images/fascitis-plantar-2.png"
+      },
+      {
+        "image": "../assets/images/fascitis-plantar-3.png"
+      }
+    ],
+    "descriptionLarga": "La fascitis plantar es una de las causas más comunes de dolor en el talón y se produce cuando la fascia plantar se irrita o inflama debido a sobrecarga, uso inadecuado de calzado, sobrepeso o actividad física intensa. El tratamiento incluye reposo, ejercicios de estiramiento, fisioterapia, uso de plantillas ortopédicas y, en casos severos, sesiones de ondas de choque o cirugía. La recuperación puede tomar semanas o meses dependiendo de la severidad de la inflamación.",
+    "categoria": "patologia"
+  },
+  {
+    "id": "metatarsalgia",
+    "title": "Metatarsalgia",
+    "image": "../assets/icons/metatarsalgia.png",
+    "description": "Dolor e inflamación en la bola plantar del pie, a menudo debido a actividades de alto impacto o uso de calzado inadecuado.",
+    "symptoms": [
+      "Dolor intenso en la parte anterior del pie, especialmente al caminar o estar de pie",
+      "Sensación de ardor o punzadas en la zona de los metatarsos",
+      "Inflamación y enrojecimiento en la zona afectada",
+      "Sensación de tener una 'piedra' o protuberancia en la planta del pie"
+    ],
+    "imagesCarucel": [
+      {
+        "image": "../assets/images/metatarsalgia-1.png"
+      },
+      {
+        "image": "../assets/images/metatarsalgia-2.png"
+      },
+      {
+        "image": "../assets/images/metatarsalgia-3.png"
+      },
+      {
+        "image": "../assets/images/metatarsalgia-4.png"
+      }
+    ],
+    "descriptionLarga": "La metatarsalgia es una afección caracterizada por dolor en la zona de los metatarsos, que son los huesos en la parte anterior del pie. Se produce debido a impactos repetitivos, calzado inadecuado, deformidades en los pies o el envejecimiento que lesiones la denomidad Barra Plantar o lesiones las estructiras nerviosas de los espacios intermetatarsianos causando neuromas como el Neuroma de Morton. Es común en corredores y personas que pasan mucho tiempo de pie. El tratamiento incluye el uso de calzado adecuado, plantillas ortopédicas, fisioterapia y reposo para aliviar la presión en la zona afectada. En casos graves especialmente cuando hay una afectación de la Barra Plantar o la presencia de neuromas, puede requerirse cirugía para reparar esta Barra Plantar y/o corregir la alineación de los huesos del pie o extraer el neuroma intermetatarsiano.",
+    "categoria": "patologia"
+  }
+]

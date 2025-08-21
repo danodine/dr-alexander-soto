@@ -1,0 +1,397 @@
+/* =================== About =================== */
+.sobre-mi {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.sobre-mi-foto img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.sobre-mi-text {
+  flex: 1; /* Takes the remaining space */
+}
+.sobre-mi-text p,
+.sobre-mi-text ul {
+  color: #555;
+  line-height: 1.6;
+}
+
+.sobre-mi-text ul {
+  padding-left: 20px;
+}
+
+.sobre-mi-text li {
+  margin-bottom: 5px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mi-mision {
+  width: 100%;
+  min-height: 150px;
+  text-align: justify;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(248, 249, 252);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mi-mision-inner {
+  border-left: 5px solid rgb(0, 92, 226);
+}
+.ph2-sobre-mi {
+  text-align: center;
+  color: rgb(75, 75, 75) !important;
+}
+.sobre-mi-titles {
+  padding-bottom: 10px;
+}
+.sobre-mi-titles h1 {
+  font-size: 1.2em;
+}
+.sobre-mi-titles h2 {
+  font-size: 1.35em;
+}
+
+/* =================== Contact =================== */
+.ph6contacto {
+  font-weight: bold;
+}
+.contact-container p {
+  color: rgb(93, 93, 93);
+}
+
+.contact-map-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.contact-map {
+  height: 500px;
+  width: 90%;
+}
+
+.contact-form-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ph2-escriba {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333 !important;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group1,
+.form-group2 {
+  position: relative;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.name-input {
+  margin-right: 0.9%;
+}
+
+.name-input,
+.email-input {
+  width: 49%;
+}
+
+.message-input {
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgb(0, 92, 226);
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+button {
+  background-color: rgb(0, 92, 226);
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#responseMessage {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.contact-map-container {
+  display: flex;
+}
+
+.contact-map {
+  flex: 2;
+  height: 500px;
+  width: 90%;
+  min-height: 300px; /* Ensures the map never disappears */
+}
+
+.info-comtainer {
+  flex: 1;
+}
+.contacto-titles {
+  padding-bottom: 10px;
+}
+.contacto-titles h1 {
+  font-size: 1.35em;
+}
+/* =================== Services =================== */
+.sevicios-body {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 10px;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.fisio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 250px;
+}
+
+.card-fisio {
+  background-color: rgb(255, 255, 255);
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon img {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.ph2-servicios {
+  padding: 20px;
+}
+.fisioterapia p {
+  padding-left: 20px;
+}
+.ph3-servicios {
+  color: rgb(75, 75, 75) !important;
+}
+/* =================== Detail =================== */
+.carucel-image {
+  max-height: 400px !important;
+  object-fit: "contain";
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter: invert(100%);
+}
+.detail-label-1 {
+  color: rgb(0, 0, 0);
+}
+.detail-label-2 {
+  color: rgb(0, 0, 0);
+}
+.detail-simptoms-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(248, 249, 252);
+}
+.detail-simptoms-inner {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.detail-long-description {
+  background-color: rgb(248, 249, 252);
+  padding: 50px 0px 50px 0px;
+}
+
+@media (max-width: 1024px) {
+  .contact-map-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-comtainer {
+    width: 100%;
+  }
+
+  .contact-map {
+    width: 100%;
+    height: 400px;
+    display: block;
+    order: 3;
+  }
+}
+@media (max-width: 768px) {
+  .contact-map-container {
+    display: block;
+    padding: 0px 0px 0px 10px;
+  }
+  .form-group1 {
+    display: flex;
+    flex-direction: column;
+  }
+  .name-input,
+  .email-input {
+    width: 100%;
+  }
+  .name-input {
+    margin-bottom: 15px;
+  }
+  .sobre-mi {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .sobre-mi-foto img {
+    width: 70%;
+    margin-bottom: 0px;
+  }
+
+  .sobre-mi-text {
+    text-align: left;
+  }
+  .mi-mision-inner {
+    border-left: 5px solid rgb(0, 92, 226);
+  }
+  .sevicios-body {
+    padding: 10px;
+  }
+  .card {
+    max-width: 100%;
+  }
+  .contact-map {
+    height: 300px;
+  }
+  .contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .contact-form-container {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+@media (max-width: 575px) {
+  .mi-mision-inner {
+    margin-left: 10px;
+  }
+  .ph2-servicios {
+    padding: 10px;
+  }
+}
+@media (max-width: 390px) {
+  .ph6contacto,
+  p {
+    padding-bottom: 0px;
+    margin-bottom: 3px;
+  }
+  .vision-image img {
+    max-height: 10rem;
+  }
+  .carousel-item img {
+    max-height: 12rem !important;
+    max-width: auto !important;
+  }
+}

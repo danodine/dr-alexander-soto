@@ -1,0 +1,251 @@
+/* =================== Index Page Styles =================== */
+.header-container {
+  position: relative;
+  text-align: left;
+  color: white;
+}
+
+.header-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-30%);
+  text-align: right;
+}
+.overlay-text h2 {
+  color: white;
+}
+
+.overlay-text h1 {
+  font-size: clamp(0.1rem, 4.5vw, 4rem);
+  font-weight: bold;
+  margin: 0;
+  color: rgb(34, 175, 226);
+}
+
+.overlay-text h2 {
+  font-size: clamp(0.1rem, 2vw, 3rem);
+  font-weight: bold;
+  margin: 0;
+}
+
+.vision-container {
+  text-align: center;
+}
+
+.vision-image-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.vision-text {
+  flex: 1;
+  text-align: justify;
+  color: rgb(93, 93, 93);
+  max-width: 50%;
+}
+
+.vision-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.vision-image img {
+  border-radius: 50%;
+  height: auto;
+  max-width: 100%;
+  max-height: 20rem; /* si es mas texto en vicion modificar aqui */
+}
+
+.carousel-inner {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+}
+
+.instagram-container {
+  background-color: rgb(248, 249, 252);
+  color: white;
+  padding-top: 20px;
+}
+
+.ph3 {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.instagram-container p {
+  color: #000;
+}
+
+.carousel-item p {
+  text-align: justify;
+  padding-bottom: 20px;
+}
+
+.carousel-item img {
+  max-height: 20rem !important;
+  max-width: auto !important;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: 20px;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter: invert(100%);
+}
+
+.image-col-carucel {
+  display: flex;
+  justify-content: center;
+}
+
+.image-col-carucel img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.no-mobile-gs {
+  display: none;
+}
+
+.main-container-seguros-image {
+  position: relative;
+  text-align: center;
+}
+
+.image-background-seguros {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(50%);
+}
+
+.main-container-over-image-text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-container-over-image-text {
+  color: rgb(255, 255, 255) !important;
+  font-weight: bold !important;
+  margin-bottom: 20px !important;
+  font-size: clamp(0.1rem, 4.5vw, 4rem) !important;
+  z-index: 10 !important;
+}
+
+.main-container-over-grid-container {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  max-width: 1200px;
+}
+
+.image-seguros {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 768px) {
+  .vision-container {
+    max-height: none;
+  }
+  .carousel-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+  .vision-image img {
+    max-height: none;
+  }
+  .carousel-item p {
+    text-align: justify;
+  }
+  .main-container-seguros-image {
+    width: 100%;
+    height: 30rem;
+    max-width: 100%;
+    background-image: url("../images/logo-seguro.png");
+  }
+  .main-container-seguros-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: blur(5px);
+    z-index: 1;
+  }
+  .image-background-seguros {
+    display: none;
+  }
+  .main-container-over-grid-container {
+    width: 80%;
+    min-width: 250px;
+    z-index: 10;
+  }
+  .image-seguros {
+    width: 6rem;
+  }
+}
+@media (max-width: 575px) {
+  .vision-image-text {
+    flex-direction: column;
+    text-align: center;
+  }
+  .vision-text {
+    max-width: 95%;
+  }
+  .vision-image {
+    order: -1;
+  }
+  .vision-image img {
+    max-height: 15rem;
+  }
+}
+@media (max-width: 390px) {
+  .overlay-text h1 {
+    font-size: 14px;
+  }
+  .overlay-text h2 {
+    font-size: 7px;
+  }
+  .main-container-seguros-image {
+    height: 40rem;
+  }
+
+  .sobre-mi {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sobre-mi-text {
+    text-align: left;
+  }
+}

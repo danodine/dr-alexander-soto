@@ -1,0 +1,208 @@
+/* =================== General Styles =================== */
+body {
+  padding-top: 60px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+.animate {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(0, 92, 226);
+}
+.ph2 {
+  color: rgb(0, 92, 226) !important;
+  font-size: 1.3em;
+  margin: 0.83em 0;
+}
+.ph3 {
+  color: rgb(0, 92, 226) !important;
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+.ph4 {
+  color: rgb(0, 92, 226) !important;
+  font-size: 1em;
+  margin: 0.1em 0;
+}
+.ph5 {
+  color: rgb(0, 92, 226) !important;
+  font-size: 1.1em;
+  margin: 0.2em 0;
+}
+.ph6 {
+  color: rgb(0, 92, 226) !important;
+  font-size: 1em;
+  margin: 0.1em 0;
+}
+.whatsapp-button img {
+  width: 40px;
+  height: 40px;
+}
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: rgb(176, 176, 176);
+}
+.nav-link:hover,
+.nav-link.active {
+  color: rgb(0, 92, 226) !important;
+}
+.bg-primary,
+.bg-light,
+.navbar-toggler {
+  background-color: rgb(255, 255, 255) !important;
+}
+.navbar-light .navbar-brand .navbar-toggler {
+  color: rgb(176, 176, 176) !important;
+}
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="rgb(0, 92, 226)" stroke-width="2" d="M4 7h22M4 15h22M4 23h22" /%3E%3C/svg%3E') !important;
+}
+/* =================== Footer Section Styles =================== */
+.footer {
+  width: 100%;
+  background-color: white;
+  text-align: center;
+  padding-top: 30px;
+}
+.footer-container-col-1 {
+  text-align: left;
+}
+.footer-container-3 {
+  text-align: right;
+}
+.footer_icons {
+  padding-right: 18px;
+}
+
+.footer p {
+  color: rgb(93, 93, 93);
+}
+
+.footer-container-col-1 p {
+  margin: 5px 0;
+}
+
+.footer-container-row {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+  .ph2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+  .ph3 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+  li {
+    font-size: 14px;
+  }
+  .no-mobile {
+    display: none;
+  }
+  .navbar {
+    position: relative;
+    box-shadow: none;
+  }
+  body {
+    padding-top: 0;
+  }
+}
+@media (max-width: 575px) {
+  .no-mobile-ms {
+    display: none !important;
+  }
+  .no-mobile-gs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .no-mobile-gs img {
+    max-width: 13rem;
+    height: auto;
+  }
+  .footer-container-col-1 {
+    text-align: center;
+  }
+  .footer-container-3 {
+    text-align: center;
+  }
+  .footer_icons {
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 390px) {
+  .no-mobile {
+    display: none;
+  }
+  .navbar-toggler {
+    padding: 4px 6px;
+    font-size: 0.8rem;
+    width: 32px;
+    height: 32px;
+  }
+  .navbar-toggler-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .navbar-brand img {
+    width: 30px;
+  }
+  .navbar-brand span {
+    font-size: 13px;
+  }
+}
