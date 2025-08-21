@@ -1,9 +1,3 @@
-import dotenv from 'dotenv';
-
-if (!process.env.VERCEL) {
-  dotenv.config({ path: '.env.local' });
-}
-
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
