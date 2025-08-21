@@ -74,6 +74,9 @@
 }
 
 /* =================== Contact =================== */
+  .contact-container {
+    margin-top: 50px;
+  }
 .ph6contacto {
   font-weight: bold;
 }
@@ -367,7 +370,6 @@ button:hover {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    margin-top: 50px;
   }
   .contact-form-container {
     width: 100%;
