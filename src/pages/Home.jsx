@@ -23,7 +23,7 @@ export default function Home() {
       <header className="bg-primary text-white text-center py-4">
         <div className="header-container">
           <img
-            src="../../public/assets/images/portada_dr_alex_soto.png"
+            src="../../assets/images/portada_dr_alex_soto.png"
             alt="Portada donde figura el doctor Alexander Soto"
           />
           <div className="overlay-text animate">
