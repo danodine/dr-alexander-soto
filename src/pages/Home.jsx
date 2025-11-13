@@ -1,7 +1,9 @@
 // src/pages/Home.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
+  const [latestPost, setLatestPost] = useState(null);
+
   useEffect(() => {
     const elements = document.querySelectorAll(".animate");
     const observer = new IntersectionObserver(
@@ -15,6 +17,19 @@ export default function Home() {
     );
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    async function fetchLatestPost() {
+      try {
+        const res = await fetch("http://localhost:4000/api/instagram/latest");
+        const data = await res.json();
+        setLatestPost(data);
+      } catch (err) {
+        console.error("Error fetching Instagram post", err);
+      }
+    }
+    fetchLatestPost();
   }, []);
 
   return (
@@ -67,9 +82,40 @@ export default function Home() {
           </section>
 
           <section className="instagram-container animate">
-            <p className="ph3">Ultimas publicaciones</p>
-          </section>
+            <p className="ph3">Últimas publicaciones</p>
 
+            {!latestPost && <p>Cargando última publicación...</p>}
+
+            {latestPost && (
+              <a
+                href={latestPost.permalink}
+                target="_blank"
+                rel="noreferrer"
+                className="instagram-post-card"
+              >
+                {latestPost.media_type === "VIDEO" ? (
+                  <img
+                    src={latestPost.thumbnail_url || latestPost.media_url}
+                    alt={
+                      latestPost.caption || "Última publicación de Instagram"
+                    }
+                  />
+                ) : (
+                  <img
+                    src={latestPost.media_url}
+                    alt={
+                      latestPost.caption || "Última publicación de Instagram"
+                    }
+                  />
+                )}
+                {latestPost.caption && (
+                  <p className="instagram-caption">
+                    {latestPost.caption.substring(0, 100)}...
+                  </p>
+                )}
+              </a>
+            )}
+          </section>
           <section className="bg-light">
             ‚{/* Main content */}
             <main className="my-4">
