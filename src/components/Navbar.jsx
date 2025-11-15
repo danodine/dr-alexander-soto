@@ -28,13 +28,13 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/contacto">
-                Contacto
+              <NavLink className="nav-link" to="/servicios">
+                Servicios
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/servicios">
-                Servicios
+              <NavLink className="nav-link" to="/contacto">
+                Contacto
               </NavLink>
             </li>
           </ul>

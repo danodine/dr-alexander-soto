@@ -80,42 +80,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-
-          <section className="instagram-container animate">
-            <p className="ph3">Últimas publicaciones</p>
-
-            {!latestPost && <p>Cargando última publicación...</p>}
-
-            {latestPost && (
-              <a
-                href={latestPost.permalink}
-                target="_blank"
-                rel="noreferrer"
-                className="instagram-post-card"
-              >
-                {latestPost.media_type === "VIDEO" ? (
-                  <img
-                    src={latestPost.thumbnail_url || latestPost.media_url}
-                    alt={
-                      latestPost.caption || "Última publicación de Instagram"
-                    }
-                  />
-                ) : (
-                  <img
-                    src={latestPost.media_url}
-                    alt={
-                      latestPost.caption || "Última publicación de Instagram"
-                    }
-                  />
-                )}
-                {latestPost.caption && (
-                  <p className="instagram-caption">
-                    {latestPost.caption.substring(0, 100)}...
-                  </p>
-                )}
-              </a>
-            )}
-          </section>
           <section className="bg-light">
             ‚{/* Main content */}
             <main className="my-4">
@@ -211,6 +175,42 @@ export default function Home() {
                 </div>
               </section>
             </main>
+          </section>
+
+          <section className="instagram-container animate">
+            <p className="ph3">Últimas publicaciones</p>
+
+            {!latestPost && <p>Cargando última publicación...</p>}
+
+            {latestPost && (
+              <a
+                href={latestPost.permalink}
+                target="_blank"
+                rel="noreferrer"
+                className="instagram-post-card"
+              >
+                {latestPost.media_type === "VIDEO" ? (
+                  <img
+                    src={latestPost.thumbnail_url || latestPost.media_url}
+                    alt={
+                      latestPost.caption || "Última publicación de Instagram"
+                    }
+                  />
+                ) : (
+                  <img
+                    src={latestPost.media_url}
+                    alt={
+                      latestPost.caption || "Última publicación de Instagram"
+                    }
+                  />
+                )}
+                {latestPost.caption && (
+                  <p className="instagram-caption">
+                    {latestPost.caption.substring(0, 100)}...
+                  </p>
+                )}
+              </a>
+            )}
           </section>
 
           {/* SEGUROS */}

@@ -61,8 +61,7 @@ export default function Contacto() {
     script.onload = initMap;
     document.body.appendChild(script);
 
-    return () => {
-    };
+    return () => {};
   }, []);
 
   // --- Contact form submit (same endpoint/behavior as your script.js) ---
@@ -112,23 +111,44 @@ export default function Contacto() {
           <section id="map-section" className="contact-map-container">
             <div className="info-comtainer">
               <p className="ph6 ph6contacto">Ubicación</p>
-              <p></p>
-              <p>Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B.</p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Centro%20m%C3%A9dico%20Meditropoli%2C%20Av.%20Mariana%20de%20Jes%C3%BAs%20Oe-8%2C%20Quito%20170147%2C%20Ecuador"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-black"
+              >
+                Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B.
+              </a>
               <p className="ph6 ph6contacto">Información de contacto</p>
-              <p></p>
-              <p>info@gmail.com</p>
-              <p>(+593) 990165538</p>
-              <p>(+593) 999889098</p>
-              <p>alexandersototoledo@gmail.com (Personal)</p>
-              <p>(+593) 990257861 (Personal)</p>
+              <a href="tel:+593990165538" className="link-black">(+593) 990165538</a>
+              <br></br>
+              <a href="alexandersototoledo@gmail.com" className="link-black">
+                alexandersototoledo@gmail.com (Personal)
+              </a>
+              <br></br>
+              <a href="tel:+593990257861" className="link-black">(+593) 990257861 (Personal)</a>
+              <br></br>
+              <p className="ph6 ph6contacto">Formo parte de:</p>
+              <a
+                href="https://www.ceoecuador.com/team/alexander-soto/"
+                className="link-black"
+              >
+                CEO
+              </a>
+              <br></br>
+              <a
+                href="https://www.hospitalmetropolitano.org/en/#nav-home"
+                className="link-black"
+              >
+                Hospital Metropolitano
+              </a>
             </div>
 
             <div className="info-comtainer">
               <p className="ph6 ph6contacto">Horario de atención</p>
-              <p></p>
-              <p>Lunes: 09:00h a 13:00h - 15:00h a 18:00h</p>
-              <p>Miércoles: 09:00h a 13:00h - 14h a 17h Cumbayá</p>
-              <p>Jueves: 15:00h a 19:00h</p>
+              <p>Lunes: 09h00 a 13h00 - 15h00 a 18h00</p>
+              <p>Miércoles: 09h00 a 13h00 - 14h00 a 17h00 (Tumbaco)</p>
+              <p>Jueves: 15h00 a 19h00</p>
               <p>Viernes: 15:00h a 19:00h</p>
             </div>
 

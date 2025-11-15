@@ -123,6 +123,10 @@ h6 {
 .footer-container-row {
   width: 100%;
 }
+.link-black {
+  color: rgb(93, 93, 93);
+  text-decoration: none;
+}
 
 @media (max-width: 768px) {
   h1 {

@@ -12,9 +12,9 @@ export default function Footer() {
               <h6 className="text-uppercase mb-4 font-weight-bold">
                 Horario de atención
               </h6>
-              <p>Lunes: 09:00h a 13:00h - 15:00h a 18:00h</p>
-              <p>Miércoles: 09:00h a 13:00h - 14h a 17h Cumbayá</p>
-              <p>Jueves: 15:00h a 19:00h</p>
+              <p>Lunes: 09h00 a 13h00 - 15h00 a 18h00</p>
+              <p>Miércoles: 09h00 a 13h00 - 14h00 a 17h00 (Tumbaco)</p>
+              <p>Jueves: 15h00 a 19h00</p>
               <p>Viernes: 15:00h a 19:00h</p>
             </div>
 
@@ -22,11 +22,13 @@ export default function Footer() {
             <div className="col-sm">
               <h6 className="text-uppercase mb-4 font-weight-bold">Contacto</h6>
               <p>Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B.</p>
-              <p>info@gmail.com</p>
-              <p>(+593) 990165538</p>
-              <p>(+593) 999889098</p>
-              <p>alexandersototoledo@gmail.com (Personal)</p>
-              <p>(+593) 990257861 (Personal)</p>
+              <a href="tel:+593990165538" className="link-black">(+593) 990165538</a>
+              <br></br>
+              <a href="alexandersototoledo@gmail.com" className="link-black">
+                alexandersototoledo@gmail.com (Personal)
+              </a>
+              <br></br>
+              <a href="tel:+593990257861" className="link-black">(+593) 990257861 (Personal)</a>
             </div>
 
             {/* Redes sociales */}
