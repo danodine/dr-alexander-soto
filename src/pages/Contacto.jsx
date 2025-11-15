@@ -1,10 +1,25 @@
 // src/pages/Contacto.jsx
 import React, { useEffect, useRef } from "react";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
+// 🔵 Fix Leaflet marker icon paths
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+const customIcon = new L.Icon({
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 export default function Contacto() {
   const mapRef = useRef(null);
 
-  // --- Animate on intersect (equivalent to script.js) ---
+  // --- Animate on intersect ---
   useEffect(() => {
     const elements = document.querySelectorAll(".animate");
     const observer = new IntersectionObserver(
@@ -20,51 +35,36 @@ export default function Contacto() {
     return () => observer.disconnect();
   }, []);
 
-  // --- Google Maps loader + init (inline replacement for <script ...maps.googleapis...>) ---
+  // --- LEAFLET + OSM MAP ---
   useEffect(() => {
-    const initMap = () => {
-      const defaultLocation = { lat: -0.183714, lng: -78.502736 };
-      if (!mapRef.current) return;
+    if (!mapRef.current) return;
 
-      const map = new window.google.maps.Map(mapRef.current, {
-        center: defaultLocation,
-        zoom: 15,
-      });
+    const defaultLocation = { lat: -0.183714, lng: -78.502736 };
 
-      new window.google.maps.Marker({
-        position: defaultLocation,
-        map,
-        title: "Fixed Marker",
-      });
-    };
+    const map = L.map(mapRef.current).setView(
+      [defaultLocation.lat, defaultLocation.lng],
+      15
+    );
 
-    // If already loaded, just init
-    if (window.google && window.google.maps) {
-      initMap();
-      return;
-    }
+    // OpenStreetMap layer
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
 
-    // Inject Google Maps script once
-    const existing = document.querySelector('script[data-google-maps="true"]');
-    if (existing) {
-      existing.addEventListener("load", initMap, { once: true });
-      return;
-    }
+    // Marker with popup
+    L.marker([defaultLocation.lat, defaultLocation.lng], {
+      icon: customIcon,
+    })
+      .addTo(map)
+      .bindPopup("Centro médico Mediterrópoli")
+      .openPopup();
 
-    const script = document.createElement("script");
-    script.setAttribute("data-google-maps", "true");
-    const GMAPS_KEY = import.meta.env.VITE_GMAPS_KEY;
-    console.log("Google Maps Key:", GMAPS_KEY);
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}`;
-    script.async = true;
-    script.defer = true;
-    script.onload = initMap;
-    document.body.appendChild(script);
-
-    return () => {};
+    return () => map.remove();
   }, []);
 
-  // --- Contact form submit (same endpoint/behavior as your script.js) ---
+  // --- Contact form ---
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -84,19 +84,19 @@ export default function Contacto() {
       });
 
       if (resp.ok) {
-        if (responseMessage)
-          responseMessage.textContent = "¡El correo se envió con éxito!";
+        responseMessage.textContent = "¡El correo se envió con éxito!";
         form.reset();
       } else {
-        if (responseMessage)
-          responseMessage.textContent = "Error al enviar el correo.";
+        responseMessage.textContent = "Error al enviar el correo.";
       }
     } catch (err) {
       console.error("Error:", err);
-      if (responseMessage)
-        responseMessage.textContent = "Error de red. Intente nuevamente.";
+      responseMessage.textContent = "Error de red. Intente nuevamente.";
     }
   };
+
+  const osmLink =
+    "https://www.openstreetmap.org/?mlat=-0.183714&mlon=-78.502736#map=18/-0.183714/-78.502736";
 
   return (
     <div className="bg-light">
@@ -112,7 +112,7 @@ export default function Contacto() {
             <div className="info-comtainer">
               <p className="ph6 ph6contacto">Ubicación</p>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Centro%20m%C3%A9dico%20Meditropoli%2C%20Av.%20Mariana%20de%20Jes%C3%BAs%20Oe-8%2C%20Quito%20170147%2C%20Ecuador"
+                href={osmLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-black"
@@ -120,14 +120,21 @@ export default function Contacto() {
                 Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B.
               </a>
               <p className="ph6 ph6contacto">Información de contacto</p>
-              <a href="tel:+593990165538" className="link-black">(+593) 990165538</a>
-              <br></br>
-              <a href="alexandersototoledo@gmail.com" className="link-black">
+              <a href="tel:+593990165538" className="link-black">
+                (+593) 990165538
+              </a>
+              <br />
+              <a
+                href="mailto:alexandersototoledo@gmail.com"
+                className="link-black"
+              >
                 alexandersototoledo@gmail.com (Personal)
               </a>
-              <br></br>
-              <a href="tel:+593990257861" className="link-black">(+593) 990257861 (Personal)</a>
-              <br></br>
+              <br />
+              <a href="tel:+593990257861" className="link-black">
+                (+593) 990257861 (Personal)
+              </a>
+              <br />
               <p className="ph6 ph6contacto">Formo parte de:</p>
               <a
                 href="https://www.ceoecuador.com/team/alexander-soto/"
@@ -135,7 +142,7 @@ export default function Contacto() {
               >
                 CEO
               </a>
-              <br></br>
+              <br />
               <a
                 href="https://www.hospitalmetropolitano.org/en/#nav-home"
                 className="link-black"
@@ -152,10 +159,11 @@ export default function Contacto() {
               <p>Viernes: 15:00h a 19:00h</p>
             </div>
 
+            {/* Leaflet Map */}
             <div className="contact-map" id="map" ref={mapRef} />
           </section>
 
-          {/* Contact form */}
+          {/* Contact Form */}
           <section id="contacto" className="contact-form-container animate">
             <p className="ph2 ph2-escriba">ESCRÍBANOS</p>
             <form
