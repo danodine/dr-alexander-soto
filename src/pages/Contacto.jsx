@@ -135,20 +135,6 @@ export default function Contacto() {
                 (+593) 990257861 (Personal)
               </a>
               <br />
-              <p className="ph6 ph6contacto">Formo parte de:</p>
-              <a
-                href="https://www.ceoecuador.com/team/alexander-soto/"
-                className="link-black"
-              >
-                CEO
-              </a>
-              <br />
-              <a
-                href="https://www.hospitalmetropolitano.org/en/#nav-home"
-                className="link-black"
-              >
-                Hospital Metropolitano
-              </a>
             </div>
 
             <div className="info-comtainer">
