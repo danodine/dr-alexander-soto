@@ -156,7 +156,7 @@ export default function Contacto() {
               <p>Lunes: 09h00 a 13h00 - 15h00 a 18h00 (Quito)</p>
               <p>Miércoles: 09h00 a 13h00 (Tumbaco - La Martina) - 15h00 a 19h00 (Quito)</p>
               <p>Jueves: 15h00 a 19h00 (Quito)</p>
-              <p>Viernes: 15h00h a 19h00h (Quito)</p>
+              <p>Viernes: 15h00 a 19h00 (Quito)</p>
             </div>
 
             {/* Leaflet Map */}
