@@ -177,7 +177,7 @@ export default function Home() {
             </main>
           </section>
 
-          <section className="instagram-container animate">
+          {/* <section className="instagram-container animate">
             <p className="ph3">Últimas publicaciones</p>
 
             {!latestPost && <p>Cargando última publicación...</p>}
@@ -211,7 +211,7 @@ export default function Home() {
                 )}
               </a>
             )}
-          </section>
+          </section> */}
 
           {/* SEGUROS */}
           <section id="seguros" className="main-container-seguros-image">
