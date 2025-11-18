@@ -212,6 +212,55 @@ export default function Home() {
               </a>
             )}
           </section> */}
+          <section>
+            <p className="ph3">Formo parte de</p>
+            <div className="forma-parte">
+              <div className="logo-grid">
+                <a
+                  href="https://www.ceoecuador.com/team/alexander-soto/"
+                  className="logo-item animate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/assets/images/ceo-grey.png"
+                    className="logo grey"
+                  />
+                  <img
+                    src="/assets/images/ceo-color.png"
+                    className="logo color"
+                  />
+                </a>
+
+                <div className="logo-item animate">
+                  <img
+                    src="/assets/images/metropolitano-grey.png"
+                    className="logo grey"
+                  />
+                  <img
+                    src="/assets/images/metropolitano-color.png"
+                    className="logo color"
+                  />
+                </div>
+
+                <a
+                  href="https://www.hospitalmetropolitano.org/en/doctors/10881/alexander-nicolal-soto-toledo"
+                  className="logo-item animate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/assets/images/vozandes-grey.png"
+                    className="logo grey"
+                  />
+                  <img
+                    src="/assets/images/vozandes-color.png"
+                    className="logo color"
+                  />
+                </a>
+              </div>
+            </div>
+          </section>
 
           {/* SEGUROS */}
           <section id="seguros" className="main-container-seguros-image">
