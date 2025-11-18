@@ -1,3 +1,4 @@
+// src/components/ServiceModal.jsx
 import React, { useEffect, useState } from "react";
 
 function SideCarousel({ slides = [] }) {
@@ -10,7 +11,6 @@ function SideCarousel({ slides = [] }) {
 
   return (
     <div className="position-relative my-3">
-      {/* Left arrow */}
       {slides.length > 1 && (
         <button
           type="button"
@@ -28,14 +28,12 @@ function SideCarousel({ slides = [] }) {
         </button>
       )}
 
-      {/* Image */}
       <img
         src={cur.image}
         alt={cur.altText || cur.symptom || "imagen"}
         className="d-block mx-auto img-fluid carucel-image"
       />
 
-      {/* Right arrow */}
       {slides.length > 1 && (
         <button
           type="button"
@@ -53,11 +51,12 @@ function SideCarousel({ slides = [] }) {
         </button>
       )}
 
-      {/* Caption (symptom text) */}
-      {(cur.symptom) && (
+      {cur.symptom && (
         <div className="text-center mt-3">
           <p className="detail-label-2 m-0">{cur.symptom}</p>
-          <small className="text-muted">{idx + 1} / {slides.length}</small>
+          <small className="text-muted">
+            {idx + 1} / {slides.length}
+          </small>
         </div>
       )}
     </div>
@@ -65,12 +64,23 @@ function SideCarousel({ slides = [] }) {
 }
 
 export default function ServiceModal({ open, onClose, service }) {
+  const [showVideo, setShowVideo] = useState(false);
+
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
+  // whenever you open the modal / change service, reset video mode
+  useEffect(() => {
+    setShowVideo(false);
+  }, [open, service]);
+
   if (!open || !service) return null;
+
+  const hasVideo = !!service.videoUrl; // expects an embed URL, e.g. https://www.youtube.com/embed/XXXX
 
   return (
     <div
@@ -81,31 +91,89 @@ export default function ServiceModal({ open, onClose, service }) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded shadow p-3 p-md-4"
+        className="bg-white rounded shadow p-3 p-md-4 service-modal-inner"
         style={{
           maxWidth: 900,
           width: "92%",
           maxHeight: "90vh",
           overflowY: "auto",
           margin: "5vh auto",
+          height: "100%",
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="d-flex justify-content-between align-items-center">
-          <h3 className="m-0">{service.title}</h3>
-          <button type="button" className="btn btn-outline-secondary" onClick={onClose}>
-            Cerrar ✕
-          </button>
-        </div>
+        {/* ================= VIDEO MODE ================= */}
+        {showVideo && hasVideo ? (
+          <div className="service-modal-video-overlay">
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <button
+                type="button"
+                className="btn btn-outline-light"
+                onClick={() => setShowVideo(false)}
+              >
+                ← Volver
+              </button>
 
-        <p className="mt-3">{service.descriptionLarga}</p>
+              <button
+                type="button"
+                className="btn btn-outline-light"
+                onClick={onClose}
+              >
+                Cerrar ✕
+              </button>
+            </div>
 
-        {/* NEW: Symptoms heading above carousel */}
-        {service.slides?.length > 0 && (
-          <p className="ph4 mt-4 mb-2">Síntomas</p>
+            <div className="service-modal-video-wrapper">
+              <iframe
+                src={service.videoUrl}
+                title={service.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* ================= NORMAL CONTENT ================= */}
+            <div className="d-flex justify-content-between align-items-center">
+              <h3 className="m-0">{service.title}</h3>
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={onClose}
+              >
+                Cerrar ✕
+              </button>
+            </div>
+
+            <p className="mt-3">{service.descriptionLarga}</p>
+
+            {service.slides?.length > 0 && (
+              <p className="ph4 mt-4 mb-2">Síntomas</p>
+            )}
+
+            <SideCarousel slides={service.slides} />
+
+            {/* ================= VIDEO THUMBNAIL ================= */}
+            {hasVideo && (
+              <div className="mt-4">
+                <p className="ph4 mb-2">Video</p>
+
+                <button
+                  type="button"
+                  className="video-thumb"
+                  onClick={() => setShowVideo(true)}
+                >
+                  <img
+                    src={service.videoThumbnail || service.image}
+                    alt={`Video ${service.title}`}
+                  />
+                  <span className="video-thumb-play-icon">▶</span>
+                </button>
+              </div>
+            )}
+          </>
         )}
-
-        <SideCarousel slides={service.slides} />
       </div>
     </div>
   );

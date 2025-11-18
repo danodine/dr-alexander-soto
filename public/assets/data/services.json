@@ -25,7 +25,9 @@
       }
     ],
     "descriptionLarga": "Las fracturas de tobillo y pie pueden ocurrir debido a impactos directos, caídas o movimientos bruscos. Dependiendo del tipo de fractura (estable o inestable), el tratamiento puede incluir inmovilización con yeso, férula o incluso cirugía. La recuperación varía de semanas a meses, y en muchos casos, se requiere fisioterapia para restaurar la movilidad y fuerza.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "lesiones-osteocondrales",
@@ -49,7 +51,9 @@
       }
     ],
     "descriptionLarga": "Las lesiones osteocondrales suelen afectar la superficie articular del astrágalo y pueden ser causadas por impactos repetitivos, inestabilidad del tobillo o por una reducción del flujo sanguíneo al hueso. El tratamiento varía desde terapias conservadoras (reposo, fisioterapia) hasta procedimientos quirúrgicos como la artroscopia para eliminar fragmentos sueltos o regenerar el cartílago, la reconstrucción ligamentaria, la implantación de injerto osteocondral propia del mismo paciente o el reemplazo articular mediante prótesis.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "juanetes",
@@ -77,7 +81,9 @@
       }
     ],
     "descriptionLarga": "Los juanetes son una afección común que puede desarrollarse debido a factores genéticos, uso de calzado inadecuado o ciertas condiciones médicas. En sus primeras etapas, se pueden tratar con cambios en el calzado, férulas nocturnas y fisioterapia. En casos avanzados y con presencia de dolor, se requiere cirugía correctiva para realinear el hueso.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "tendinopatia-aquiles",
@@ -105,7 +111,9 @@
       }
     ],
     "descriptionLarga": "La tendinopatía de Aquiles es una afección común en deportistas y personas activas, causada por el uso excesivo, microtraumas repetitivos o falta de flexibilidad en la pantorrilla y contracturas  (retracciones) en el sistema gastro-soleo-aquileano-plantar. Puede manifestarse como inflamación aguda (tendinitis) o degeneración crónica del tendón (tendinosis). El tratamiento incluye reposo, fisioterapia, estiramientos, fortalecimiento muscular y, en casos graves, cirugía. La recuperación varía según la severidad del daño, pero suele requerir varias semanas o meses.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "lesiones-ligamentarias",
@@ -133,7 +141,9 @@
       }
     ],
     "descriptionLarga": "Las lesiones ligamentarias del tobillo y pie ocurren cuando los ligamentos se estiran demasiado o se desgarran debido a una torcedura, impacto o esfuerzo excesivo. Se clasifican en tres grados: leve (distensión), moderado (ruptura parcial) y severo (ruptura total). El tratamiento inicial incluye reposo, hielo, compresión y elevación (protocolo RICE), seguido de fisioterapia para restaurar la movilidad y estabilidad. En casos graves, puede requerirse inmovilización prolongada o cirugía especialmente cuando se diagnostica de una inestabilidad secuelar o ya existe lesión osteocondral especialmente del tobillo.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "inestabilidad-tobillo",
@@ -157,7 +167,9 @@
       }
     ],
     "descriptionLarga": "La inestabilidad de tobillo ocurre cuando los ligamentos no logran mantener la estabilidad de la articulación, lo que provoca episodios frecuentes de torceduras o caídas. Es común en personas con antecedentes de esguinces mal curados o repetitivos. El tratamiento incluye fisioterapia para fortalecer los músculos estabilizadores, uso de ortesis o vendajes y, en casos severos, cirugía para reparar o reconstruir los ligamentos dañados.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "artroscopia-tobillo",
@@ -185,7 +197,9 @@
       }
     ],
     "descriptionLarga": "La artroscopía de tobillo es una técnica quirúrgica que se realiza mediante pequeñas incisiones, introduciendo una cámara diminuta (artroscopio) y herramientas especializadas para visualizar, diagnosticar y tratar problemas articulares. Se utiliza para tratar afecciones como lesiones de cartílago, cuerpos sueltos en la articulación, sinovitis o inestabilidad crónica. Es una alternativa menos invasiva en comparación con la cirugía abierta, permitiendo una recuperación más rápida y con menos complicaciones.",
-    "categoria": "tratamiento"
+    "categoria": "tratamiento",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "reemplazo-protesico",
@@ -201,7 +215,9 @@
       }
     ],
     "descriptionLarga": "El reemplazo protésico del tobillo es un procedimiento quirúrgico en el que se sustituye la articulación dañada por una prótesis artificial de metal y plástico. Se recomienda para pacientes con artritis severa o lesiones degenerativas que afectan la movilidad y calidad de vida. A diferencia de la artrodesis (fusión de la articulación), esta cirugía busca preservar el movimiento del tobillo. La rehabilitación es clave para recuperar la funcionalidad, y el éxito del procedimiento depende del estado óseo y muscular del paciente.",
-    "categoria": "tratamiento"
+    "categoria": "tratamiento",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "pie-plano-adulto",
@@ -229,7 +245,9 @@
       }
     ],
     "descriptionLarga": "El pie plano en adultos puede ser causado por diversos factores, como la debilidad del tendón tibial posterior, el envejecimiento, la obesidad o el uso inadecuado de calzado. Puede generar dolor, alteraciones en la marcha y afectar la alineación del cuerpo. El tratamiento varía según la severidad, incluyendo el uso de plantillas ortopédicas, fisioterapia para fortalecer los músculos del pie y, en casos graves, cirugía correctiva para restaurar la estructura del arco.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "pie-plano-nino",
@@ -253,7 +271,9 @@
       }
     ],
     "descriptionLarga": "El pie plano en niños es una condición común en la infancia, donde el arco plantar no está completamente desarrollado. En muchos casos, se corrige de manera natural a medida que el niño crece. Sin embargo, si el pie plano es rígido, causa dolor o afecta la movilidad, puede ser necesario un tratamiento con ejercicios, plantillas ortopédicas o en casos más severos, intervención quirúrgica. Es importante el seguimiento médico para evaluar la evolución del desarrollo del pie y descartar la presencia de coaliciones tarsianas (barras tarsianas o puentes oseos-fibrosos o cartilaginosos) que lo vuelven al pie rígido.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "fascitis-plantar",
@@ -277,7 +297,9 @@
       }
     ],
     "descriptionLarga": "La fascitis plantar es una de las causas más comunes de dolor en el talón y se produce cuando la fascia plantar se irrita o inflama debido a sobrecarga, uso inadecuado de calzado, sobrepeso o actividad física intensa. El tratamiento incluye reposo, ejercicios de estiramiento, fisioterapia, uso de plantillas ortopédicas y, en casos severos, sesiones de ondas de choque o cirugía. La recuperación puede tomar semanas o meses dependiendo de la severidad de la inflamación.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   },
   {
     "id": "metatarsalgia",
@@ -305,6 +327,8 @@
       }
     ],
     "descriptionLarga": "La metatarsalgia es una afección caracterizada por dolor en la zona de los metatarsos, que son los huesos en la parte anterior del pie. Se produce debido a impactos repetitivos, calzado inadecuado, deformidades en los pies o el envejecimiento que lesiones la denomidad Barra Plantar o lesiones las estructiras nerviosas de los espacios intermetatarsianos causando neuromas como el Neuroma de Morton. Es común en corredores y personas que pasan mucho tiempo de pie. El tratamiento incluye el uso de calzado adecuado, plantillas ortopédicas, fisioterapia y reposo para aliviar la presión en la zona afectada. En casos graves especialmente cuando hay una afectación de la Barra Plantar o la presencia de neuromas, puede requerirse cirugía para reparar esta Barra Plantar y/o corregir la alineación de los huesos del pie o extraer el neuroma intermetatarsiano.",
-    "categoria": "patologia"
+    "categoria": "patologia",
+    "videoUrl": "https://www.youtube.com/embed/JvI7efSek0w",
+    "videoThumbnail": "../assets/images/fracturas-tobillo-pie-4.png"
   }
 ]
