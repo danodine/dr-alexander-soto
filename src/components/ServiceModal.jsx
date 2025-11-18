@@ -157,7 +157,7 @@ export default function ServiceModal({ open, onClose, service }) {
             {/* ================= VIDEO THUMBNAIL ================= */}
             {hasVideo && (
               <div className="mt-4">
-                <p className="ph4 mb-2">Video</p>
+                <p className="ph4 mb-2">Conosca mas con este video</p>
 
                 <button
                   type="button"
