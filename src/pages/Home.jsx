@@ -231,18 +231,16 @@ export default function Home() {
                     className="logo color"
                   />
                 </a>
-
                 <div className="logo-item animate">
                   <img
-                    src="/assets/images/metropolitano-grey.png"
+                    src="/assets/images/vozandes-grey.png"
                     className="logo grey"
                   />
                   <img
-                    src="/assets/images/metropolitano-color.png"
+                    src="/assets/images/vozandes-color.png"
                     className="logo color"
                   />
                 </div>
-
                 <a
                   href="https://www.hospitalmetropolitano.org/en/doctors/10881/alexander-nicolal-soto-toledo"
                   className="logo-item animate"
@@ -250,11 +248,11 @@ export default function Home() {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src="/assets/images/vozandes-grey.png"
+                    src="/assets/images/metropolitano-grey.png"
                     className="logo grey"
                   />
                   <img
-                    src="/assets/images/vozandes-color.png"
+                    src="/assets/images/metropolitano-color.png"
                     className="logo color"
                   />
                 </a>
