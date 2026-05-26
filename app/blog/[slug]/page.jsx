@@ -1,7 +1,58 @@
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import Link from "next/link";
-import { FaLinkedin, FaTwitter, FaFacebook, FaLink } from "react-icons/fa";
+import Image from "next/image";
+import { absoluteUrl, doctorProfile, jsonLdScript, siteUrl } from "@/lib/seo";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Articulo no encontrado",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const description = `${post.paragraph1.slice(0, 155).trim()}...`;
+  const url = `/blog/${post.slug}`;
+
+  return {
+    title: post.title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description,
+      images: [
+        {
+          url: post.image,
+          width: 1200,
+          height: 675,
+          alt: post.title,
+        },
+      ],
+      authors: [doctorProfile.name],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: [post.image],
+    },
+  };
+}
+
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
@@ -10,12 +61,45 @@ export default async function BlogPostPage({ params }) {
 
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
   const nextPost = allPosts[currentIndex + 1] || allPosts[0];
-  const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
   if (!post) notFound();
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": `${siteUrl}/blog/${post.slug}#article`,
+    url: absoluteUrl(`/blog/${post.slug}`),
+    headline: post.title,
+    description: `${post.paragraph1.slice(0, 155).trim()}...`,
+    image: absoluteUrl(post.image),
+    inLanguage: "es-EC",
+    author: {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: doctorProfile.name,
+      jobTitle: doctorProfile.title,
+    },
+    publisher: {
+      "@type": "MedicalBusiness",
+      "@id": `${siteUrl}/#medical-practice`,
+      name: doctorProfile.name,
+      logo: absoluteUrl(doctorProfile.logo),
+    },
+    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
+    about: [
+      "Traumatologia",
+      "Ortopedia",
+      "Pie y tobillo",
+      "Cirugia ortopedica",
+    ],
+  };
+
   return (
     <main className="blog-post-page-detail">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(articleJsonLd) }}
+      />
       {/* Background System */}
       <div className="future-grid-bg" />
       <div className="future-orb one" />
@@ -121,10 +205,12 @@ export default async function BlogPostPage({ params }) {
               className="blog-post-visual-wrap"
               style={{ margin: "40px 0", aspectRatio: "16/9" }}
             >
-              <img
+              <Image
                 src={post.image}
                 alt={post.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                fill
+                sizes="(max-width: 1200px) 100vw, 760px"
+                style={{ objectFit: "cover" }}
               />
             </div>
 
@@ -144,10 +230,12 @@ export default async function BlogPostPage({ params }) {
           <aside className="blog-sidebar">
             <div className="sidebar-reading-block">
               <div className="blog-author-strip">
-                <img
+                <Image
                   src="/assets/images/Dr-Alexander-Soto.webp"
                   className="author-mini-photo"
                   alt="Dr. Soto"
+                  width={44}
+                  height={44}
                 />
                 <div className="author-mini-info">
                   <p className="name">Dr. Alexander Soto</p>
@@ -212,10 +300,12 @@ export default async function BlogPostPage({ params }) {
             style={{ textDecoration: "none" }}
           >
             <div className="next-article-card" style={{ height: "500px" }}>
-              <img
+              <Image
                 src={nextPost.image}
                 className="next-article-image"
                 alt="Próximo"
+                fill
+                sizes="(max-width: 1200px) 100vw, 1200px"
               />
               <div className="next-article-content" style={{ padding: "60px" }}>
                 <span

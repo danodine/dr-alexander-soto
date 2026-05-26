@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import Image from "next/image";
 import PropTypes from "prop-types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -47,10 +48,13 @@ export default function ServiceModal({ open, onClose, service }) {
   const galleryPanelsRef = useRef([]);
   const videoSectionRef = useRef(null);
 
-  const slides = useMemo(
-    () => service?.imagesCarucel || service?.slides || [],
-    [service],
-  );
+  const slides = useMemo(() => {
+    const source = service?.slides || service?.imagesCarucel || [];
+    return source.map((slide) => ({
+      ...slide,
+      image: slide.image?.replace(/^\.\.\//, "/"),
+    }));
+  }, [service]);
 
   const symptoms = useMemo(() => service?.symptoms || [], [service]);
 
@@ -200,7 +204,7 @@ export default function ServiceModal({ open, onClose, service }) {
     return () => {
       ctx.revert();
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.scroller === modalRef.current) trigger.kill();
+        if (trigger.scroller === modal) trigger.kill();
       });
     };
   }, [open, service, slides.length]);
@@ -282,10 +286,12 @@ export default function ServiceModal({ open, onClose, service }) {
                   }}
                   className="service-modal-gallery-panel"
                 >
-                  <img
+                  <Image
                     src={slide.image}
                     alt={slide.altText || `${service.title} ${index + 1}`}
                     className="service-modal-gallery-image"
+                    fill
+                    sizes="(max-width: 960px) 92vw, 880px"
                   />
                   {slide.altText && (
                     <figcaption className="service-modal-gallery-caption">

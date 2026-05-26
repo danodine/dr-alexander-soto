@@ -1,14 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { loadServices } from "@/lib/servicesApi";
 import TiltCard from "@/components/TiltCard";
-import VideoModal from "@/components/VideoModal";
-import ScrollCanvas from "@/components/ScrollCanvas";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const ScrollCanvas = dynamic(() => import("@/components/ScrollCanvas"), {
+  ssr: false,
+});
+const VideoModal = dynamic(() => import("@/components/VideoModal"), {
+  ssr: false,
+});
 
 const storySteps = [
   {
@@ -133,21 +140,6 @@ export default function HomePage({ onNavigate }) {
     }, 500);
     return () => clearTimeout(timeout);
   }, [featuredServices]);
-
-  // CSS Animations Observer
-  useEffect(() => {
-    const elements = document.querySelectorAll(".animate");
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          if (entry.isIntersecting)
-            entry.target.classList.add("animate-visible");
-        }),
-      { threshold: 0.2 },
-    );
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   // STORY SECTION
   useEffect(() => {
@@ -374,9 +366,13 @@ export default function HomePage({ onNavigate }) {
               media="(max-width: 768px)"
             />
             {/* Default/Desktop image */}
-            <img
+            <Image
               src="/assets/images/portada_dr_alex_soto.png"
               alt="Dr. Alexander Soto - Portada"
+              width={1920}
+              height={1080}
+              priority
+              sizes="100vw"
             />
           </picture>
 
@@ -401,10 +397,13 @@ export default function HomePage({ onNavigate }) {
                 <div className="doctor-story-grid">
                   <div className="doctor-story-visual">
                     <div className="doctor-story-image-wrap">
-                      <img
+                      <Image
                         src="/assets/images/Dr-Alexander-Soto.webp"
                         alt="Doctor Alexander Soto"
                         className="doctor-story-image"
+                        width={520}
+                        height={760}
+                        sizes="(max-width: 991px) 100vw, 520px"
                       />
                     </div>
                   </div>
@@ -452,10 +451,12 @@ export default function HomePage({ onNavigate }) {
                                       className="doctor-story-logo-card"
                                     >
                                       <div className="doctor-story-logo-inner">
-                                        <img
+                                        <Image
                                           src={logo.image}
                                           alt={logo.name}
                                           className="doctor-story-logo-image"
+                                          width={82}
+                                          height={82}
                                         />
                                       </div>
                                     </a>
@@ -465,10 +466,12 @@ export default function HomePage({ onNavigate }) {
                                       className="doctor-story-logo-card"
                                     >
                                       <div className="doctor-story-logo-inner">
-                                        <img
+                                        <Image
                                           src={logo.image}
                                           alt={logo.name}
                                           className="doctor-story-logo-image"
+                                          width={82}
+                                          height={82}
                                         />
                                       </div>
                                     </div>
@@ -501,10 +504,13 @@ export default function HomePage({ onNavigate }) {
             <div className="doctor-story-mobile container">
               <p className="ph3">Mi Visión y Sobre mí</p>
               <div className="doctor-story-mobile-image-wrap">
-                <img
+                <Image
                   src="/assets/images/Dr-Alexander-Soto.webp"
                   alt="Doctor Alexander Soto"
                   className="doctor-story-mobile-image"
+                  width={480}
+                  height={640}
+                  sizes="(max-width: 575px) 100vw, 480px"
                 />
               </div>
               {storySteps.map((step) => (
@@ -516,10 +522,12 @@ export default function HomePage({ onNavigate }) {
                       {step.logos.map((logo) => (
                         <div key={logo.name} className="doctor-story-logo-card">
                           <div className="doctor-story-logo-inner">
-                            <img
+                            <Image
                               src={logo.image}
                               alt={logo.name}
                               className="doctor-story-logo-image"
+                              width={82}
+                              height={82}
                             />
                           </div>
                         </div>
@@ -533,10 +541,6 @@ export default function HomePage({ onNavigate }) {
             </div>
           </section>
         </div>
-
-        {/* ======================================================== */}
-        {/* THE CANVAS IS NOW OUTSIDE THE 'CONTENEDOR-MAIN' BRICK WALL */}
-        {/* ======================================================== */}
         <ScrollCanvas />
 
         {/* SECOND HALF OF THE PAGE */}
@@ -567,7 +571,12 @@ export default function HomePage({ onNavigate }) {
                       >
                         <div className="service-glow-card-inner">
                           <div className="service-glow-icon-wrap">
-                            <img src={service.image} alt={service.title} />
+                            <Image
+                              src={service.image}
+                              alt={service.title}
+                              width={88}
+                              height={88}
+                            />
                           </div>
                           <div className="service-glow-copy">
                             <h3>{service.shortTitle}</h3>

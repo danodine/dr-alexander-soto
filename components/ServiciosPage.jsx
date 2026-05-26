@@ -1,23 +1,21 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ServiceModal from "@/components/ServiceModal";
 import { loadServices } from "@/lib/servicesApi";
 
-gsap.registerPlugin(ScrollTrigger);
+const ServiceModal = dynamic(() => import("@/components/ServiceModal"), {
+  ssr: false,
+});
 
 export default function ServiciosPage({ onNavigate }) {
   const [services, setServices] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [active, setActive] = useState(null);
 
   const heroRef = useRef(null);
-  const stageRef = useRef(null);
-  const navItemsRef = useRef([]);
-  const panelsRef = useRef([]);
 
   useEffect(() => {
     loadServices()
@@ -25,9 +23,13 @@ export default function ServiciosPage({ onNavigate }) {
       .catch((err) => console.error("Error cargando servicios:", err));
   }, []);
 
-  const featuredServices = useMemo(() => services.slice(0, 6), [services]);
-  const patologias = services.filter((s) => s.categoria === "patologia");
-  const tratamientos = services.filter((s) => s.categoria === "tratamiento");
+  const { patologias, tratamientos } = useMemo(
+    () => ({
+      patologias: services.filter((s) => s.categoria === "patologia"),
+      tratamientos: services.filter((s) => s.categoria === "tratamiento"),
+    }),
+    [services],
+  );
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -44,67 +46,6 @@ export default function ServiciosPage({ onNavigate }) {
       },
     );
   }, []);
-
-  useEffect(() => {
-    const section = stageRef.current;
-    const navItems = navItemsRef.current.filter(Boolean);
-    const panels = panelsRef.current.filter(Boolean);
-
-    if (!section || !navItems.length || !panels.length) return;
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 1100px)", () => {
-      navItems.forEach((item, i) => {
-        gsap.set(item, {
-          opacity: i === 0 ? 1 : 0.42,
-          x: i === 0 ? 0 : -10,
-        });
-      });
-
-      panels.forEach((panel, i) => {
-        gsap.set(panel, {
-          autoAlpha: i === 0 ? 1 : 0,
-          y: i === 0 ? 0 : 16,
-          position: "absolute",
-          inset: 0,
-        });
-      });
-
-      const steps = panels.length;
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: `+=${window.innerHeight * Math.max(steps - 1, 1) * 0.9}`,
-          scrub: 1,
-          pin: true,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const index = Math.min(
-              steps - 1,
-              Math.round(self.progress * (steps - 1)),
-            );
-            setActiveIndex(index);
-          },
-        },
-      });
-
-      for (let i = 1; i < steps; i += 1) {
-        tl.to(navItems[i - 1], { opacity: 0.42, x: -10, duration: 0.24 })
-          .to(panels[i - 1], { autoAlpha: 0, y: -10, duration: 0.22 }, "<")
-          .to(navItems[i], { opacity: 1, x: 0, duration: 0.28 })
-          .to(panels[i], { autoAlpha: 1, y: 0, duration: 0.28 }, "<");
-      }
-
-      return () => {
-        tl.scrollTrigger?.kill();
-        tl.kill();
-      };
-    });
-
-    return () => mm.revert();
-  }, [featuredServices]);
 
   const openModal = (service) => {
     setActive(service);
@@ -164,9 +105,11 @@ export default function ServiciosPage({ onNavigate }) {
                   className="future-hover-card"
                   onClick={() => openModal(service)}
                 >
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.title}
+                    width={58}
+                    height={58}
                     style={{
                       width: "58px",
                       height: "58px",
@@ -196,9 +139,11 @@ export default function ServiciosPage({ onNavigate }) {
                   className="future-hover-card"
                   onClick={() => openModal(service)}
                 >
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.title}
+                    width={58}
+                    height={58}
                     style={{
                       width: "58px",
                       height: "58px",

@@ -24,6 +24,7 @@ export default function BackgroundMusic() {
       <audio
         ref={audioRef}
         src="/assets/bg-music.mp3"
+        preload="none"
         loop
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}

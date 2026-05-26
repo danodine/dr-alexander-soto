@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -76,14 +77,15 @@ export default function BlogPage() {
                     overflow: "hidden",
                     borderRadius: "18px",
                     marginBottom: "20px",
+                    aspectRatio: "16/9",
                   }}
                 >
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     style={{
-                      width: "100%",
-                      aspectRatio: "16/9",
                       objectFit: "cover",
                     }}
                   />

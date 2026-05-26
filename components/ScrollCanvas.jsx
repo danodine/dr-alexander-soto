@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -21,8 +21,21 @@ const ScrollCanvas = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let ctx = gsap.context(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let ctx;
+    let observer;
+    let initialized = false;
+
+    const initSequence = () => {
+      if (initialized) return;
+      initialized = true;
+
+      ctx = gsap.context(() => {
       const canvas = canvasRef.current;
+      if (!canvas) return;
+
       const context = canvas.getContext("2d");
       canvas.width = 1920;
       canvas.height = 1080;
@@ -90,9 +103,25 @@ const ScrollCanvas = () => {
         { opacity: 1, y: 0, duration: 1 },
         7.5,
       );
-    }, sectionRef);
+      }, sectionRef);
+    };
 
-    return () => ctx.revert();
+    observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        initSequence();
+      },
+      { rootMargin: "1200px 0px" },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer?.disconnect();
+      ctx?.revert();
+      imagesRef.current = [];
+    };
   }, []);
 
   return (

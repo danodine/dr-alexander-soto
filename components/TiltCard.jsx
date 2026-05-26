@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 
 export default function TiltCard({ href, image, alt }) {
   const cardRef = useRef(null);
@@ -61,7 +62,14 @@ export default function TiltCard({ href, image, alt }) {
         }}
       />
       <div className="flare-card-content">
-        <img src={image} alt={alt} className="flare-logo" />
+        <Image
+          src={image}
+          alt={alt}
+          className="flare-logo"
+          width={220}
+          height={140}
+          sizes="(max-width: 768px) 42vw, 220px"
+        />
       </div>
     </a>
   );
