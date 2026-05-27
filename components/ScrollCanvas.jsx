@@ -29,6 +29,47 @@ const ScrollCanvas = () => {
     let observer;
     let initialized = false;
 
+    const setupCanvas = (frameStep = 1) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return null;
+
+      const context = canvas.getContext("2d");
+      canvas.width = 1920;
+      canvas.height = 1080;
+      imagesRef.current = [];
+
+      const frameIndexes = [];
+      for (let i = 1; i <= frameCount; i += frameStep) {
+        frameIndexes.push(i);
+      }
+      if (frameIndexes[frameIndexes.length - 1] !== frameCount) {
+        frameIndexes.push(frameCount);
+      }
+
+      frameIndexes.forEach((frameIndex, index) => {
+        const img = new Image();
+        img.src = currentFrame(frameIndex);
+        imagesRef.current.push(img);
+        if (index === 0) {
+          img.onload = () =>
+            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+      });
+
+      const renderCanvas = (index) => {
+        const img = imagesRef.current[index];
+        if (img && img.complete) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+      };
+
+      return {
+        frameTotal: imagesRef.current.length,
+        renderCanvas,
+      };
+    };
+
     const initSequence = () => {
       if (initialized) return;
       initialized = true;
@@ -36,34 +77,8 @@ const ScrollCanvas = () => {
       ctx = gsap.context(() => {
         mm = gsap.matchMedia();
         mm.add("(min-width: 768px)", () => {
-          const canvas = canvasRef.current;
-          if (!canvas) return;
-
-          const context = canvas.getContext("2d");
-          canvas.width = 1920;
-          canvas.height = 1080;
-
-          const preloadImages = () => {
-            for (let i = 1; i <= frameCount; i++) {
-              const img = new Image();
-              img.src = currentFrame(i);
-              imagesRef.current.push(img);
-              if (i === 1) {
-                img.onload = () =>
-                  context.drawImage(img, 0, 0, canvas.width, canvas.height);
-              }
-            }
-          };
-
-          const renderCanvas = (index) => {
-            const img = imagesRef.current[index];
-            if (img && img.complete) {
-              context.clearRect(0, 0, canvas.width, canvas.height);
-              context.drawImage(img, 0, 0, canvas.width, canvas.height);
-            }
-          };
-
-          preloadImages();
+          const sequence = setupCanvas();
+          if (!sequence) return;
 
           const scrollObj = { frame: 0 };
 
@@ -83,11 +98,12 @@ const ScrollCanvas = () => {
           tl.to(
             scrollObj,
             {
-              frame: frameCount - 1,
+              frame: sequence.frameTotal - 1,
               snap: "frame",
               ease: "none",
               duration: 10,
-              onUpdate: () => renderCanvas(Math.round(scrollObj.frame)),
+              onUpdate: () =>
+                sequence.renderCanvas(Math.round(scrollObj.frame)),
             },
             0,
           );
@@ -109,51 +125,36 @@ const ScrollCanvas = () => {
         });
 
         mm.add("(max-width: 767px)", () => {
-          const canvas = canvasRef.current;
-          if (!canvas) return;
+          const sequence = setupCanvas(4);
+          if (!sequence) return;
 
-          const context = canvas.getContext("2d");
-          canvas.width = 1920;
-          canvas.height = 1080;
+          let frame = 0;
+          let animationFrameId;
+          let lastFrameTime = 0;
+          let isVisible = true;
 
-          const preloadImages = () => {
-            for (let i = 1; i <= frameCount; i++) {
-              const img = new Image();
-              img.src = currentFrame(i);
-              imagesRef.current.push(img);
-              if (i === 1) {
-                img.onload = () =>
-                  context.drawImage(img, 0, 0, canvas.width, canvas.height);
-              }
-            }
-          };
-
-          const renderCanvas = (index) => {
-            const img = imagesRef.current[index];
-            if (img && img.complete) {
-              context.clearRect(0, 0, canvas.width, canvas.height);
-              context.drawImage(img, 0, 0, canvas.width, canvas.height);
-            }
-          };
-
-          preloadImages();
-
-          const scrollObj = { frame: 0 };
-
-          gsap.to(scrollObj, {
-            frame: frameCount - 1,
-            snap: "frame",
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 0.8,
-              invalidateOnRefresh: true,
-              refreshPriority: 2,
-            },
-            onUpdate: () => renderCanvas(Math.round(scrollObj.frame)),
+          const visibilityObserver = new IntersectionObserver(([entry]) => {
+            isVisible = entry.isIntersecting;
           });
+
+          visibilityObserver.observe(section);
+
+          const animate = (time) => {
+            if (isVisible && time - lastFrameTime > 90) {
+              sequence.renderCanvas(frame);
+              frame = (frame + 1) % sequence.frameTotal;
+              lastFrameTime = time;
+            }
+
+            animationFrameId = requestAnimationFrame(animate);
+          };
+
+          animationFrameId = requestAnimationFrame(animate);
+
+          return () => {
+            visibilityObserver.disconnect();
+            cancelAnimationFrame(animationFrameId);
+          };
         });
       }, sectionRef);
     };
