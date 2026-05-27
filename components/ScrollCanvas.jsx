@@ -25,6 +25,7 @@ const ScrollCanvas = () => {
     if (!section) return;
 
     let ctx;
+    let mm;
     let observer;
     let initialized = false;
 
@@ -33,76 +34,127 @@ const ScrollCanvas = () => {
       initialized = true;
 
       ctx = gsap.context(() => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
+        mm = gsap.matchMedia();
+        mm.add("(min-width: 768px)", () => {
+          const canvas = canvasRef.current;
+          if (!canvas) return;
 
-      const context = canvas.getContext("2d");
-      canvas.width = 1920;
-      canvas.height = 1080;
+          const context = canvas.getContext("2d");
+          canvas.width = 1920;
+          canvas.height = 1080;
 
-      const preloadImages = () => {
-        for (let i = 1; i <= frameCount; i++) {
-          const img = new Image();
-          img.src = currentFrame(i);
-          imagesRef.current.push(img);
-          if (i === 1) {
-            img.onload = () =>
+          const preloadImages = () => {
+            for (let i = 1; i <= frameCount; i++) {
+              const img = new Image();
+              img.src = currentFrame(i);
+              imagesRef.current.push(img);
+              if (i === 1) {
+                img.onload = () =>
+                  context.drawImage(img, 0, 0, canvas.width, canvas.height);
+              }
+            }
+          };
+
+          const renderCanvas = (index) => {
+            const img = imagesRef.current[index];
+            if (img && img.complete) {
+              context.clearRect(0, 0, canvas.width, canvas.height);
               context.drawImage(img, 0, 0, canvas.width, canvas.height);
-          }
-        }
-      };
+            }
+          };
 
-      const renderCanvas = (index) => {
-        const img = imagesRef.current[index];
-        if (img && img.complete) {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.drawImage(img, 0, 0, canvas.width, canvas.height);
-        }
-      };
+          preloadImages();
 
-      preloadImages();
+          const scrollObj = { frame: 0 };
 
-      const scrollObj = { frame: 0 };
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current, // We pin the section, keeping the layout stable!
+              start: "top top",
+              end: "+=600%",
+              scrub: 1,
+              pin: true,
+              pinSpacing: true,
+              refreshPriority: 2,
+            },
+          });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current, // We pin the section, keeping the layout stable!
-          start: "top top",
-          end: "+=600%",
-          scrub: 1,
-          pin: true,
-          pinSpacing: true,
-          refreshPriority: 2,
-        },
-      });
+          // 1. Animate the frames
+          tl.to(
+            scrollObj,
+            {
+              frame: frameCount - 1,
+              snap: "frame",
+              ease: "none",
+              duration: 10,
+              onUpdate: () => renderCanvas(Math.round(scrollObj.frame)),
+            },
+            0,
+          );
 
-      // 1. Animate the frames
-      tl.to(
-        scrollObj,
-        {
-          frame: frameCount - 1,
-          snap: "frame",
-          ease: "none",
-          duration: 10,
-          onUpdate: () => renderCanvas(Math.round(scrollObj.frame)),
-        },
-        0,
-      );
+          // 2. Animate the Text Blocks smoothly
+          tl.to(text1Ref.current, { opacity: 0, y: -50, duration: 1 }, 2.5);
+          tl.fromTo(
+            text2Ref.current,
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1 },
+            3.5,
+          ).to(text2Ref.current, { opacity: 0, y: -50, duration: 1 }, 6.5);
+          tl.fromTo(
+            text3Ref.current,
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1 },
+            7.5,
+          );
+        });
 
-      // 2. Animate the Text Blocks smoothly
-      tl.to(text1Ref.current, { opacity: 0, y: -50, duration: 1 }, 2.5);
-      tl.fromTo(
-        text2Ref.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1 },
-        3.5,
-      ).to(text2Ref.current, { opacity: 0, y: -50, duration: 1 }, 6.5);
-      tl.fromTo(
-        text3Ref.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1 },
-        7.5,
-      );
+        mm.add("(max-width: 767px)", () => {
+          const canvas = canvasRef.current;
+          if (!canvas) return;
+
+          const context = canvas.getContext("2d");
+          canvas.width = 1920;
+          canvas.height = 1080;
+
+          const preloadImages = () => {
+            for (let i = 1; i <= frameCount; i++) {
+              const img = new Image();
+              img.src = currentFrame(i);
+              imagesRef.current.push(img);
+              if (i === 1) {
+                img.onload = () =>
+                  context.drawImage(img, 0, 0, canvas.width, canvas.height);
+              }
+            }
+          };
+
+          const renderCanvas = (index) => {
+            const img = imagesRef.current[index];
+            if (img && img.complete) {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              context.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
+          };
+
+          preloadImages();
+
+          const scrollObj = { frame: 0 };
+
+          gsap.to(scrollObj, {
+            frame: frameCount - 1,
+            snap: "frame",
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.8,
+              invalidateOnRefresh: true,
+              refreshPriority: 2,
+            },
+            onUpdate: () => renderCanvas(Math.round(scrollObj.frame)),
+          });
+        });
       }, sectionRef);
     };
 
@@ -119,6 +171,7 @@ const ScrollCanvas = () => {
 
     return () => {
       observer?.disconnect();
+      mm?.revert();
       ctx?.revert();
       imagesRef.current = [];
     };
