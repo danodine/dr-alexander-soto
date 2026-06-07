@@ -358,8 +358,101 @@ export default function HomePage({ onNavigate }) {
       };
     });
 
-    mm.add("(max-width: 1099px)", () => {
+    mm.add("(min-width: 768px) and (max-width: 1099px)", () => {
       gsap.set([...cards, ...details], { clearProps: "all" });
+    });
+
+    mm.add("(max-width: 767px)", () => {
+      gsap.set(cards, {
+        opacity: 0.48,
+        scale: 0.96,
+        y: 8,
+        filter: "blur(1px)",
+      });
+      gsap.set(details, {
+        autoAlpha: 0,
+        y: 18,
+        filter: "blur(6px)",
+        position: "absolute",
+        inset: 0,
+      });
+      gsap.set(cards[0], { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" });
+      gsap.set(details[0], { autoAlpha: 1, y: 0, filter: "blur(0px)" });
+
+      const stepsCount = cards.length;
+      const segment = 1 / Math.max(stepsCount - 1, 1);
+
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${window.innerHeight * Math.max(stepsCount - 1, 1)}`,
+          scrub: 0.85,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          refreshPriority: 1,
+          onUpdate: (self) => {
+            const index = Math.min(
+              stepsCount - 1,
+              Math.round(self.progress * (stepsCount - 1)),
+            );
+            setActiveService(index);
+          },
+        },
+      });
+
+      for (let i = 1; i < stepsCount; i += 1) {
+        tl.to(
+          cards[i - 1],
+          {
+            opacity: 0.48,
+            scale: 0.96,
+            y: 8,
+            filter: "blur(1px)",
+            duration: segment * 0.42,
+          },
+          (i - 1) * segment + segment * 0.08,
+        )
+          .to(
+            details[i - 1],
+            {
+              autoAlpha: 0,
+              y: -14,
+              filter: "blur(6px)",
+              duration: segment * 0.32,
+            },
+            (i - 1) * segment + segment * 0.08,
+          )
+          .to(
+            cards[i],
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: segment * 0.46,
+            },
+            (i - 1) * segment + segment * 0.38,
+          )
+          .to(
+            details[i],
+            {
+              autoAlpha: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: segment * 0.46,
+            },
+            (i - 1) * segment + segment * 0.44,
+          );
+      }
+
+      return () => {
+        tl.scrollTrigger?.kill();
+        tl.kill();
+      };
     });
 
     return () => mm.revert();

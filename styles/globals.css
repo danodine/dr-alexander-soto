@@ -3553,8 +3553,8 @@ button:hover {
   }
 }
 
-/* ── ≤1100px ── */
-@media (max-width: 1100px) {
+/* ── 768px-1100px ── */
+@media (min-width: 768px) and (max-width: 1100px) {
   .services-showcase-section {
     padding: 80px 0;
   }
@@ -3986,10 +3986,18 @@ button:hover {
   .services-showcase-section {
     padding-top: 48px;
     padding-bottom: 16px;
+    min-height: 100svh;
   }
 
   .services-showcase-header {
     margin-bottom: 18px;
+  }
+
+  .services-showcase-shell {
+    min-height: 100svh;
+    justify-content: center;
+    padding-top: 76px;
+    padding-bottom: 42px;
   }
 
   .services-showcase-kicker {
@@ -3997,27 +4005,29 @@ button:hover {
   }
 
   .services-showcase-grid {
+    grid-template-columns: 1fr;
     gap: 18px;
   }
 
   .services-cards-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
     margin-bottom: 0;
   }
 
   .service-glow-card-inner {
-    min-height: 132px;
-    padding: 16px;
+    min-height: 112px;
+    padding: 14px;
   }
 
   .service-glow-icon-wrap {
-    min-height: 44px;
+    min-height: 38px;
     justify-content: flex-start;
   }
 
   .service-glow-icon-wrap img {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
   }
 
   .service-glow-copy h3 {
@@ -4032,6 +4042,19 @@ button:hover {
 
   .services-detail-card {
     margin-bottom: 12px;
+  }
+
+  .services-detail-panel,
+  .services-detail-stage {
+    min-height: 310px;
+  }
+
+  .services-detail-stage {
+    position: relative;
+  }
+
+  .services-detail-card {
+    min-height: 300px;
   }
 
   .services-detail-card h3 {
@@ -4083,11 +4106,11 @@ button:hover {
   }
 
   .services-cards-panel {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .service-glow-card-inner {
-    min-height: 128px;
+    min-height: 106px;
   }
 
   .services-detail-card {
