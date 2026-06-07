@@ -3623,6 +3623,18 @@ button:hover {
     min-height: 150px;
   }
 
+  .doctor-story-logos-grid-mobile {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
+  }
+
+  .doctor-story-logos-grid-mobile .doctor-story-logo-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
   /* Modal */
   .service-modal-overlay-future {
     padding: 14px;

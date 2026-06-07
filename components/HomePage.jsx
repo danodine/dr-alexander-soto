@@ -622,19 +622,42 @@ export default function HomePage({ onNavigate }) {
                   <h2>{step.title.replaceAll("\n", " ")}</h2>
                   {step.type === "logos" ? (
                     <div className="doctor-story-logos-grid doctor-story-logos-grid-mobile">
-                      {step.logos.map((logo) => (
-                        <div key={logo.name} className="doctor-story-logo-card">
-                          <div className="doctor-story-logo-inner">
-                            <Image
-                              src={logo.image}
-                              alt={logo.name}
-                              className="doctor-story-logo-image"
-                              width={82}
-                              height={82}
-                            />
+                      {step.logos.map((logo) =>
+                        logo.href ? (
+                          <a
+                            key={logo.name}
+                            href={logo.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="doctor-story-logo-card"
+                          >
+                            <div className="doctor-story-logo-inner">
+                              <Image
+                                src={logo.image}
+                                alt={logo.name}
+                                className="doctor-story-logo-image"
+                                width={82}
+                                height={82}
+                              />
+                            </div>
+                          </a>
+                        ) : (
+                          <div
+                            key={logo.name}
+                            className="doctor-story-logo-card"
+                          >
+                            <div className="doctor-story-logo-inner">
+                              <Image
+                                src={logo.image}
+                                alt={logo.name}
+                                className="doctor-story-logo-image"
+                                width={82}
+                                height={82}
+                              />
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ),
+                      )}
                     </div>
                   ) : (
                     <p>{step.text}</p>
