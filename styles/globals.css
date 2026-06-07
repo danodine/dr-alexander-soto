@@ -3666,6 +3666,16 @@ button:hover {
     width: min(320px, calc(100vw - 24px));
     padding: 16px;
     border-radius: var(--radius-md);
+    background: linear-gradient(
+      180deg,
+      rgba(7, 18, 33, 0.84),
+      rgba(7, 18, 33, 0.94)
+    );
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow:
+      0 16px 42px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   .mobile-slide-logo {
@@ -3835,23 +3845,106 @@ button:hover {
   }
 
   .site-footer-modern {
-    padding: 64px 0 24px;
+    padding: 48px 0 22px;
   }
 
   .site-footer-card {
-    padding: 22px 18px;
-    border-radius: 22px;
+    padding: 20px 16px;
+    border-radius: 20px;
+    background: linear-gradient(
+      180deg,
+      rgba(12, 27, 48, 0.84),
+      rgba(7, 18, 33, 0.92)
+    );
+    box-shadow:
+      0 14px 34px rgba(0, 0, 0, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .site-footer-card::before {
+    opacity: 0.32;
+  }
+
+  .site-footer-glow {
+    filter: blur(42px);
+    opacity: 0.35;
+  }
+
+  .site-footer-glow-1 {
+    width: 180px;
+    height: 180px;
+    top: -30px;
+    left: -80px;
+  }
+
+  .site-footer-glow-2 {
+    width: 190px;
+    height: 190px;
+    right: -90px;
+    bottom: -40px;
+  }
+
+  .site-footer-brand-badge {
+    min-height: 34px;
+    padding: 0 13px;
+    margin-bottom: 14px;
+    box-shadow: none;
+  }
+
+  .site-footer-description {
+    line-height: 1.62;
+  }
+
+  .site-footer-socials {
+    gap: 10px;
+    margin-top: 20px;
   }
 
   .site-footer-social-link {
-    width: 50px;
-    height: 50px;
-    border-radius: 16px;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .site-footer-social-link:hover {
+    transform: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  }
+
+  .site-footer-grid {
+    gap: 14px;
+  }
+
+  .site-footer-card-label {
+    margin-bottom: 14px;
+  }
+
+  .site-footer-list li {
+    padding: 10px 0;
+  }
+
+  .site-footer-list strong {
+    line-height: 1.42;
+  }
+
+  .site-footer-contact-block {
+    margin-bottom: 14px;
+  }
+
+  .site-footer-link:hover {
+    transform: none;
   }
 
   .site-footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 24px;
+    padding-top: 16px;
   }
 
   .service-modal-gallery-stage {
