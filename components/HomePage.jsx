@@ -134,11 +134,21 @@ export default function HomePage({ onNavigate }) {
 
   // Force GSAP to recalculate heights after dynamic data loads
   useEffect(() => {
+    const handleLoaderComplete = () => {
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    };
     const timeout = setTimeout(() => {
       ScrollTrigger.sort();
       ScrollTrigger.refresh();
     }, 500);
-    return () => clearTimeout(timeout);
+
+    window.addEventListener("app-loader-complete", handleLoaderComplete);
+
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("app-loader-complete", handleLoaderComplete);
+    };
   }, [featuredServices]);
 
   // STORY SECTION

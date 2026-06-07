@@ -127,6 +127,182 @@ main {
   position: relative;
 }
 
+body.app-loading {
+  height: 100svh;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: #fff;
+  background:
+    radial-gradient(
+      circle at 50% 32%,
+      rgba(61, 215, 255, 0.18),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(88, 166, 255, 0.13),
+      transparent 26%
+    ),
+    linear-gradient(180deg, rgba(4, 14, 28, 0.98), rgba(4, 11, 22, 0.99));
+  transition:
+    opacity 0.42s ease,
+    visibility 0.42s ease;
+}
+
+.page-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(119, 236, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(119, 236, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.page-loader.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.page-loader-shell {
+  position: relative;
+  width: min(100%, 430px);
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 34px 26px;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(61, 215, 255, 0.16),
+      transparent 44%
+    ),
+    linear-gradient(180deg, rgba(14, 31, 56, 0.72), rgba(8, 18, 33, 0.9));
+  border: 1px solid rgba(124, 234, 255, 0.18);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.46),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 54px rgba(61, 215, 255, 0.15);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.page-loader-orbit {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  margin-bottom: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 234, 255, 0.18);
+  box-shadow:
+    inset 0 0 30px rgba(61, 215, 255, 0.12),
+    0 0 34px rgba(61, 215, 255, 0.16);
+  animation: loader-orbit-spin 2.4s linear infinite;
+}
+
+.page-loader-orbit::before {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(119, 236, 255, 0.05);
+}
+
+.page-loader-orbit span {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 18px rgba(119, 236, 255, 0.9);
+}
+
+.page-loader-orbit span:nth-child(1) {
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-loader-orbit span:nth-child(2) {
+  right: 10px;
+  bottom: 26px;
+  opacity: 0.72;
+}
+
+.page-loader-orbit span:nth-child(3) {
+  left: 13px;
+  bottom: 24px;
+  opacity: 0.5;
+}
+
+.page-loader-kicker {
+  margin: 0 0 10px;
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.page-loader-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.55rem, 6vw, 2.25rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.page-loader-progress {
+  position: relative;
+  width: min(100%, 260px);
+  height: 3px;
+  margin-top: 28px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.page-loader-progress span {
+  position: absolute;
+  inset: 0;
+  width: 42%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  animation: loader-progress-sweep 1.15s ease-in-out infinite;
+}
+
+@keyframes loader-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-progress-sweep {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
 /* =============================================================================
    3. TYPOGRAPHY
    ============================================================================= */
@@ -3904,42 +4080,42 @@ button:hover {
   }
 
   .svs-section {
-    min-height: auto;
+    min-height: 100svh;
   }
 
   .svs-shell {
-    min-height: auto;
-    align-items: flex-start;
-    padding-top: 80px;
-    padding-bottom: 60px;
+    min-height: 100svh;
+    align-items: center;
+    padding-top: 74px;
+    padding-bottom: 54px;
   }
 
   .svs-stage {
-    position: static;
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    position: relative;
+    min-height: clamp(330px, 62svh, 520px);
     max-width: 100%;
   }
 
   .svs-panel {
-    position: static;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    filter: none !important;
-    padding-bottom: 52px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-
-  .svs-panel:last-child {
-    border-bottom: none;
+    position: absolute;
+    inset: 0;
+    justify-content: center;
     padding-bottom: 0;
+    border-bottom: none;
   }
 
   .svs-heading {
     font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+
+  .svs-body {
+    max-width: 34ch;
+    font-size: 0.96rem;
+    line-height: 1.68;
+  }
+
+  .svs-video-wrap canvas {
+    height: 100svh !important;
   }
 
   .svs-scroll-hint {

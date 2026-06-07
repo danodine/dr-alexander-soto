@@ -4,6 +4,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GlobalGridCanvas from "@/components/GridCanvas";
+import PageLoader from "@/components/PageLoader";
 import {
   absoluteUrl,
   doctorProfile,
@@ -177,13 +178,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body
-        className="app d-flex flex-column min-vh-100"
+        className="app app-loading d-flex flex-column min-vh-100"
         suppressHydrationWarning
       >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
         />
+        <PageLoader />
         <GlobalGridCanvas />
         <Navbar />
         {children}
@@ -205,4 +207,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

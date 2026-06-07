@@ -125,35 +125,61 @@ const ScrollCanvas = () => {
         });
 
         mm.add("(max-width: 767px)", () => {
-          const sequence = setupCanvas(4);
+          const sequence = setupCanvas(2);
           if (!sequence) return;
 
-          let frame = 0;
-          let animationFrameId;
-          let lastFrameTime = 0;
-          let isVisible = true;
-
-          const visibilityObserver = new IntersectionObserver(([entry]) => {
-            isVisible = entry.isIntersecting;
+          gsap.set(text1Ref.current, { autoAlpha: 1, y: 0 });
+          gsap.set([text2Ref.current, text3Ref.current], {
+            autoAlpha: 0,
+            y: 36,
           });
 
-          visibilityObserver.observe(section);
+          const scrollObj = { frame: 0 };
 
-          const animate = (time) => {
-            if (isVisible && time - lastFrameTime > 90) {
-              sequence.renderCanvas(frame);
-              frame = (frame + 1) % sequence.frameTotal;
-              lastFrameTime = time;
-            }
+          const tl = gsap.timeline({
+            defaults: { ease: "power2.out" },
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: () => `+=${window.innerHeight * 2.65}`,
+              scrub: 0.85,
+              pin: true,
+              pinSpacing: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              refreshPriority: 2,
+            },
+          });
 
-            animationFrameId = requestAnimationFrame(animate);
-          };
+          tl.to(
+            scrollObj,
+            {
+              frame: sequence.frameTotal - 1,
+              snap: "frame",
+              ease: "none",
+              duration: 10,
+              onUpdate: () =>
+                sequence.renderCanvas(Math.round(scrollObj.frame)),
+            },
+            0,
+          );
 
-          animationFrameId = requestAnimationFrame(animate);
+          tl.to(text1Ref.current, { autoAlpha: 0, y: -36, duration: 1 }, 2.2);
+          tl.to(
+            text2Ref.current,
+            { autoAlpha: 1, y: 0, duration: 1 },
+            3.05,
+          )
+            .to(text2Ref.current, { autoAlpha: 0, y: -36, duration: 1 }, 6)
+            .to(
+              text3Ref.current,
+              { autoAlpha: 1, y: 0, duration: 1 },
+              6.85,
+            );
 
           return () => {
-            visibilityObserver.disconnect();
-            cancelAnimationFrame(animationFrameId);
+            tl.scrollTrigger?.kill();
+            tl.kill();
           };
         });
       }, sectionRef);
@@ -170,8 +196,16 @@ const ScrollCanvas = () => {
 
     observer.observe(section);
 
+    const refreshAfterLoader = () => {
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener("app-loader-complete", refreshAfterLoader);
+
     return () => {
       observer?.disconnect();
+      window.removeEventListener("app-loader-complete", refreshAfterLoader);
       mm?.revert();
       ctx?.revert();
       imagesRef.current = [];
