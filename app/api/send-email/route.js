@@ -1,5 +1,3 @@
-import nodemailer from "nodemailer";
-
 const MAX_FIELD_LENGTHS = {
   name: 100,
   email: 254,
@@ -93,36 +91,48 @@ export async function POST(request) {
       );
     }
 
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error("Email route missing required SMTP environment variables.");
+    const apiKey = process.env.BREVO_API_KEY;
+    const fromEmail = process.env.CONTACT_FROM_EMAIL;
+    const toEmail = process.env.CONTACT_TO_EMAIL;
+
+    if (!apiKey || !fromEmail || !toEmail) {
+      console.error("Email route missing required Brevo environment variables.");
       return Response.json(
         { error: "Servicio de correo no configurado." },
         { status: 500 },
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+    const brevoResponse = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": apiKey,
       },
+      body: JSON.stringify({
+        sender: { email: fromEmail, name: "Dr. Alexander Soto" },
+        to: [{ email: toEmail }],
+        replyTo: { email, name },
+        subject: `Nuevo mensaje de contacto de ${name.replace(/[\r\n]/g, " ")}`,
+        textContent: `Nuevo mensaje desde la web\n\nNombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`,
+        htmlContent: `
+          <h2>Nuevo mensaje desde la web</h2>
+          <p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Mensaje:</strong></p>
+          <p>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
+        `,
+      }),
     });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
-      subject: `Nuevo mensaje de contacto de ${name.replace(/[\r\n]/g, " ")}`,
-      replyTo: email,
-      text: `Nuevo mensaje desde la web\n\nNombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`,
-      html: `
-        <h2>Nuevo mensaje desde la web</h2>
-        <p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Mensaje:</strong></p>
-        <p>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
-      `,
-    });
+    if (!brevoResponse.ok) {
+      const providerBody = await brevoResponse.text();
+      console.error("Brevo email error", brevoResponse.status, providerBody);
+      return Response.json(
+        { error: "No se pudo enviar el correo." },
+        { status: 502 },
+      );
+    }
 
     return Response.json(
       { message: "Correo enviado correctamente." },
