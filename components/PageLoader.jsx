@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const MIN_LOADER_MS = 900;
@@ -92,10 +93,15 @@ export default function PageLoader() {
       aria-live="polite"
     >
       <div className="page-loader-shell">
-        <div className="page-loader-orbit" aria-hidden="true">
-          <span />
-          <span />
-          <span />
+        <div className="page-loader-logo-mark" aria-hidden="true">
+          <Image
+            src="/assets/images/logo.png"
+            alt=""
+            width={112}
+            height={112}
+            priority
+            className="page-loader-logo"
+          />
         </div>
         <p className="page-loader-kicker">Dr. Alexander Soto</p>
         <p className="page-loader-title">Preparando tu experiencia</p>
