@@ -12,22 +12,31 @@ function getYouTubeId(url) {
   if (!url) return null;
   try {
     const u = new URL(url);
+    const hostname = u.hostname.replace(/^www\./, "");
+    const isAllowedHost =
+      hostname === "youtube.com" ||
+      hostname === "youtube-nocookie.com" ||
+      hostname === "youtu.be";
 
-    if (u.hostname.includes("youtu.be")) {
-      return u.pathname.slice(1);
+    if (!isAllowedHost) return null;
+
+    if (hostname === "youtu.be") {
+      const id = u.pathname.slice(1);
+      return /^[a-zA-Z0-9_-]{11}$/.test(id) ? id : null;
     }
 
     const vParam = u.searchParams.get("v");
-    if (vParam) return vParam;
+    if (vParam) return /^[a-zA-Z0-9_-]{11}$/.test(vParam) ? vParam : null;
 
     const parts = u.pathname.split("/");
     const embedIndex = parts.indexOf("embed");
     if (embedIndex !== -1 && parts[embedIndex + 1]) {
-      return parts[embedIndex + 1];
+      const id = parts[embedIndex + 1];
+      return /^[a-zA-Z0-9_-]{11}$/.test(id) ? id : null;
     }
 
     const last = parts.filter(Boolean).pop();
-    return last || null;
+    return /^[a-zA-Z0-9_-]{11}$/.test(last) ? last : null;
   } catch {
     return null;
   }
@@ -36,7 +45,7 @@ function getYouTubeId(url) {
 function getYouTubeEmbedUrl(url) {
   const id = getYouTubeId(url);
   if (!id) return null;
-  return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
+  return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
 }
 
 export default function ServiceModal({ open, onClose, service }) {
@@ -317,6 +326,8 @@ export default function ServiceModal({ open, onClose, service }) {
                 title={service.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                sandbox="allow-scripts allow-same-origin allow-presentation"
               />
             </div>
           </section>

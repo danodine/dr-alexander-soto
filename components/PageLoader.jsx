@@ -3,11 +3,7 @@
 import { useEffect, useState } from "react";
 
 const MIN_LOADER_MS = 900;
-const MAX_LOADER_MS = 6000;
-const FOOT_SEQUENCE_FRAMES = 192;
-
-const footSequenceFrame = (index) =>
-  `/assets/images/foot-sequence/frame_${index.toString().padStart(4, "0")}.jpg`;
+const MAX_LOADER_MS = 2200;
 
 export default function PageLoader() {
   const [isVisible, setIsVisible] = useState(true);
@@ -31,34 +27,16 @@ export default function PageLoader() {
       return document.fonts.ready.catch(() => undefined);
     };
 
-    const waitForCurrentImages = async () => {
-      const images = Array.from(document.images);
+    const waitForCriticalImages = async () => {
+      const images = Array.from(document.images).filter(
+        (img) =>
+          img.loading !== "lazy" &&
+          img.getBoundingClientRect().top < window.innerHeight * 1.25,
+      );
 
       await Promise.all(
         images.map((img) => {
           if (img.complete && img.naturalWidth > 0) return Promise.resolve();
-          if (typeof img.decode === "function") {
-            return img.decode().catch(() => undefined);
-          }
-
-          return new Promise((resolve) => {
-            img.addEventListener("load", resolve, { once: true });
-            img.addEventListener("error", resolve, { once: true });
-          });
-        }),
-      );
-    };
-
-    const waitForFootSequence = async () => {
-      await Promise.all(
-        Array.from({ length: FOOT_SEQUENCE_FRAMES }, (_, index) => {
-          const img = new Image();
-          img.src = footSequenceFrame(index + 1);
-
-          if (img.complete && img.naturalWidth > 0) {
-            return Promise.resolve();
-          }
-
           if (typeof img.decode === "function") {
             return img.decode().catch(() => undefined);
           }
@@ -82,8 +60,7 @@ export default function PageLoader() {
       Promise.all([
         waitForWindowLoad(),
         waitForFonts(),
-        waitForCurrentImages(),
-        waitForFootSequence(),
+        waitForCriticalImages(),
         minimumDelay,
       ]),
       safetyTimeout,

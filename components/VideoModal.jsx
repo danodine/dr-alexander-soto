@@ -8,6 +8,8 @@ export default function VideoModal({
 }) {
   if (!isOpen) return null;
 
+  const safeVideoId = /^[a-zA-Z0-9_-]{11}$/.test(videoId) ? videoId : null;
+
   return (
     <AnimatePresence>
       <div
@@ -41,12 +43,16 @@ export default function VideoModal({
             </button>
 
             <div className="video-container" style={{ borderRadius: "30px" }}>
-              <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                title="Dr. Alexander Soto - Mi Misión"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+              {safeVideoId && (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${safeVideoId}?autoplay=1`}
+                  title="Dr. Alexander Soto - Mi Misión"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  sandbox="allow-scripts allow-same-origin allow-presentation"
+                ></iframe>
+              )}
             </div>
           </div>
 

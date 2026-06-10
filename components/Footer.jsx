@@ -90,6 +90,7 @@ export default function Footer() {
                   className="site-footer-link"
                   href="https://www.google.com/maps/search/?api=1&query=Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B., Quito"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B., Quito.
                 </a>

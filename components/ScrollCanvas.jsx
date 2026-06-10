@@ -16,7 +16,7 @@ const ScrollCanvas = () => {
   const frameCount = 192;
 
   const currentFrame = (index) =>
-    `/assets/images/foot-sequence/frame_${index.toString().padStart(4, "0")}.jpg`;
+    `/assets/images/foot-sequence/frame_${index.toString().padStart(4, "0")}.webp`;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -46,18 +46,47 @@ const ScrollCanvas = () => {
         frameIndexes.push(frameCount);
       }
 
-      frameIndexes.forEach((frameIndex, index) => {
+      imagesRef.current = Array.from({ length: frameIndexes.length });
+
+      const loadFrame = (index) => {
+        if (imagesRef.current[index]) return imagesRef.current[index];
+
         const img = new Image();
-        img.src = currentFrame(frameIndex);
-        imagesRef.current.push(img);
-        if (index === 0) {
-          img.onload = () =>
-            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.decoding = "async";
+        img.src = currentFrame(frameIndexes[index]);
+        imagesRef.current[index] = img;
+        return img;
+      };
+
+      const preloadAround = (index, radius = 8) => {
+        const start = Math.max(0, index - 2);
+        const end = Math.min(frameIndexes.length - 1, index + radius);
+
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(() => {
+            for (let i = start; i <= end; i += 1) loadFrame(i);
+          });
+          return;
         }
-      });
+
+        window.setTimeout(() => {
+          for (let i = start; i <= end; i += 1) loadFrame(i);
+        }, 0);
+      };
+
+      loadFrame(0).onload = () =>
+        context.drawImage(
+          imagesRef.current[0],
+          0,
+          0,
+          canvas.width,
+          canvas.height,
+        );
 
       const renderCanvas = (index) => {
-        const img = imagesRef.current[index];
+        const img = loadFrame(index);
+        preloadAround(index);
+
         if (img && img.complete) {
           context.clearRect(0, 0, canvas.width, canvas.height);
           context.drawImage(img, 0, 0, canvas.width, canvas.height);

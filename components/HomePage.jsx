@@ -470,10 +470,10 @@ export default function HomePage({ onNavigate }) {
             />
             {/* Default/Desktop image */}
             <Image
-              src="/assets/images/portada_dr_alex_soto.png"
+              src="/assets/images/portada_dr_alex_soto.webp"
               alt="Dr. Alexander Soto - Portada"
               width={1920}
-              height={1080}
+              height={727}
               priority
               sizes="100vw"
             />
