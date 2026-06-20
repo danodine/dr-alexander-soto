@@ -42,6 +42,21 @@ export const metadata = {
       "es-EC": "/",
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/assets/icons/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/assets/icons/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [
+      {
+        url: "/apple-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "es_EC",
