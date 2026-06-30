@@ -5052,6 +5052,19 @@ a.about-institution-card:hover {
     padding: 26px 20px;
   }
 
+  .about-video-section {
+    margin-top: 40px;
+  }
+
+  .about-video-card {
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+
+  .about-video-frame {
+    border-radius: 19px;
+  }
+
   .about-institution-card {
     min-height: 180px;
   }
