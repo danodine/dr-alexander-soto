@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: "/#sobre-mi", label: "Sobre mí" },
   { href: "/servicios#tratamientos", label: "Tratamiento" },
   { href: "/servicios", label: "Servicios" },
+  { href: "/contacto", label: "Contacto" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -27,6 +28,7 @@ export default function Navbar() {
   // Check active state based on URL and current Hash
   const isActive = (path) => {
     if (path === "/blog") return pathname.startsWith("/blog");
+    if (path === "/contacto") return pathname === "/contacto";
     if (path.startsWith("/servicios")) return pathname.startsWith("/servicios");
     return pathname === "/" && `/#${activeHash.replace("#", "")}` === path;
   };
@@ -42,7 +44,11 @@ export default function Navbar() {
     e.preventDefault();
     closeMenu();
 
-    if (href === "/blog" || href.startsWith("/servicios")) {
+    if (
+      href === "/blog" ||
+      href === "/contacto" ||
+      href.startsWith("/servicios")
+    ) {
       router.push(href);
       return;
     }
@@ -162,6 +168,28 @@ export default function Navbar() {
       <nav
         className={`circle-navbar ${isScrolled ? "circle-navbar-scrolled" : ""}`}
       >
+        <div className="desktop-nav-shell" aria-label="Navegación principal">
+          <a
+            href="/#inicio"
+            className="desktop-nav-brand"
+            onClick={(e) => handleNavigation(e, "/#inicio")}
+          >
+            Dr. Alexander Soto
+          </a>
+          <ul className="desktop-nav-links">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={(e) => handleNavigation(e, item.href)}
+                  className={`desktop-nav-link ${isActive(item.href) ? "active" : ""}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
         <button
           type="button"
           className={`circle-menu-button ${menuOpen ? "is-open" : ""}`}

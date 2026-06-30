@@ -74,6 +74,9 @@ const storySteps = [
   },
 ];
 
+const STORY_SCROLL_DISTANCE = 1.45;
+const STORY_SCROLL_SCRUB = 1.6;
+
 export default function HomePage({ onNavigate }) {
   const [activeStep, setActiveStep] = useState(0);
   const [activeService, setActiveService] = useState(0);
@@ -83,10 +86,6 @@ export default function HomePage({ onNavigate }) {
   const storySectionRef = useRef(null);
   const panelsRef = useRef([]);
   const progressBarRef = useRef(null);
-
-  const servicesSectionRef = useRef(null);
-  const servicesCardsRef = useRef([]);
-  const servicesDetailsRef = useRef([]);
 
   useEffect(() => {
     async function fetchFeaturedServices() {
@@ -188,8 +187,9 @@ export default function HomePage({ onNavigate }) {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: `+=${window.innerHeight * (stepsCount - 1)}`,
-          scrub: 1.15,
+          end: () =>
+            `+=${window.innerHeight * (stepsCount - 1) * STORY_SCROLL_DISTANCE}`,
+          scrub: STORY_SCROLL_SCRUB,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
@@ -242,222 +242,9 @@ export default function HomePage({ onNavigate }) {
     return () => mm.revert();
   }, []);
 
-  // SERVICES SECTION
-  useEffect(() => {
-    servicesCardsRef.current = servicesCardsRef.current.slice(
-      0,
-      featuredServices.length,
-    );
-    servicesDetailsRef.current = servicesDetailsRef.current.slice(
-      0,
-      featuredServices.length,
-    );
-
-    const section = servicesSectionRef.current;
-    const cards = servicesCardsRef.current.filter(Boolean);
-    const details = servicesDetailsRef.current.filter(Boolean);
-    if (
-      !section ||
-      !cards.length ||
-      !details.length ||
-      !featuredServices.length
-    )
-      return;
-
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 1100px)", () => {
-      gsap.set(cards, {
-        opacity: 0.45,
-        scale: 0.94,
-        y: 20,
-        filter: "blur(1px)",
-      });
-      gsap.set(details, {
-        autoAlpha: 0,
-        y: 24,
-        filter: "blur(8px)",
-        position: "absolute",
-        inset: 0,
-      });
-      gsap.set(cards[0], { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" });
-      gsap.set(details[0], { autoAlpha: 1, y: 0, filter: "blur(0px)" });
-
-      const stepsCount = cards.length;
-      const segment = 1 / Math.max(stepsCount - 1, 1);
-
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.out" },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: `+=${window.innerHeight * Math.max(stepsCount - 1, 1) * 0.8}`,
-          scrub: 1.1,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: 1, // MAGIC FIX: Forces GSAP to measure this 3rd
-          onUpdate: (self) => {
-            const progress = self.progress;
-            const index = Math.min(
-              stepsCount - 1,
-              Math.round(progress * (stepsCount - 1)),
-            );
-            setActiveService(index);
-          },
-        },
-      });
-
-      for (let i = 1; i < stepsCount; i += 1) {
-        tl.to(
-          cards[i - 1],
-          {
-            opacity: 0.45,
-            scale: 0.94,
-            y: 20,
-            filter: "blur(1px)",
-            duration: segment * 0.45,
-          },
-          (i - 1) * segment + segment * 0.1,
-        )
-          .to(
-            details[i - 1],
-            {
-              autoAlpha: 0,
-              y: -16,
-              filter: "blur(8px)",
-              duration: segment * 0.3,
-            },
-            (i - 1) * segment + segment * 0.1,
-          )
-          .to(
-            cards[i],
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: segment * 0.5,
-            },
-            (i - 1) * segment + segment * 0.4,
-          )
-          .to(
-            details[i],
-            {
-              autoAlpha: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: segment * 0.45,
-            },
-            (i - 1) * segment + segment * 0.45,
-          );
-      }
-
-      return () => {
-        tl.scrollTrigger?.kill();
-        tl.kill();
-      };
-    });
-
-    mm.add("(min-width: 768px) and (max-width: 1099px)", () => {
-      gsap.set([...cards, ...details], { clearProps: "all" });
-    });
-
-    mm.add("(max-width: 767px)", () => {
-      gsap.set(cards, {
-        opacity: 0.48,
-        scale: 0.96,
-        y: 8,
-        filter: "blur(1px)",
-      });
-      gsap.set(details, {
-        autoAlpha: 0,
-        y: 18,
-        filter: "blur(6px)",
-        position: "absolute",
-        inset: 0,
-      });
-      gsap.set(cards[0], { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" });
-      gsap.set(details[0], { autoAlpha: 1, y: 0, filter: "blur(0px)" });
-
-      const stepsCount = cards.length;
-      const segment = 1 / Math.max(stepsCount - 1, 1);
-
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.out" },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${window.innerHeight * Math.max(stepsCount - 1, 1)}`,
-          scrub: 0.85,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: 1,
-          onUpdate: (self) => {
-            const index = Math.min(
-              stepsCount - 1,
-              Math.round(self.progress * (stepsCount - 1)),
-            );
-            setActiveService(index);
-          },
-        },
-      });
-
-      for (let i = 1; i < stepsCount; i += 1) {
-        tl.to(
-          cards[i - 1],
-          {
-            opacity: 0.48,
-            scale: 0.96,
-            y: 8,
-            filter: "blur(1px)",
-            duration: segment * 0.42,
-          },
-          (i - 1) * segment + segment * 0.08,
-        )
-          .to(
-            details[i - 1],
-            {
-              autoAlpha: 0,
-              y: -14,
-              filter: "blur(6px)",
-              duration: segment * 0.32,
-            },
-            (i - 1) * segment + segment * 0.08,
-          )
-          .to(
-            cards[i],
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: segment * 0.46,
-            },
-            (i - 1) * segment + segment * 0.38,
-          )
-          .to(
-            details[i],
-            {
-              autoAlpha: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: segment * 0.46,
-            },
-            (i - 1) * segment + segment * 0.44,
-          );
-      }
-
-      return () => {
-        tl.scrollTrigger?.kill();
-        tl.kill();
-      };
-    });
-
-    return () => mm.revert();
-  }, [featuredServices]);
+  const selectedServiceIndex = featuredServices.length
+    ? Math.min(activeService, featuredServices.length - 1)
+    : 0;
 
   return (
     <>
@@ -717,14 +504,13 @@ export default function HomePage({ onNavigate }) {
           {featuredServices.length > 0 && (
             <section
               id="servicios"
-              ref={servicesSectionRef}
               className="services-showcase-section"
               aria-label="Servicios especializados"
             >
               <div className="container services-showcase-shell">
                 <div className="services-showcase-header">
                   <p className="services-showcase-kicker">
-                    Servicios especializados
+                    Algunos de nuestros servicios especializados
                   </p>
                 </div>
                 <div className="services-showcase-grid">
@@ -733,10 +519,10 @@ export default function HomePage({ onNavigate }) {
                       <button
                         key={service.id}
                         type="button"
-                        className={`service-glow-card ${activeService === index ? "is-active" : ""}`}
-                        ref={(el) => {
-                          servicesCardsRef.current[index] = el;
-                        }}
+                        className={`service-glow-card ${selectedServiceIndex === index ? "is-active" : ""}`}
+                        aria-pressed={selectedServiceIndex === index}
+                        aria-controls={`service-detail-${service.id}`}
+                        onClick={() => setActiveService(index)}
                       >
                         <div className="service-glow-card-inner">
                           <div className="service-glow-icon-wrap">
@@ -760,10 +546,9 @@ export default function HomePage({ onNavigate }) {
                       {featuredServices.map((service, index) => (
                         <article
                           key={service.id}
-                          ref={(el) => {
-                            servicesDetailsRef.current[index] = el;
-                          }}
-                          className="services-detail-card"
+                          id={`service-detail-${service.id}`}
+                          className={`services-detail-card ${selectedServiceIndex === index ? "is-active" : ""}`}
+                          hidden={selectedServiceIndex !== index}
                         >
                           <p className="services-detail-index">
                             {String(index + 1).padStart(2, "0")}
