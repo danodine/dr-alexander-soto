@@ -5085,6 +5085,10 @@ a.about-institution-card:hover {
 
 /* ── ≤640px ── */
 @media (max-width: 640px) {
+  .services-future-page .container {
+    width: min(calc(100% - 24px), 1440px);
+  }
+
   .services-hero-fix {
     min-height: auto;
     padding: 112px 0 52px;
