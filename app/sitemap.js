@@ -41,6 +41,12 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    {
+      url: absoluteUrl("/sobre-mi"),
+      lastModified: SITE_LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   const blogRoutes = posts.map((post) => ({

@@ -2123,7 +2123,8 @@ h6 {
 
 .blog-future-page,
 .services-future-page,
-.contact-page {
+.contact-page,
+.about-page {
   position: relative;
   color: var(--text);
   background: transparent;
@@ -2392,6 +2393,245 @@ button.future-link {
 }
 .services-future-page .future-subtitle {
   color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.services-future-page .future-card-grid {
+  align-items: stretch;
+}
+
+.services-future-page .future-hover-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.services-future-page .future-hover-card p {
+  margin-bottom: 20px;
+}
+
+.services-future-page .future-hover-card .future-link {
+  margin-top: auto !important;
+}
+
+/* About page */
+.about-profile-section {
+  position: relative;
+  z-index: 2;
+  padding: 156px 0 64px;
+}
+
+.about-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+}
+
+.about-profile-copy {
+  max-width: 760px;
+}
+
+.about-profile-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3.3rem, 8vw, 7.4rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.about-profile-lead {
+  max-width: 680px;
+  margin: 28px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.08rem, 1.4vw, 1.35rem);
+  line-height: 1.75;
+}
+
+.about-profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.about-profile-image-card {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 30px;
+  background: rgba(8, 22, 39, 0.82);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.about-profile-image-card img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.about-content-section {
+  position: relative;
+  z-index: 2;
+  padding: 0 0 110px;
+}
+
+.about-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.about-info-card,
+.about-mission-panel,
+.about-institution-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(9, 23, 42, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 22px 60px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.about-info-card {
+  min-height: 292px;
+  padding: 30px;
+  border-radius: 24px;
+}
+
+.about-info-card p {
+  margin: 0 0 16px;
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about-info-card h2 {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: clamp(1.35rem, 1.8vw, 1.85rem);
+  line-height: 1.12;
+}
+
+.about-info-card span {
+  display: block;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.about-mission-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 62px);
+  align-items: start;
+  margin-top: 20px;
+  padding: clamp(28px, 4vw, 52px);
+  border-radius: 28px;
+}
+
+.about-mission-panel h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  line-height: 0.96;
+}
+
+.about-mission-panel > p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  line-height: 1.78;
+}
+
+.about-video-section {
+  margin-top: 56px;
+}
+
+.about-video-card {
+  margin-top: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(61, 215, 255, 0.12), transparent 42%),
+    rgba(9, 23, 42, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 28px 76px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.about-video-frame {
+  border-radius: 26px;
+  background: #050d19;
+}
+
+.about-video-frame iframe {
+  border: 0;
+}
+
+.about-institutions-section {
+  margin-top: 56px;
+}
+
+.about-section-heading {
+  max-width: 720px;
+}
+
+.about-section-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  line-height: 0.98;
+}
+
+.about-institutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.about-institution-card {
+  display: flex;
+  min-height: 230px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 24px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+a.about-institution-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(82, 230, 255, 0.34);
+  background: rgba(16, 39, 64, 0.78);
+}
+
+.about-institution-card img {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+}
+
+.about-institution-card span {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 800;
 }
 
 /* =============================================================================
@@ -3037,6 +3277,7 @@ button.future-link {
 
 .contact-info-card {
   padding: clamp(20px, 2vw, 30px);
+  min-width: 0;
 }
 
 .contact-info-card-primary {
@@ -3050,6 +3291,7 @@ button.future-link {
   font-weight: 800;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .contact-info-card h2 {
@@ -3057,6 +3299,7 @@ button.future-link {
   color: #fff;
   font-size: clamp(1.55rem, 2.4vw, 2.4rem);
   line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .contact-info-card p {
@@ -3064,14 +3307,16 @@ button.future-link {
   color: rgba(255, 255, 255, 0.78);
   font-size: 1rem;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .contact-large-link {
-  display: inline-flex;
+  display: inline-block;
+  max-width: 100%;
   color: #fff;
   font-size: clamp(1.05rem, 1.6vw, 1.42rem);
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.32;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
@@ -3082,6 +3327,10 @@ button.future-link {
 
 .contact-card-action {
   margin-top: 22px;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .contact-map-panel {
@@ -3200,6 +3449,8 @@ button.future-link {
 }
 
 .contact-map-location-selector button {
+  flex: 0 1 auto;
+  max-width: 100%;
   min-height: 38px;
   padding: 0 12px;
   border-radius: var(--radius-pill);
@@ -3209,6 +3460,9 @@ button.future-link {
   font-size: 0.78rem;
   font-weight: 850;
   letter-spacing: 0.02em;
+  line-height: 1.15;
+  white-space: normal;
+  text-align: center;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
@@ -3246,6 +3500,7 @@ button.future-link {
   color: rgba(255, 255, 255, 0.76);
   font-size: 0.8rem;
   line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .contact-map-recenter {
@@ -3328,6 +3583,7 @@ button.future-link {
 .contact-schedule-card strong,
 .contact-schedule-card small {
   display: block;
+  overflow-wrap: anywhere;
 }
 
 .contact-schedule-card span {
@@ -4110,6 +4366,30 @@ button.future-link {
     display: inline-flex;
   }
 
+  /* About page */
+  .about-profile-section {
+    padding: 122px 0 48px;
+  }
+
+  .about-profile-grid,
+  .about-card-grid,
+  .about-mission-panel,
+  .about-institutions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-profile-image-card {
+    min-height: 420px;
+  }
+
+  .about-content-section {
+    padding-bottom: 82px;
+  }
+
+  .about-info-card {
+    min-height: auto;
+  }
+
   /* Story section */
   .doctor-story-section {
     min-height: auto;
@@ -4310,6 +4590,10 @@ button.future-link {
     grid-template-columns: 1fr;
   }
 
+  .contact-content-section {
+    padding-top: 112px;
+  }
+
   .contact-map-card {
     aspect-ratio: auto;
     height: min(62vh, 420px);
@@ -4317,13 +4601,14 @@ button.future-link {
   }
 
   .contact-map-location-selector {
-    left: 12px;
+    left: 66px;
     right: 12px;
     justify-content: flex-start;
     max-width: none;
   }
 
   .contact-map-location-selector button {
+    flex: 0 1 auto;
     min-height: 34px;
     padding: 0 10px;
     font-size: 0.72rem;
@@ -4615,6 +4900,162 @@ button.future-link {
 
 /* ── ≤640px ── */
 @media (max-width: 640px) {
+  .contact-content-section {
+    padding: 104px 0 76px;
+  }
+
+  .contact-info-panel {
+    gap: 12px;
+  }
+
+  .contact-info-card,
+  .contact-schedule-card {
+    border-radius: 22px;
+  }
+
+  .contact-info-card {
+    padding: 22px 18px;
+  }
+
+  .contact-info-card-primary {
+    min-height: 0;
+  }
+
+  .contact-card-label {
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+
+  .contact-info-card h2 {
+    font-size: clamp(1.45rem, 8vw, 2rem);
+  }
+
+  .contact-large-link {
+    font-size: clamp(1rem, 5.5vw, 1.28rem);
+  }
+
+  .contact-card-action {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 18px;
+  }
+
+  .contact-map-panel {
+    gap: 14px;
+  }
+
+  .contact-map-card {
+    min-height: 390px;
+    height: 390px;
+    border-radius: 22px;
+  }
+
+  .contact-interactive-map {
+    min-height: 390px;
+  }
+
+  .contact-map-location-selector {
+    top: 12px;
+    left: 60px;
+    right: 10px;
+    gap: 6px;
+  }
+
+  .contact-map-location-selector button {
+    min-height: 34px;
+    padding: 0 9px;
+    font-size: 0.68rem;
+  }
+
+  .contact-map-location-label {
+    left: 10px;
+    right: 10px;
+    bottom: 58px;
+    width: calc(100% - 20px);
+    padding: 11px 12px;
+    border-radius: 14px;
+  }
+
+  .contact-map-location-label strong {
+    font-size: 0.9rem;
+  }
+
+  .contact-map-location-label span {
+    font-size: 0.76rem;
+  }
+
+  .contact-map-recenter {
+    left: 10px;
+    bottom: 10px;
+    max-width: calc(100% - 96px);
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: 0.76rem;
+    white-space: normal;
+  }
+
+  .contact-map-zoom-controls {
+    top: 10px;
+    left: 10px;
+    gap: 6px;
+  }
+
+  .contact-map-zoom-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+
+  .contact-map-attribution {
+    right: 10px;
+    bottom: 12px;
+    max-width: 96px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .contact-schedule-card li {
+    padding: 14px;
+  }
+
+  .about-profile-title {
+    font-size: clamp(2.55rem, 13vw, 4rem);
+  }
+
+  .about-profile-lead,
+  .about-mission-panel > p {
+    font-size: 1rem;
+  }
+
+  .about-profile-actions .future-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about-profile-image-card {
+    min-height: 320px;
+    border-radius: 22px;
+  }
+
+  .about-info-card,
+  .about-mission-panel,
+  .about-institution-card {
+    border-radius: 20px;
+  }
+
+  .about-info-card {
+    padding: 24px 20px;
+  }
+
+  .about-mission-panel {
+    padding: 26px 20px;
+  }
+
+  .about-institution-card {
+    min-height: 180px;
+  }
+
   .services-showcase-title {
     font-size: clamp(1.55rem, 8vw, 2.2rem);
   }

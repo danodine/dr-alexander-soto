@@ -1,13 +1,13 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 const NAV_ITEMS = [
   { href: "/#inicio", label: "Inicio" },
-  { href: "/#sobre-mi", label: "Sobre mí" },
-  { href: "/servicios#tratamientos", label: "Tratamiento" },
+  { href: "/sobre-mi", label: "Sobre mí" },
   { href: "/servicios", label: "Servicios" },
   { href: "/contacto", label: "Contacto" },
   { href: "/blog", label: "Blog" },
@@ -29,6 +29,7 @@ export default function Navbar() {
   const isActive = (path) => {
     if (path === "/blog") return pathname.startsWith("/blog");
     if (path === "/contacto") return pathname === "/contacto";
+    if (path === "/sobre-mi") return pathname === "/sobre-mi";
     if (path.startsWith("/servicios")) return pathname.startsWith("/servicios");
     return pathname === "/" && `/#${activeHash.replace("#", "")}` === path;
   };
@@ -47,6 +48,7 @@ export default function Navbar() {
     if (
       href === "/blog" ||
       href === "/contacto" ||
+      href === "/sobre-mi" ||
       href.startsWith("/servicios")
     ) {
       router.push(href);
@@ -169,13 +171,13 @@ export default function Navbar() {
         className={`circle-navbar ${isScrolled ? "circle-navbar-scrolled" : ""}`}
       >
         <div className="desktop-nav-shell" aria-label="Navegación principal">
-          <a
+          <Link
             href="/#inicio"
             className="desktop-nav-brand"
             onClick={(e) => handleNavigation(e, "/#inicio")}
           >
             Dr. Alexander Soto
-          </a>
+          </Link>
           <ul className="desktop-nav-links">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>

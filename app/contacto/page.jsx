@@ -7,6 +7,7 @@ const mapLat = "-0.1834646";
 const mapLon = "-78.5026448";
 const mapLink =
   `https://www.google.com/maps/search/?api=1&query=${mapLat},${mapLon}`;
+const [emailUser, emailDomain] = doctorProfile.email.split("@");
 const clinicLocations = [
   {
     id: "ceo",
@@ -125,7 +126,14 @@ export default function ContactoPage() {
                 href={`mailto:${doctorProfile.email}`}
                 className="contact-large-link"
               >
-                {doctorProfile.email}
+                {emailDomain ? (
+                  <>
+                    {emailUser}@<wbr />
+                    {emailDomain}
+                  </>
+                ) : (
+                  doctorProfile.email
+                )}
               </a>
             </article>
 
