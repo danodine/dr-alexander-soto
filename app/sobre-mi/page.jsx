@@ -164,10 +164,10 @@ export default function SobreMiPage() {
             <div className="about-video-card">
               <div className="video-container about-video-frame">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/JvI7efSek0w?rel=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/JvI7efSek0w?rel=0&modestbranding=1"
                   title="Dr. Alexander Soto - Mi misión"
                   loading="lazy"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   referrerPolicy="strict-origin-when-cross-origin"
                 />

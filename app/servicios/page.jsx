@@ -125,13 +125,6 @@ export default function ServiciosPage() {
 
       <section className="future-hero services-hero-fix">
         <div className="container future-hero-shell">
-          <Link
-            href="/"
-            className="future-link"
-            style={{ marginBottom: "32px" }}
-          >
-            Volver al inicio
-          </Link>
           <p className="future-eyebrow">Atencion especializada</p>
           <h1 className="future-title">
             Servicios de <span>pie y tobillo</span>
