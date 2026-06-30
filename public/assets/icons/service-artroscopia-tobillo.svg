@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .bg{fill:#0b2238;stroke:#7ceaff;stroke-width:3}
+      .ankle{fill:none;stroke:#ffffff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .scope{fill:none;stroke:#7ceaff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+      .lens{fill:#ffcf5a;stroke:#ffcf5a;stroke-width:3}
+    </style>
+  </defs>
+  <circle class="bg" cx="64" cy="64" r="58"/>
+  <path class="ankle" d="M48 28c8 16 9 32 3 48"/>
+  <path class="ankle" d="M75 30c-2 14 2 28 12 42"/>
+  <path class="ankle" d="M35 96h54c9 0 17-5 22-13"/>
+  <path class="scope" d="M97 31L71 58"/>
+  <circle class="lens" cx="101" cy="27" r="9"/>
+  <path class="scope" d="M66 64l-10 11"/>
+  <path class="scope" d="M89 42l12 12"/>
+</svg>

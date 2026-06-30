@@ -2,7 +2,7 @@
   {
     "id": "fracturas-tobillo-pie",
     "title": "Fracturas de tobillo y pie",
-    "image": "../assets/icons/fracturas-de-tobillo-pie.png",
+    "image": "../assets/icons/service-fracturas-tobillo-pie.svg",
     "description": "Roturas en los huesos del tobillo o del pie, generalmente causadas por traumatismos o caídas.",
     "symptoms": [
       "Dolor intenso, especialmente al intentar mover el pie o cargar peso",
@@ -40,7 +40,7 @@
   {
     "id": "lesiones-osteocondrales",
     "title": "Lesiones osteocondrales",
-    "image": "../assets/icons/lesiones-osteocondrales.png",
+    "image": "../assets/icons/service-lesiones-osteocondrales.svg",
     "description": "Daños en el cartílago y el hueso subyacente del astrágalo, que pueden resultar de traumatismos repetitivos, inestabilidad de la articulacion del tobillo o incluso problemas vasculares.",
     "symptoms": [
       "Dolor en el tobillo que empeora con la actividad",
@@ -74,7 +74,7 @@
   {
     "id": "juanetes",
     "title": "Juanetes (Hallux Valgus)",
-    "image": "../assets/icons/Hallux-Valgus.png",
+    "image": "../assets/icons/service-juanetes.svg",
     "description": "Deformidad del dedo gordo del pie que se desvía hacia los otros dedos, formando una protuberancia interna en la base del dedo (articulación metatarso-falángica).",
     "symptoms": [
       "Dolor y sensibilidad en el área del juanete",
@@ -103,7 +103,7 @@
   {
     "id": "tendinopatia-aquiles",
     "title": "Tendinopatía de Aquiles",
-    "image": "../assets/icons/tendinopatia-Aquiles.png",
+    "image": "../assets/icons/service-tendinopatia-aquiles.svg",
     "description": "Inflamación o degeneración del tendón de Aquiles, que provoca dolor en la parte posterior del tobillo.",
     "symptoms": [
       "Dolor en la parte posterior del tobillo o en la pantorrilla, especialmente al caminar o correr",
@@ -132,7 +132,7 @@
   {
     "id": "lesiones-ligamentarias",
     "title": "Lesiones ligamentarias",
-    "image": "../assets/icons/lesiones-ligamentarias.png",
+    "image": "../assets/icons/service-lesiones-ligamentarias.svg",
     "description": "Daños en los ligamentos del tobillo o del pie, a menudo debido a esguinces o torceduras.",
     "symptoms": [
       "Dolor intenso en el tobillo o pie, especialmente al moverlo o apoyarlo",
@@ -161,7 +161,7 @@
   {
     "id": "inestabilidad-tobillo",
     "title": "Inestabilidad de tobillo",
-    "image": "../assets/icons/inestabilidad-tobillo.png",
+    "image": "../assets/icons/service-inestabilidad-tobillo.svg",
     "description": "Sensación de que el tobillo se 'dobla' o es inestable, generalmente como resultado de esguinces repetidos o lesiones ligamentarias.",
     "symptoms": [
       "Dolor recurrente en el tobillo, especialmente al caminar o estar de pie",
@@ -195,7 +195,7 @@
   {
     "id": "artroscopia-tobillo",
     "title": "Artroscopía de tobillo",
-    "image": "../assets/icons/artroscopia-tobillo.png",
+    "image": "../assets/icons/service-artroscopia-tobillo.svg",
     "description": "Procedimiento quirúrgico mínimamente invasivo que permite diagnosticar y tratar problemas dentro de la articulación del tobillo mediante una cámara y herramientas especializadas.",
     "symptoms": [
       "Dolor en el tobillo persistente debido a lesiones o desgaste articular",
@@ -221,7 +221,7 @@
   {
     "id": "reemplazo-protesico",
     "title": "Reemplazo protésico",
-    "image": "../assets/icons/reemplazoprotesico.png",
+    "image": "../assets/icons/service-reemplazo-protesico.svg",
     "description": "Sustitución de una articulación dañada del tobillo por una prótesis artificial para restaurar la función y aliviar el dolor.",
     "symptoms": [
       "Dolor persistente. Este dolor puede ser causado por el aflojamiento de la prótesis"
@@ -247,7 +247,7 @@
   {
     "id": "pie-plano-adulto",
     "title": "Pie plano del adulto",
-    "image": "../assets/icons/pie-plano-adulto.png",
+    "image": "../assets/icons/service-pie-plano-adulto.svg",
     "description": "Condición en la que el arco del pie se aplana, causando que toda la planta del pie toque el suelo debido a que no hay arco interno.",
     "symptoms": [
       "Dolor en la parte interna del pie o en el arco plantar",
@@ -291,7 +291,7 @@
   {
     "id": "pie-plano-nino",
     "title": "Pie plano del niño",
-    "image": "../assets/icons/pie-plano-del-nino.png",
+    "image": "../assets/icons/service-pie-plano-nino.svg",
     "description": "Similar al pie plano del adulto, pero se presenta en niños y puede corregirse con el crecimiento o requerir tratamiento.",
     "symptoms": [
       "Dolor en el arco del pie o en los tobillos, especialmente después de actividad física",
@@ -322,7 +322,7 @@
   {
     "id": "fascitis-plantar",
     "title": "Fascitis plantar",
-    "image": "../assets/icons/fascitis-plantar.png",
+    "image": "../assets/icons/service-fascitis-plantar.svg",
     "description": "Inflamación de la fascia plantar, el tejido que conecta el talón con los dedos, causando dolor en la planta del pie, se relaciona tambien con contracturas o falta de estiramiento del sistema gastro (gastrocnemios)-soleo-aquileano-plantar que en muchas ocasiones dan lugar a la formación del conocido ESPOLÓN CALCÁNEO.",
     "symptoms": [
       "Dolor agudo en la planta del pie, especialmente en el talón, al dar los primeros pasos por la mañana",
@@ -347,7 +347,7 @@
   {
     "id": "metatarsalgia",
     "title": "Metatarsalgia",
-    "image": "../assets/icons/metatarsalgia.png",
+    "image": "../assets/icons/service-metatarsalgia.svg",
     "description": "Dolor e inflamación en la bola plantar del pie, a menudo debido a actividades de alto impacto o uso de calzado inadecuado.",
     "symptoms": [
       "Dolor intenso en la parte anterior del pie, especialmente al caminar o estar de pie",

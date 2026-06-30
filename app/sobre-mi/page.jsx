@@ -37,6 +37,18 @@ const institutions = [
   },
 ];
 
+const affiliations = [
+  "Médico Traumatólogo Tratante del Hospital Enrique Garcés.",
+  "Miembro Honorario de la Sociedad Internacional de Flebología y Linfología del Pacífico.",
+  "Socio Activo de la Sociedad Ecuatoriana de Ortopedia y Traumatología S.E.O.T.",
+  "Miembro Fundador del Capítulo de Cirugía de Pie y Tobillo de la Sociedad Ecuatoriana de Ortopedia y Traumatología S.E.O.T.",
+];
+
+const achievements = [
+  "Autor de varios trabajos de investigación.",
+  "Ponente en foros científicos nacionales e internacionales.",
+];
+
 export const metadata = {
   title: "Sobre mí",
   description:
@@ -113,6 +125,24 @@ export default function SobreMiPage() {
             ))}
           </div>
 
+          <section className="about-vision-panel">
+            <div>
+              <p className="future-eyebrow">Mi visión</p>
+              <h2>Medicina con vocación, precisión y acompañamiento.</h2>
+            </div>
+            <div className="about-vision-copy">
+              <p>
+                Creo que la medicina va más allá del tratamiento de
+                enfermedades: es un compromiso con el bienestar y la calidad de
+                vida de cada paciente.
+              </p>
+              <p>
+                Porque tus pies son la base de tu bienestar, merecen una
+                atención especializada y soluciones adaptadas a tus necesidades.
+              </p>
+            </div>
+          </section>
+
           <div className="about-mission-panel">
             <div>
               <p className="future-eyebrow">Mi misión</p>
@@ -142,6 +172,33 @@ export default function SobreMiPage() {
                   referrerPolicy="strict-origin-when-cross-origin"
                 />
               </div>
+            </div>
+          </section>
+
+          <section className="about-credentials-section">
+            <div className="about-section-heading">
+              <p className="future-eyebrow">Afiliaciones y logros</p>
+              <h2>Trayectoria profesional activa</h2>
+            </div>
+
+            <div className="about-credentials-grid">
+              <article className="about-credentials-card">
+                <h3>Afiliaciones</h3>
+                <ul>
+                  {affiliations.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+
+              <article className="about-credentials-card">
+                <h3>Otros logros</h3>
+                <ul>
+                  {achievements.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
             </div>
           </section>
 

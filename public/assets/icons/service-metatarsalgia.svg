@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .bg{fill:#0b2238;stroke:#7ceaff;stroke-width:3}
+      .foot{fill:none;stroke:#ffffff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .cyan{fill:none;stroke:#7ceaff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+      .pain{fill:#ff6b6b;stroke:#ff6b6b;stroke-width:4}
+    </style>
+  </defs>
+  <circle class="bg" cx="64" cy="64" r="58"/>
+  <path class="foot" d="M31 92c11-8 20-20 26-36 5-14 15-21 30-21"/>
+  <path class="foot" d="M31 95h57c11 0 20-6 25-16"/>
+  <path class="cyan" d="M71 36c16 5 28 15 36 29"/>
+  <circle class="pain" cx="73" cy="80" r="8"/>
+  <circle class="pain" cx="91" cy="75" r="8"/>
+  <circle class="pain" cx="56" cy="84" r="7"/>
+</svg>

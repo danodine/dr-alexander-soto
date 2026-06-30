@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .bg{fill:#0b2238;stroke:#7ceaff;stroke-width:3}
+      .foot{fill:none;stroke:#ffffff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .small{fill:none;stroke:#7ceaff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+      .star{fill:none;stroke:#ffcf5a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+  <circle class="bg" cx="64" cy="64" r="58"/>
+  <path class="foot" d="M28 88c14-9 28-15 45-15 10 0 19 4 27 11"/>
+  <path class="foot" d="M28 92h73"/>
+  <path class="small" d="M40 55c10-6 22-8 34-5"/>
+  <path class="small" d="M40 59h38"/>
+  <path class="star" d="M96 33l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+</svg>

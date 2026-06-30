@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .bg{fill:#0b2238;stroke:#7ceaff;stroke-width:3}
+      .bone{fill:none;stroke:#ffffff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .cyan{fill:none;stroke:#7ceaff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+      .warn{fill:none;stroke:#ffcf5a;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+  <circle class="bg" cx="64" cy="64" r="58"/>
+  <path class="bone" d="M40 28c12 2 20 10 22 23l5 29c2 10 10 16 21 16h16"/>
+  <path class="bone" d="M49 72h37c9 0 15 5 18 13"/>
+  <path class="cyan" d="M37 97h68"/>
+  <path class="warn" d="M61 49l-12 11 15 7-12 14"/>
+  <path class="warn" d="M76 58l-9 9 12 6-9 12"/>
+</svg>

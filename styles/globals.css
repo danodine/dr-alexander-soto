@@ -2413,6 +2413,94 @@ button.future-link {
   margin-top: auto !important;
 }
 
+.services-physio-section {
+  scroll-margin-top: 110px;
+}
+
+.services-physio-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.48fr);
+  gap: clamp(20px, 3vw, 38px);
+  align-items: stretch;
+  overflow: hidden;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(124, 234, 255, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(12, 27, 48, 0.9), rgba(8, 20, 37, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 70px rgba(0, 0, 0, 0.24);
+}
+
+.services-physio-copy {
+  max-width: 760px;
+}
+
+.services-physio-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.services-physio-copy p:not(.future-eyebrow) {
+  max-width: 66ch;
+  margin: 20px 0 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(1rem, 1.3vw, 1.16rem);
+  line-height: 1.75;
+}
+
+.services-physio-link {
+  margin-top: 28px;
+}
+
+.services-physio-logo-card {
+  display: flex;
+  min-height: 280px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 26px;
+  border: 1px solid rgba(124, 234, 255, 0.16);
+  border-radius: 24px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background: rgba(7, 18, 33, 0.58);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+.services-physio-logo-card:hover,
+.services-physio-logo-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(124, 234, 255, 0.42);
+  background: rgba(13, 35, 58, 0.76);
+}
+
+.services-physio-logo-card img {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+}
+
+.services-physio-logo-card strong {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.services-physio-logo-card span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 /* About page */
 .about-profile-section {
   position: relative;
@@ -2486,6 +2574,8 @@ button.future-link {
 
 .about-info-card,
 .about-mission-panel,
+.about-vision-panel,
+.about-credentials-card,
 .about-institution-card {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(9, 23, 42, 0.72);
@@ -2523,6 +2613,35 @@ button.future-link {
   color: rgba(255, 255, 255, 0.74);
   font-size: 1rem;
   line-height: 1.72;
+}
+
+.about-vision-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 62px);
+  align-items: start;
+  margin-top: 20px;
+  padding: clamp(28px, 4vw, 52px);
+  border-radius: 28px;
+}
+
+.about-vision-panel h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  line-height: 0.98;
+}
+
+.about-vision-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.about-vision-copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.78;
 }
 
 .about-mission-panel {
@@ -2575,6 +2694,56 @@ button.future-link {
 
 .about-video-frame iframe {
   border: 0;
+}
+
+.about-credentials-section {
+  margin-top: 56px;
+}
+
+.about-credentials-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.about-credentials-card {
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 24px;
+}
+
+.about-credentials-card h3 {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.12;
+}
+
+.about-credentials-card ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.about-credentials-card li {
+  position: relative;
+  padding-left: 22px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.about-credentials-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
 }
 
 .about-institutions-section {
@@ -4374,6 +4543,8 @@ a.about-institution-card:hover {
   .about-profile-grid,
   .about-card-grid,
   .about-mission-panel,
+  .about-vision-panel,
+  .about-credentials-grid,
   .about-institutions-grid {
     grid-template-columns: 1fr;
   }
@@ -4900,6 +5071,32 @@ a.about-institution-card:hover {
 
 /* ── ≤640px ── */
 @media (max-width: 640px) {
+  .services-physio-panel {
+    grid-template-columns: 1fr;
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+
+  .services-physio-copy h2 {
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+  }
+
+  .services-physio-link {
+    width: 100%;
+    margin-top: 22px;
+  }
+
+  .services-physio-logo-card {
+    min-height: auto;
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+
+  .services-physio-logo-card img {
+    width: 96px;
+    height: 96px;
+  }
+
   .contact-content-section {
     padding: 104px 0 76px;
   }
@@ -5040,6 +5237,8 @@ a.about-institution-card:hover {
 
   .about-info-card,
   .about-mission-panel,
+  .about-vision-panel,
+  .about-credentials-card,
   .about-institution-card {
     border-radius: 20px;
   }
@@ -5050,6 +5249,19 @@ a.about-institution-card:hover {
 
   .about-mission-panel {
     padding: 26px 20px;
+  }
+
+  .about-vision-panel,
+  .about-credentials-card {
+    padding: 26px 20px;
+  }
+
+  .about-credentials-section {
+    margin-top: 40px;
+  }
+
+  .about-credentials-grid {
+    margin-top: 20px;
   }
 
   .about-video-section {

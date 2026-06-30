@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .bg{fill:#0b2238;stroke:#7ceaff;stroke-width:3}
+      .bone{fill:none;stroke:#ffffff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .implant{fill:none;stroke:#7ceaff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .mark{fill:none;stroke:#ffcf5a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+  <circle class="bg" cx="64" cy="64" r="58"/>
+  <path class="bone" d="M47 28c8 15 9 30 4 45"/>
+  <path class="bone" d="M79 29c-4 15-1 29 8 43"/>
+  <path class="bone" d="M35 97h52c11 0 19-5 24-14"/>
+  <path class="implant" d="M50 66h40"/>
+  <path class="implant" d="M58 79h28"/>
+  <path class="implant" d="M64 66v24"/>
+  <path class="implant" d="M78 66v24"/>
+  <path class="mark" d="M26 42h18"/>
+  <path class="mark" d="M35 33v18"/>
+</svg>

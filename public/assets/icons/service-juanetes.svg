@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .bg{fill:#0b2238;stroke:#7ceaff;stroke-width:3}
+      .foot{fill:none;stroke:#ffffff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .toe{fill:none;stroke:#7ceaff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+      .pain{fill:#ff6b6b;stroke:#ff6b6b;stroke-width:4}
+    </style>
+  </defs>
+  <circle class="bg" cx="64" cy="64" r="58"/>
+  <path class="foot" d="M38 95c13-2 22-8 28-20l9-20c4-8 10-12 18-11"/>
+  <path class="foot" d="M39 95h46c9 0 18-5 23-13"/>
+  <path class="toe" d="M83 44c10 4 16 10 21 19"/>
+  <path class="toe" d="M74 57c9 4 15 9 20 17"/>
+  <circle class="pain" cx="74" cy="76" r="9"/>
+  <path class="pain" d="M61 76h26" opacity=".55"/>
+</svg>

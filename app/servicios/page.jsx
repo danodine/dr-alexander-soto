@@ -41,13 +41,13 @@ function ServiceGrid({ id, title, services }) {
             <Image
               src={service.image}
               alt={service.title}
-              width={58}
-              height={58}
+              width={78}
+              height={78}
               style={{
-                width: "58px",
-                height: "58px",
+                width: "78px",
+                height: "78px",
                 objectFit: "contain",
-                marginBottom: "14px",
+                marginBottom: "18px",
               }}
             />
             <h2 style={{ fontSize: "1.35rem" }}>{service.title}</h2>
@@ -61,6 +61,52 @@ function ServiceGrid({ id, title, services }) {
             </Link>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function PhysiotherapySection() {
+  return (
+    <section className="services-physio-section" id="fisioterapia">
+      <div className="services-physio-panel">
+        <div className="services-physio-copy">
+          <p className="future-eyebrow">Fisioterapia</p>
+          <h2>Recuperación coordinada en CEO</h2>
+          <p>
+            Tratamientos de fisioterapia para mejorar la calidad de vida de
+            nuestros pacientes se realizan en el CEO.
+          </p>
+          <a
+            href="https://www.ceoecuador.com/servicios/#fisioterapia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="future-link services-physio-link"
+          >
+            Ver fisioterapia en CEO
+          </a>
+        </div>
+
+        <a
+          href="https://www.ceoecuador.com/servicios/#fisioterapia"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="services-physio-logo-card"
+          aria-label="Abrir fisioterapia en CEO"
+        >
+          <Image
+            src="/assets/images/ceo-color.png"
+            alt="Logo del CEO"
+            width={128}
+            height={128}
+          />
+          <strong>CEO</strong>
+          <span>
+            Contamos con un centro de fisioterapia, donde los terapistas y los
+            médicos trabajan de forma coordinada, garantizando el mejor
+            tratamiento para el paciente.
+          </span>
+        </a>
       </div>
     </section>
   );
@@ -105,6 +151,7 @@ export default function ServiciosPage() {
             title="Tratamientos y procedimientos"
             services={tratamientos}
           />
+          <PhysiotherapySection />
         </div>
       </section>
     </main>
