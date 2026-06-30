@@ -7,8 +7,8 @@ import { gsap } from "gsap";
 const NAV_ITEMS = [
   { href: "/#inicio", label: "Inicio" },
   { href: "/#sobre-mi", label: "Sobre mí" },
-  { href: "/#tratamientos", label: "Tratamiento" },
-  { href: "/#servicios", label: "Servicios" },
+  { href: "/servicios#tratamientos", label: "Tratamiento" },
+  { href: "/servicios", label: "Servicios" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -27,6 +27,7 @@ export default function Navbar() {
   // Check active state based on URL and current Hash
   const isActive = (path) => {
     if (path === "/blog") return pathname.startsWith("/blog");
+    if (path.startsWith("/servicios")) return pathname.startsWith("/servicios");
     return pathname === "/" && `/#${activeHash.replace("#", "")}` === path;
   };
 
@@ -41,8 +42,8 @@ export default function Navbar() {
     e.preventDefault();
     closeMenu();
 
-    if (href === "/blog") {
-      router.push("/blog");
+    if (href === "/blog" || href.startsWith("/servicios")) {
+      router.push(href);
       return;
     }
 

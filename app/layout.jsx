@@ -20,7 +20,7 @@ export const metadata = {
     template: "%s | Dr. Alexander Soto",
   },
   description:
-    "Dr. Alexander Soto, traumatologo y ortopedista especialista en pie y tobillo en Quito. Atencion de fracturas, artroscopia, lesiones deportivas, dolor cronico y cirugia reconstructiva.",
+    "Dr. Alexander Soto, traumatologo especialista en pie y tobillo en Quito. Fracturas, artroscopia, lesiones deportivas y cirugia reconstructiva.",
   applicationName: "Dr. Alexander Soto",
   authors: [{ name: "Dr. Alexander Soto", url: siteUrl }],
   creator: "Dr. Alexander Soto",

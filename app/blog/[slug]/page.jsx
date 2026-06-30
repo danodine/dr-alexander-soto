@@ -29,6 +29,8 @@ export async function generateMetadata({ params }) {
       url,
       title: post.title,
       description,
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt || post.publishedAt,
       images: [
         {
           url: post.image,
@@ -66,31 +68,60 @@ export default async function BlogPostPage({ params }) {
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    "@id": `${siteUrl}/blog/${post.slug}#article`,
-    url: absoluteUrl(`/blog/${post.slug}`),
-    headline: post.title,
-    description: `${post.paragraph1.slice(0, 155).trim()}...`,
-    image: absoluteUrl(post.image),
-    inLanguage: "es-EC",
-    author: {
-      "@type": "Person",
-      "@id": `${siteUrl}/#person`,
-      name: doctorProfile.name,
-      jobTitle: doctorProfile.title,
-    },
-    publisher: {
-      "@type": "MedicalBusiness",
-      "@id": `${siteUrl}/#medical-practice`,
-      name: doctorProfile.name,
-      logo: absoluteUrl(doctorProfile.logo),
-    },
-    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
-    about: [
-      "Traumatologia",
-      "Ortopedia",
-      "Pie y tobillo",
-      "Cirugia ortopedica",
+    "@graph": [
+      {
+        "@type": "MedicalWebPage",
+        "@id": `${siteUrl}/blog/${post.slug}#webpage`,
+        url: absoluteUrl(`/blog/${post.slug}`),
+        name: post.title,
+        description: `${post.paragraph1.slice(0, 155).trim()}...`,
+        inLanguage: "es-EC",
+        mainEntity: {
+          "@id": `${siteUrl}/blog/${post.slug}#blog-posting`,
+        },
+        about: [
+          "Traumatologia",
+          "Ortopedia",
+          "Pie y tobillo",
+          "Cirugia ortopedica",
+        ],
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": `${siteUrl}/blog/${post.slug}#blog-posting`,
+        mainEntityOfPage: {
+          "@id": `${siteUrl}/blog/${post.slug}#webpage`,
+        },
+        headline: post.title,
+        description: `${post.paragraph1.slice(0, 155).trim()}...`,
+        image: [absoluteUrl(post.image)],
+        datePublished: post.publishedAt,
+        dateModified: post.updatedAt || post.publishedAt,
+        articleSection: post.type,
+        inLanguage: "es-EC",
+        author: {
+          "@type": "Person",
+          "@id": `${siteUrl}/#person`,
+          name: doctorProfile.name,
+          jobTitle: doctorProfile.title,
+          url: siteUrl,
+        },
+        publisher: {
+          "@type": "MedicalBusiness",
+          "@id": `${siteUrl}/#medical-practice`,
+          name: doctorProfile.name,
+          logo: {
+            "@type": "ImageObject",
+            url: absoluteUrl(doctorProfile.logo),
+          },
+        },
+        about: [
+          "Traumatologia",
+          "Ortopedia",
+          "Pie y tobillo",
+          "Cirugia ortopedica",
+        ],
+      },
     ],
   };
 

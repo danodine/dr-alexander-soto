@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -586,14 +587,29 @@ export default function HomePage({ onNavigate }) {
                             )}
                             {step.button && (
                               <button
+                                type="button"
                                 onClick={() => setIsVideoOpen(true)}
-                                className="future-link"
-                                style={{
-                                  marginTop: "25px",
-                                  // The updated globals.css now defines the cursor, border, and background, so we remove the inline overrides.
-                                }}
+                                className="doctor-story-video-thumb"
+                                aria-label="Conoce mas sobre mi en video"
                               >
-                                CONOCE MÁS SOBRE MÍ
+                                <span className="doctor-story-video-frame">
+                                  <Image
+                                    src="https://i.ytimg.com/vi/JvI7efSek0w/hqdefault.jpg"
+                                    alt=""
+                                    fill
+                                    sizes="132px"
+                                  />
+                                  <span
+                                    className="doctor-story-video-play"
+                                    aria-hidden="true"
+                                  >
+                                    <span />
+                                  </span>
+                                </span>
+                                <span className="doctor-story-video-copy">
+                                  <span>Conoce mas sobre mi</span>
+                                  <small>Ver video</small>
+                                </span>
                               </button>
                             )}
                           </article>
@@ -662,6 +678,33 @@ export default function HomePage({ onNavigate }) {
                   ) : (
                     <p>{step.text}</p>
                   )}
+                  {step.button && (
+                    <button
+                      type="button"
+                      onClick={() => setIsVideoOpen(true)}
+                      className="doctor-story-video-thumb"
+                      aria-label="Conoce mas sobre mi en video"
+                    >
+                      <span className="doctor-story-video-frame">
+                        <Image
+                          src="https://i.ytimg.com/vi/JvI7efSek0w/hqdefault.jpg"
+                          alt=""
+                          fill
+                          sizes="132px"
+                        />
+                        <span
+                          className="doctor-story-video-play"
+                          aria-hidden="true"
+                        >
+                          <span />
+                        </span>
+                      </span>
+                      <span className="doctor-story-video-copy">
+                        <span>Conoce mas sobre mi</span>
+                        <small>Ver video</small>
+                      </span>
+                    </button>
+                  )}
                 </article>
               ))}
             </div>
@@ -727,19 +770,18 @@ export default function HomePage({ onNavigate }) {
                           </p>
                           <h3>{service.title}</h3>
                           <p>{service.description}</p>
-                          {/* We leave this SPA navigation link as text (already matches the minimal style) */}
-                          <button
-                            onClick={() => onNavigate("services")}
+                          {/* Real route so service details are crawlable without client state. */}
+                          <Link
+                            href={`/servicios/${service.id}`}
                             className="services-detail-link"
                             style={{
                               background: "transparent",
                               border: "none",
-                              cursor: "pointer",
                               padding: 0,
                             }}
                           >
                             Descubre más servicios
-                          </button>
+                          </Link>
                         </article>
                       ))}
                     </div>
