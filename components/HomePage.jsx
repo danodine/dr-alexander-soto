@@ -74,8 +74,8 @@ const storySteps = [
   },
 ];
 
-const STORY_SCROLL_DISTANCE = 1.45;
-const STORY_SCROLL_SCRUB = 1.6;
+const STORY_SCROLL_DISTANCE = 2.25;
+const STORY_SCROLL_SCRUB = 0.9;
 
 export default function HomePage({ onNavigate }) {
   const [activeStep, setActiveStep] = useState(0);
@@ -180,7 +180,8 @@ export default function HomePage({ onNavigate }) {
       });
 
       const stepsCount = storySteps.length;
-      const segment = 1 / Math.max(stepsCount - 1, 1);
+      const segment = 1 / Math.max(stepsCount, 1);
+      const transitionDuration = segment * 0.28;
 
       const tl = gsap.timeline({
         defaults: { ease: "power2.out" },
@@ -199,7 +200,7 @@ export default function HomePage({ onNavigate }) {
             const progress = self.progress;
             const stepIndex = Math.min(
               stepsCount - 1,
-              Math.round(progress * (stepsCount - 1)),
+              Math.floor(progress * stepsCount),
             );
             setActiveStep(stepIndex);
             gsap.set(progressBar, { scaleX: progress });
@@ -210,16 +211,17 @@ export default function HomePage({ onNavigate }) {
       for (let i = 1; i < panels.length; i += 1) {
         const prev = panels[i - 1];
         const current = panels[i];
+        const transitionAt = i * segment;
         tl.to(
           prev,
           {
             autoAlpha: 0,
             y: -18,
             filter: "blur(6px)",
-            duration: segment * 0.45,
+            duration: transitionDuration,
             pointerEvents: "none",
           },
-          (i - 1) * segment + segment * 0.1,
+          transitionAt,
         ).fromTo(
           current,
           { autoAlpha: 0, y: 18, filter: "blur(6px)", pointerEvents: "none" },
@@ -227,10 +229,10 @@ export default function HomePage({ onNavigate }) {
             autoAlpha: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: segment * 0.55,
+            duration: transitionDuration,
             pointerEvents: "auto",
           },
-          (i - 1) * segment + segment * 0.45,
+          transitionAt,
         );
       }
 
