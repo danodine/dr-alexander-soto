@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import HomePage from "@/components/HomePage";
 import ServiciosPage from "@/components/ServiciosPage";
-import BackgroundMusic from "@/components/BackgroundMusic";
 
 export default function MainApp() {
   const [currentView, setCurrentView] = useState("home");
@@ -62,7 +61,6 @@ export default function MainApp() {
 
   return (
     <>
-      <BackgroundMusic />
       {currentView === "home" && <HomePage onNavigate={setCurrentView} />}
       {currentView === "services" && (
         <ServiciosPage onNavigate={setCurrentView} />
