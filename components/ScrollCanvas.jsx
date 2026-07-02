@@ -14,8 +14,8 @@ const ScrollCanvas = () => {
 
   const imagesRef = useRef([]);
   const frameCount = 192;
-  const desktopScrollLength = 0.58;
-  const mobileScrollLength = 0.5;
+  const desktopScrollLength = 0.66;
+  const mobileScrollLength = 0.58;
 
   const currentFrame = (index) =>
     `/assets/images/foot-sequence/frame_${index.toString().padStart(4, "0")}.webp`;
