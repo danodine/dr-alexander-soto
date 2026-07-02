@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.css";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";

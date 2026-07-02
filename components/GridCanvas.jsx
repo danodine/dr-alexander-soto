@@ -252,7 +252,7 @@ export default function GridCanvas() {
       mouse.y = -9999;
     }
 
-    /* ── Bootstrap ──────────────────────────────────────────────── */
+    /* Bind canvas events */
     resize();
     window.addEventListener("resize", resize, { passive: true });
     window.addEventListener("mousemove", onMouseMove, { passive: true });

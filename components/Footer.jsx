@@ -1,14 +1,8 @@
-"use client";
-import { useState } from "react";
-import ContactModal from "./ContactModal";
+﻿import FooterContactButton from "./FooterContactButton";
 
 export default function Footer() {
-  const [isModalOpen, setModalOpen] = useState(false);
-
   return (
     <footer className="site-footer-modern">
-      <ContactModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
-
       {/* Decorative Background Glows */}
       <div className="site-footer-glow site-footer-glow-1" />
       <div className="site-footer-glow site-footer-glow-2" />
@@ -18,10 +12,10 @@ export default function Footer() {
           <div className="site-footer-brand">
             <div className="site-footer-brand-badge">Dr. Alexander Soto</div>
             <h2 className="site-footer-title">
-              Atención especializada en pie y tobillo
+              AtenciÃ³n especializada en pie y tobillo
             </h2>
             <p className="site-footer-description">
-              Traumatología y ortopedia con un enfoque preciso, humano y
+              TraumatologÃ­a y ortopedia con un enfoque preciso, humano y
               personalizado para recuperar tu movilidad.
             </p>
 
@@ -79,14 +73,14 @@ export default function Footer() {
 
           <div className="site-footer-grid">
             <div className="site-footer-card">
-              <p className="site-footer-card-label">Horario de atención</p>
+              <p className="site-footer-card-label">Horario de atenciÃ³n</p>
               <ul className="site-footer-list">
                 <li>
                   <span>Lunes</span>
-                  <strong>09h00 a 13h00 · 15h00 a 18h00 (Quito)</strong>
+                  <strong>09h00 a 13h00 Â· 15h00 a 18h00 (Quito)</strong>
                 </li>
                 <li>
-                  <span>Miércoles</span>
+                  <span>MiÃ©rcoles</span>
                   <strong>09h00 a 13h00 (Tumbaco - La Martina)</strong>
                   <strong>15h00 a 19h00 (Quito)</strong>
                 </li>
@@ -101,38 +95,24 @@ export default function Footer() {
               <p className="site-footer-card-label">Contacto</p>
 
               <div className="site-footer-contact-block">
-                <p className="site-footer-contact-title">Ubicación Principal</p>
+                <p className="site-footer-contact-title">UbicaciÃ³n Principal</p>
                 <a
                   className="site-footer-link"
-                  href="https://www.google.com/maps/search/?api=1&query=Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B., Quito"
+                  href="https://www.google.com/maps/search/?api=1&query=Av. Mariana de JesÃºs OE7-02 y NuÃ±o de Valderrama P.B., Quito"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B., Quito.
+                  Av. Mariana de JesÃºs OE7-02 y NuÃ±o de Valderrama P.B., Quito.
                 </a>
               </div>
-
-              {/* The "Tech" Trigger Button */}
-              <button
-                onClick={() => setModalOpen(true)}
-                className="future-link"
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: "0.85rem",
-                }}
-              >
-                ESCRÍBANOS
-              </button>
+              <FooterContactButton />
 
               <div
                 className="site-footer-contact-block"
                 style={{ marginTop: "20px" }}
               >
                 <p className="site-footer-contact-title">
-                  Atención Telefónica / WhatsApp
+                  AtenciÃ³n TelefÃ³nica / WhatsApp
                 </p>
                 <a
                   href="tel:+593990165538"
@@ -165,7 +145,7 @@ export default function Footer() {
 
         <div className="site-footer-bottom">
           <p>
-            © {new Date().getFullYear()} Dr. Alexander Soto. Todos los derechos
+            Â© {new Date().getFullYear()} Dr. Alexander Soto. Todos los derechos
             reservados.
           </p>
 

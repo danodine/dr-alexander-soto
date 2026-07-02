@@ -14,6 +14,8 @@ const ScrollCanvas = () => {
 
   const imagesRef = useRef([]);
   const frameCount = 192;
+  const desktopScrollLength = 0.58;
+  const mobileScrollLength = 0.5;
 
   const currentFrame = (index) =>
     `/assets/images/foot-sequence/frame_${index.toString().padStart(4, "0")}.webp`;
@@ -114,9 +116,9 @@ const ScrollCanvas = () => {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 78%",
-              end: "bottom 22%",
-              scrub: 0.85,
+              start: "top 58%",
+              end: () => `+=${window.innerHeight * desktopScrollLength}`,
+              scrub: 0.55,
               refreshPriority: 2,
             },
           });
@@ -145,9 +147,9 @@ const ScrollCanvas = () => {
             defaults: { ease: "power2.out" },
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 82%",
-              end: "bottom 18%",
-              scrub: 0.85,
+              start: "top 62%",
+              end: () => `+=${window.innerHeight * mobileScrollLength}`,
+              scrub: 0.55,
               invalidateOnRefresh: true,
               refreshPriority: 2,
             },

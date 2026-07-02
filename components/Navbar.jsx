@@ -2,8 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
   { href: "/#inicio", label: "Inicio" },
@@ -20,10 +19,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
-
-  const overlayRef = useRef(null);
-  const panelRef = useRef(null);
-  const linksRef = useRef([]);
 
   // Check active state based on URL and current Hash
   const isActive = (path) => {
@@ -114,54 +109,11 @@ export default function Navbar() {
     };
   }, []);
 
-  // GSAP: Slide Menu Animations
   useEffect(() => {
-    if (!overlayRef.current || !panelRef.current) return;
-    const links = linksRef.current.filter(Boolean);
-
-    if (menuOpen) {
-      gsap.killTweensOf([overlayRef.current, panelRef.current, ...links]);
-      gsap.set(overlayRef.current, { display: "block" });
-      gsap.set(panelRef.current, { x: "-100%" });
-      gsap.set(links, { x: -18, opacity: 0 });
-
-      gsap.to(overlayRef.current, {
-        opacity: 1,
-        duration: 0.25,
-        ease: "power2.out",
-      });
-      gsap.to(panelRef.current, {
-        x: "0%",
-        duration: 0.55,
-        ease: "power3.out",
-      });
-      gsap.to(links, {
-        x: 0,
-        opacity: 1,
-        duration: 0.4,
-        stagger: 0.06,
-        delay: 0.12,
-        ease: "power2.out",
-      });
-      document.body.style.overflow = "hidden";
-    } else {
-      gsap.killTweensOf([overlayRef.current, panelRef.current, ...links]);
-      gsap.to(panelRef.current, {
-        x: "-100%",
-        duration: 0.42,
-        ease: "power3.inOut",
-      });
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        duration: 0.22,
-        ease: "power2.out",
-        onComplete: () => {
-          if (overlayRef.current)
-            gsap.set(overlayRef.current, { display: "none" });
-        },
-      });
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
       document.body.style.overflow = "";
-    }
+    };
   }, [menuOpen]);
 
   return (
@@ -207,13 +159,10 @@ export default function Navbar() {
 
       {/* FULL SCREEN MENU OVERLAY */}
       <div
-        ref={overlayRef}
-        className="mobile-menu-overlay"
+        className={`mobile-menu-overlay ${menuOpen ? "is-open" : ""}`}
         onClick={closeMenu}
-        style={{ display: "none", opacity: 0 }}
       >
         <aside
-          ref={panelRef}
           className="mobile-slide-menu"
           onClick={(e) => e.stopPropagation()}
         >
@@ -229,13 +178,8 @@ export default function Navbar() {
           </div>
 
           <ul className="mobile-slide-links">
-            {NAV_ITEMS.map((item, index) => (
-              <li
-                key={item.href}
-                ref={(el) => {
-                  linksRef.current[index] = el;
-                }}
-              >
+            {NAV_ITEMS.map((item) => (
+              <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={(e) => handleNavigation(e, item.href)}

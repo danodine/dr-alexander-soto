@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: "https",
@@ -53,8 +54,7 @@ const nextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value:
-              "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

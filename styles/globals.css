@@ -119,6 +119,72 @@ body {
   color: #1f2937;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.container {
+  width: 100%;
+  padding-right: 24px;
+  padding-left: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.min-vh-100 {
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
 img {
   max-width: 100%;
 }
@@ -576,8 +642,7 @@ h6 {
   background: rgba(124, 234, 255, 0.92);
 }
 
-.circle-menu-button,
-.circle-navbar-brand {
+.circle-menu-button {
   pointer-events: auto;
   width: 64px;
   height: 64px;
@@ -599,8 +664,7 @@ h6 {
     box-shadow var(--transition-base);
 }
 
-.circle-navbar-scrolled .circle-menu-button,
-.circle-navbar-scrolled .circle-navbar-brand {
+.circle-navbar-scrolled .circle-menu-button {
   background: rgba(7, 18, 33, 0.24);
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow:
@@ -608,22 +672,9 @@ h6 {
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.circle-menu-button:hover,
-.circle-navbar-brand:hover {
+.circle-menu-button:hover {
   transform: translateY(-2px);
   background: rgba(7, 18, 33, 0.22);
-}
-
-.circle-navbar-brand {
-  text-decoration: none;
-}
-
-.circle-navbar-logo {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
 }
 
 .circle-menu-button {
@@ -663,11 +714,22 @@ h6 {
   position: fixed;
   inset: 0;
   z-index: 3990;
-  display: none;
+  visibility: hidden;
   opacity: 0;
+  pointer-events: none;
   background: rgba(2, 8, 18, 0.22);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  transition:
+    opacity 0.22s ease,
+    visibility 0s linear 0.22s;
+}
+
+.mobile-menu-overlay.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .mobile-slide-menu {
@@ -691,6 +753,12 @@ h6 {
     0 20px 60px rgba(0, 0, 0, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   overflow-y: auto;
+  transform: translateX(-110%);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-menu-overlay.is-open .mobile-slide-menu {
+  transform: translateX(0);
 }
 
 .mobile-slide-menu-header {
@@ -707,13 +775,6 @@ h6 {
   align-items: center;
   gap: 12px;
   min-width: 0;
-}
-
-.mobile-slide-logo {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-  flex-shrink: 0;
 }
 
 .mobile-slide-brand-copy {
@@ -734,29 +795,6 @@ h6 {
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.25;
-}
-
-.mobile-slide-close {
-  width: 42px;
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.07);
-  border: none;
-  border-radius: var(--radius-pill);
-  color: #fff;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  transition:
-    background var(--transition-base),
-    transform var(--transition-base);
-}
-
-.mobile-slide-close:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: scale(1.03);
 }
 
 .mobile-slide-links {
@@ -805,36 +843,6 @@ h6 {
   box-shadow:
     0 0 0 1px rgba(124, 234, 255, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
-}
-
-.mobile-slide-cta-wrap {
-  margin-top: 18px;
-}
-
-.mobile-slide-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 50px;
-  padding: 0 18px;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  color: #03111f;
-  font-size: 0.95rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #7cecff 0%, #37c8ff 48%, #6b8cff 100%);
-  box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.18),
-    0 0 20px rgba(61, 215, 255, 0.12);
-  transition:
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
-}
-
-.mobile-slide-cta:hover {
-  transform: translateY(-1px);
-  color: #03111f;
 }
 
 /* =============================================================================
@@ -1096,12 +1104,6 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.site-footer-contact-text {
-  margin: 0;
-  color: #fff;
-  line-height: 1.7;
 }
 
 .site-footer-link {
@@ -1890,162 +1892,6 @@ h6 {
 
 .services-detail-link:hover {
   color: #fff;
-}
-
-/* =============================================================================
-   13. INSURANCE SECTION
-   ============================================================================= */
-
-.main-container-seguros-image {
-  position: relative;
-  text-align: center;
-}
-
-.image-background-seguros {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: brightness(50%);
-}
-
-.main-container-over-image-text-container {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.main-container-over-image-text {
-  color: #fff !important;
-  font-weight: bold !important;
-  margin-bottom: 20px !important;
-  font-size: clamp(0.1rem, 4.5vw, 4rem) !important;
-  z-index: 10 !important;
-}
-
-.main-container-over-grid-container {
-  display: inline-block;
-  max-width: 1200px;
-  padding: 20px 30px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
-}
-
-.image-seguros {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* =============================================================================
-   14. INSURANCE MARQUEE
-   ============================================================================= */
-
-.insurance-marquee-section {
-  position: relative;
-  padding: clamp(80px, 12vw, 120px) 0;
-  color: #fff;
-  background: transparent;
-  overflow: hidden;
-}
-
-.insurance-marquee-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.insurance-marquee-title {
-  font-size: clamp(2.2rem, 5vw, 4rem) !important;
-  color: #fff !important;
-  text-shadow: 0 0 24px rgba(124, 234, 255, 0.25);
-  margin-bottom: 16px;
-}
-
-.insurance-marquee-description {
-  max-width: 60ch;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: clamp(1rem, 1.2vw, 1.1rem);
-  line-height: 1.7;
-}
-
-.insurance-marquee-container {
-  position: relative;
-  width: 100%;
-  padding: 20px 0;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 15%,
-    black 85%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 15%,
-    black 85%,
-    transparent
-  );
-}
-
-.insurance-marquee-track {
-  display: flex;
-  gap: clamp(20px, 3vw, 40px);
-  width: max-content;
-  animation: marquee-scroll 30s linear infinite;
-}
-
-.insurance-marquee-container:hover .insurance-marquee-track {
-  animation-play-state: paused;
-}
-
-.marquee-glass-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(200px, 20vw, 280px);
-  height: clamp(100px, 10vw, 140px);
-  padding: 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  background: linear-gradient(
-    180deg,
-    rgba(14, 26, 46, 0.6),
-    rgba(8, 17, 31, 0.8)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition:
-    transform var(--transition-base),
-    border-color var(--transition-base),
-    box-shadow var(--transition-base);
-}
-
-.marquee-glass-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  border-color: rgba(124, 234, 255, 0.3);
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(124, 234, 255, 0.15);
-}
-
-.marquee-glass-card img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
-  transition: filter var(--transition-base);
-}
-
-.marquee-glass-card:hover img {
-  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
 }
 
 /* =============================================================================
@@ -3330,58 +3176,6 @@ a.about-institution-card:hover {
   display: none;
 }
 
-.svs-cta {
-  margin-top: 28px;
-  align-self: flex-start;
-}
-
-.svs-progress-wrap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  z-index: 10;
-  background: rgba(61, 215, 255, 0.1);
-}
-
-.svs-progress-fill {
-  position: absolute;
-  inset: 0;
-  transform-origin: left center;
-  transform: scaleX(0);
-  background: linear-gradient(90deg, #25d4ff 0%, #7cecff 100%);
-  box-shadow: 0 0 12px rgba(124, 234, 255, 0.6);
-}
-
-.svs-scroll-hint {
-  position: absolute;
-  right: clamp(24px, 4vw, 56px);
-  bottom: 36px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0.55;
-  animation: svs-hint-pulse 2.2s ease-in-out infinite;
-}
-
-.svs-scroll-line {
-  display: block;
-  width: 1px;
-  height: 44px;
-  background: linear-gradient(to bottom, transparent, #3dd7ff);
-}
-
-.svs-scroll-label {
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #3dd7ff;
-  writing-mode: vertical-rl;
-}
-
 /* =============================================================================
    18. HOLOGRAPHIC 3D FLARE SECTION
    ============================================================================= */
@@ -4399,66 +4193,6 @@ a.about-institution-card:hover {
    23. MISC UTILITIES
    ============================================================================= */
 
-/* Carousel (Bootstrap overrides) */
-.carousel-inner {
-  padding: 0 40px 10px;
-}
-
-.carousel-item p {
-  text-align: justify;
-  padding-bottom: 20px;
-}
-
-.carousel-item img {
-  max-height: 20rem !important;
-}
-
-.carousel-control-next,
-.carousel-control-prev {
-  width: 20px;
-}
-
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-  filter: invert(100%);
-}
-
-.image-col-carucel {
-  display: flex;
-  justify-content: center;
-}
-
-.image-col-carucel img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.carucel-image {
-  max-height: 400px !important;
-  object-fit: contain;
-}
-
-/* Hide helpers */
-.no-mobile {
-  display: none !important;
-}
-.no-mobile-ms {
-  display: none !important;
-}
-
-.no-mobile-gs {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.no-mobile-gs img {
-  max-width: 13rem;
-  height: auto;
-}
-
 /* Video embed */
 .video-container {
   position: relative;
@@ -4746,15 +4480,9 @@ a.about-institution-card:hover {
   }
 
   /* Navbar */
-  .circle-menu-button,
-  .circle-navbar-brand {
+  .circle-menu-button {
     width: 56px;
     height: 56px;
-  }
-
-  .circle-navbar-logo {
-    width: 30px;
-    height: 30px;
   }
 
   .circle-menu-button span {
@@ -4781,10 +4509,6 @@ a.about-institution-card:hover {
       inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
-  .mobile-slide-logo {
-    width: 46px;
-    height: 46px;
-  }
   .mobile-slide-name {
     font-size: 0.92rem;
   }
@@ -4850,41 +4574,6 @@ a.about-institution-card:hover {
   .overlay-text h1,
   .overlay-text h2 {
     white-space: normal;
-  }
-
-  .carousel-inner {
-    padding: 0 20px 20px;
-  }
-
-  .main-container-seguros-image {
-    width: 100%;
-    height: 30rem;
-    background-image: url("/assets/images/logo-seguro.png");
-    background-size: cover;
-    background-position: center;
-  }
-
-  .main-container-seguros-image::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    filter: blur(5px);
-    z-index: 1;
-  }
-
-  .image-background-seguros {
-    display: none;
-  }
-
-  .main-container-over-grid-container {
-    width: 80%;
-    min-width: 250px;
-    z-index: 10;
-  }
-
-  .image-seguros {
-    width: 6rem;
   }
 
   .contact-layout {
@@ -5564,7 +5253,6 @@ a.about-institution-card:hover {
   }
 
   .site-footer-list strong,
-  .site-footer-contact-text,
   .site-footer-link {
     font-size: 0.95rem;
   }
@@ -5593,14 +5281,6 @@ a.about-institution-card:hover {
   }
   .overlay-text h2 {
     font-size: 9px;
-  }
-
-  .main-container-seguros-image {
-    height: 40rem;
-  }
-
-  .carousel-item img {
-    max-height: 12rem !important;
   }
 
   .ph6contacto,
@@ -5666,10 +5346,4 @@ a.about-institution-card:hover {
     height: 100% !important;
   }
 
-  .svs-scroll-hint {
-    display: none;
-  }
-  .svs-progress-wrap {
-    display: none;
-  }
 }

@@ -1,8 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import HomePage from "@/components/HomePage";
-import ServiciosPage from "@/components/ServiciosPage";
+
+const ServiciosPage = dynamic(() => import("@/components/ServiciosPage"), {
+  ssr: false,
+});
 
 export default function MainApp() {
   const [currentView, setCurrentView] = useState("home");

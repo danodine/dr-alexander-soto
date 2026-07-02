@@ -4,12 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { loadServices } from "@/lib/servicesApi";
 import TiltCard from "@/components/TiltCard";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const ScrollCanvas = dynamic(() => import("@/components/ScrollCanvas"), {
   ssr: false,
@@ -76,16 +72,37 @@ const storySteps = [
 
 const STORY_SCROLL_DISTANCE = 2.25;
 const STORY_SCROLL_SCRUB = 0.9;
+let scrollToolsPromise;
+
+function loadScrollTools() {
+  if (!scrollToolsPromise) {
+    scrollToolsPromise = Promise.all([
+      import("gsap"),
+      import("gsap/ScrollTrigger"),
+    ]).then(([gsapModule, scrollTriggerModule]) => {
+      const gsap = gsapModule.gsap || gsapModule.default;
+      const { ScrollTrigger } = scrollTriggerModule;
+      gsap.registerPlugin(ScrollTrigger);
+      return { gsap, ScrollTrigger };
+    });
+  }
+
+  return scrollToolsPromise;
+}
 
 export default function HomePage({ onNavigate }) {
   const [activeStep, setActiveStep] = useState(0);
   const [activeService, setActiveService] = useState(0);
   const [featuredServices, setFeaturedServices] = useState([]);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [showScrollCanvas, setShowScrollCanvas] = useState(false);
 
   const storySectionRef = useRef(null);
   const panelsRef = useRef([]);
   const progressBarRef = useRef(null);
+  const scrollCanvasGateRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
+  const activeStepRef = useRef(0);
 
   useEffect(() => {
     async function fetchFeaturedServices() {
@@ -135,12 +152,12 @@ export default function HomePage({ onNavigate }) {
   // Force GSAP to recalculate heights after dynamic data loads
   useEffect(() => {
     const handleLoaderComplete = () => {
-      ScrollTrigger.sort();
-      ScrollTrigger.refresh();
+      scrollTriggerRef.current?.sort();
+      scrollTriggerRef.current?.refresh();
     };
     const timeout = setTimeout(() => {
-      ScrollTrigger.sort();
-      ScrollTrigger.refresh();
+      scrollTriggerRef.current?.sort();
+      scrollTriggerRef.current?.refresh();
     }, 500);
 
     window.addEventListener("app-loader-complete", handleLoaderComplete);
@@ -154,95 +171,165 @@ export default function HomePage({ onNavigate }) {
   // STORY SECTION
   useEffect(() => {
     const section = storySectionRef.current;
-    const panels = panelsRef.current.filter(Boolean);
-    const progressBar = progressBarRef.current;
-    if (!section || !panels.length || !progressBar) return;
+    if (!section) return;
 
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 992px)", () => {
-      gsap.set(progressBar, { scaleX: 0, transformOrigin: "left center" });
-      panels.forEach((panel, index) => {
-        if (index === 0) {
-          gsap.set(panel, {
-            autoAlpha: 1,
-            y: 0,
-            filter: "blur(0px)",
-            pointerEvents: "auto",
-          });
-        } else {
-          gsap.set(panel, {
-            autoAlpha: 0,
-            y: 24,
-            filter: "blur(6px)",
-            pointerEvents: "none",
-          });
+    let cancelled = false;
+    let observer;
+    let cleanupAnimation;
+
+    const setupStoryAnimation = async () => {
+      const panels = panelsRef.current.filter(Boolean);
+      const progressBar = progressBarRef.current;
+      if (!panels.length || !progressBar || cleanupAnimation) return;
+
+      const { gsap, ScrollTrigger } = await loadScrollTools();
+      if (cancelled) return;
+      scrollTriggerRef.current = ScrollTrigger;
+
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 992px)", () => {
+        gsap.set(progressBar, { scaleX: 0, transformOrigin: "left center" });
+        panels.forEach((panel, index) => {
+          if (index === 0) {
+            gsap.set(panel, {
+              autoAlpha: 1,
+              y: 0,
+              filter: "blur(0px)",
+              pointerEvents: "auto",
+            });
+          } else {
+            gsap.set(panel, {
+              autoAlpha: 0,
+              y: 24,
+              filter: "blur(6px)",
+              pointerEvents: "none",
+            });
+          }
+        });
+
+        const stepsCount = storySteps.length;
+        const segment = 1 / Math.max(stepsCount, 1);
+        const transitionDuration = segment * 0.28;
+        const timelineDuration =
+          (stepsCount - 1) * segment + transitionDuration;
+        const getVisibleStepIndex = (progress) => {
+          for (let i = stepsCount - 1; i >= 1; i -= 1) {
+            const readablePoint = i * segment + transitionDuration * 0.38;
+            const switchPoint = readablePoint / timelineDuration;
+            if (progress >= switchPoint) return i;
+          }
+
+          return 0;
+        };
+
+        const tl = gsap.timeline({
+          defaults: { ease: "power2.out" },
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () =>
+              `+=${window.innerHeight * (stepsCount - 1) * STORY_SCROLL_DISTANCE}`,
+            scrub: STORY_SCROLL_SCRUB,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            refreshPriority: 3,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const stepIndex = getVisibleStepIndex(progress);
+              if (activeStepRef.current !== stepIndex) {
+                activeStepRef.current = stepIndex;
+                setActiveStep(stepIndex);
+              }
+              gsap.set(progressBar, { scaleX: progress });
+            },
+          },
+        });
+
+        for (let i = 1; i < panels.length; i += 1) {
+          const prev = panels[i - 1];
+          const current = panels[i];
+          const transitionAt = i * segment;
+          tl.to(
+            prev,
+            {
+              autoAlpha: 0,
+              y: -18,
+              filter: "blur(6px)",
+              duration: transitionDuration,
+              pointerEvents: "none",
+            },
+            transitionAt,
+          ).fromTo(
+            current,
+            { autoAlpha: 0, y: 18, filter: "blur(6px)", pointerEvents: "none" },
+            {
+              autoAlpha: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: transitionDuration,
+              pointerEvents: "auto",
+            },
+            transitionAt,
+          );
         }
+
+        return () => {
+          tl.scrollTrigger?.kill();
+          tl.kill();
+        };
       });
 
-      const stepsCount = storySteps.length;
-      const segment = 1 / Math.max(stepsCount, 1);
-      const transitionDuration = segment * 0.28;
+      cleanupAnimation = () => mm.revert();
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    };
 
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.out" },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () =>
-            `+=${window.innerHeight * (stepsCount - 1) * STORY_SCROLL_DISTANCE}`,
-          scrub: STORY_SCROLL_SCRUB,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: 3, // MAGIC FIX: Forces GSAP to measure this 1st
-          onUpdate: (self) => {
-            const progress = self.progress;
-            const stepIndex = Math.min(
-              stepsCount - 1,
-              Math.floor(progress * stepsCount),
-            );
-            setActiveStep(stepIndex);
-            gsap.set(progressBar, { scaleX: progress });
-          },
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer?.disconnect();
+            setupStoryAnimation();
+          }
         },
-      });
+        { rootMargin: "700px 0px" },
+      );
+      observer.observe(section);
+    } else {
+      setupStoryAnimation();
+    }
 
-      for (let i = 1; i < panels.length; i += 1) {
-        const prev = panels[i - 1];
-        const current = panels[i];
-        const transitionAt = i * segment;
-        tl.to(
-          prev,
-          {
-            autoAlpha: 0,
-            y: -18,
-            filter: "blur(6px)",
-            duration: transitionDuration,
-            pointerEvents: "none",
-          },
-          transitionAt,
-        ).fromTo(
-          current,
-          { autoAlpha: 0, y: 18, filter: "blur(6px)", pointerEvents: "none" },
-          {
-            autoAlpha: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: transitionDuration,
-            pointerEvents: "auto",
-          },
-          transitionAt,
-        );
-      }
-
-      return () => {
-        tl.scrollTrigger?.kill();
-        tl.kill();
-      };
-    });
-    return () => mm.revert();
+    return () => {
+      cancelled = true;
+      observer?.disconnect();
+      cleanupAnimation?.();
+    };
   }, []);
+
+  useEffect(() => {
+    const gate = scrollCanvasGateRef.current;
+    if (!gate || showScrollCanvas) return;
+
+    if (!("IntersectionObserver" in window)) {
+      queueMicrotask(() => setShowScrollCanvas(true));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShowScrollCanvas(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "900px 0px" },
+    );
+
+    observer.observe(gate);
+    return () => observer.disconnect();
+  }, [showScrollCanvas]);
 
   const selectedServiceIndex = featuredServices.length
     ? Math.min(activeService, featuredServices.length - 1)
@@ -424,7 +511,7 @@ export default function HomePage({ onNavigate }) {
               {storySteps.map((step) => (
                 <article key={step.id} className="doctor-story-mobile-card">
                   <p className="doctor-story-mobile-eyebrow">{step.eyebrow}</p>
-                  <h2>{step.title.replaceAll("\n", " ")}</h2>
+                  <h2>{step.title.split("\n").join(" ")}</h2>
                   {step.type === "logos" ? (
                     <div className="doctor-story-logos-grid doctor-story-logos-grid-mobile">
                       {step.logos.map((logo) =>
@@ -499,7 +586,9 @@ export default function HomePage({ onNavigate }) {
             </div>
           </section>
         </div>
-        <ScrollCanvas />
+        <div ref={scrollCanvasGateRef}>
+          {showScrollCanvas && <ScrollCanvas />}
+        </div>
 
         {/* SECOND HALF OF THE PAGE */}
         <div className="contenedor-main">
@@ -621,11 +710,13 @@ export default function HomePage({ onNavigate }) {
         </div>
       </main>
 
-      <VideoModal
-        isOpen={isVideoOpen}
-        onClose={() => setIsVideoOpen(false)}
-        videoId="JvI7efSek0w"
-      />
+      {isVideoOpen && (
+        <VideoModal
+          isOpen={isVideoOpen}
+          onClose={() => setIsVideoOpen(false)}
+          videoId="JvI7efSek0w"
+        />
+      )}
     </>
   );
 }
