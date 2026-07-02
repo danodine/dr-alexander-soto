@@ -379,7 +379,7 @@ export default function HomePage({ onNavigate }) {
                                 type="button"
                                 onClick={() => setIsVideoOpen(true)}
                                 className="doctor-story-video-thumb"
-                                aria-label="Conoce mas sobre mi en video"
+                                aria-label="Conoce más sobre mí en video"
                               >
                                 <span className="doctor-story-video-frame">
                                   <Image
@@ -396,7 +396,7 @@ export default function HomePage({ onNavigate }) {
                                   </span>
                                 </span>
                                 <span className="doctor-story-video-copy">
-                                  <span>Conoce mas sobre mi</span>
+                                  <span>Conoce más sobre mí</span>
                                   <small>Ver video</small>
                                 </span>
                               </button>
@@ -472,7 +472,7 @@ export default function HomePage({ onNavigate }) {
                       type="button"
                       onClick={() => setIsVideoOpen(true)}
                       className="doctor-story-video-thumb"
-                      aria-label="Conoce mas sobre mi en video"
+                      aria-label="Conoce más sobre mí en video"
                     >
                       <span className="doctor-story-video-frame">
                         <Image
@@ -489,7 +489,7 @@ export default function HomePage({ onNavigate }) {
                         </span>
                       </span>
                       <span className="doctor-story-video-copy">
-                        <span>Conoce mas sobre mi</span>
+                        <span>Conoce más sobre mí</span>
                         <small>Ver video</small>
                       </span>
                     </button>

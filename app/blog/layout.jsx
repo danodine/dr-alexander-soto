@@ -1,14 +1,14 @@
 export const metadata = {
   title: "Blog de pie y tobillo",
   description:
-    "Articulos del Dr. Alexander Soto sobre traumatologia, ortopedia, cirugia de pie y tobillo, lesiones deportivas, recuperacion y patologias frecuentes.",
+    "Artículos del Dr. Alexander Soto sobre traumatología, ortopedia, cirugía de pie y tobillo, lesiones deportivas, recuperación y patologías frecuentes.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
     title: "Blog de Dr. Alexander Soto",
     description:
-      "Informacion medica clara sobre pie, tobillo, miembro inferior y recuperacion funcional.",
+      "Información médica clara sobre pie, tobillo, miembro inferior y recuperación funcional.",
     url: "/blog",
     type: "website",
     images: [
@@ -25,4 +25,3 @@ export const metadata = {
 export default function BlogLayout({ children }) {
   return children;
 }
-

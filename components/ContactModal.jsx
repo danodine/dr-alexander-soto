@@ -81,10 +81,10 @@ export default function ContactModal({ isOpen, onClose }) {
               className="service-modal-title-future"
               style={{ fontSize: "2.5rem" }}
             >
-              Escribanos
+              Escríbanos
             </h2>
             <p className="site-footer-description">
-              Escribanos sus inquietudes
+              Escríbanos sus inquietudes
             </p>
           </div>
 
@@ -100,14 +100,14 @@ export default function ContactModal({ isOpen, onClose }) {
             <input
               name="email"
               type="email"
-              placeholder="Correo electronico"
+              placeholder="Correo electrónico"
               className="tech-input"
               maxLength={254}
               required
             />
             <textarea
               name="message"
-              placeholder="En que podemos ayudarle?"
+              placeholder="¿En qué podemos ayudarle?"
               className="tech-input"
               style={{ height: "120px" }}
               maxLength={4000}

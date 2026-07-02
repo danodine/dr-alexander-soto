@@ -68,7 +68,7 @@ export async function POST(request) {
     const clientIp = getClientIp(request);
     if (isRateLimited(clientIp)) {
       return Response.json(
-        { error: "Demasiados intentos. Intente nuevamente mas tarde." },
+        { error: "Demasiados intentos. Intente nuevamente más tarde." },
         { status: 429 },
       );
     }
@@ -77,7 +77,7 @@ export async function POST(request) {
     try {
       body = await request.json();
     } catch {
-      return Response.json({ error: "JSON invalido." }, { status: 400 });
+      return Response.json({ error: "JSON inválido." }, { status: 400 });
     }
 
     const name = normalizeText(body.name, MAX_FIELD_LENGTHS.name);
@@ -86,7 +86,7 @@ export async function POST(request) {
 
     if (!name || !email || !message || !isValidEmail(email)) {
       return Response.json(
-        { error: "Campos invalidos." },
+        { error: "Campos inválidos." },
         { status: 400 },
       );
     }

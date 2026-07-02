@@ -263,7 +263,7 @@ export default function ContactMap({
         onTouchStart={stopControlDrag}
         onClick={recenterMap}
       >
-        Centrar clinica
+        Centrar clínica
       </button>
       <div
         className="contact-map-zoom-controls"

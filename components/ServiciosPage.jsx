@@ -74,7 +74,7 @@ export default function ServiciosPage({ onNavigate }) {
             &larr; Volver al inicio
           </button>
 
-          <p className="future-eyebrow">SPECIALIZED CARE</p>
+          <p className="future-eyebrow">Atención especializada</p>
 
           <h1 className="future-title">
             Tratamientos con <span>precisión</span>

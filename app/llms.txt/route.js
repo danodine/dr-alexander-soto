@@ -2,10 +2,10 @@ import { doctorProfile, medicalServices, siteUrl } from "@/lib/seo";
 
 export function GET() {
   const relevantQueries = [
-    "traumatologo Quito",
+    "traumatólogo Quito",
     "ortopedista Quito",
     "especialista en pie y tobillo Quito",
-    "cirugia de pie y tobillo Ecuador",
+    "cirugía de pie y tobillo Ecuador",
     "Dr Alexander Soto",
     "artroscopia de tobillo",
     "fracturas de tobillo y pie",
@@ -13,10 +13,10 @@ export function GET() {
     "inestabilidad de tobillo",
     "fascitis plantar",
     "juanetes o Hallux Valgus",
-    "pie plano adulto y pediatrico",
-    "tendinopatia de Aquiles",
+    "pie plano adulto y pediátrico",
+    "tendinopatía de Aquiles",
     "metatarsalgia",
-    "reemplazo protesico de tobillo",
+    "reemplazo protésico de tobillo",
   ];
 
   const body = `# Dr. Alexander Soto
@@ -35,6 +35,7 @@ Official website for Dr. Alexander Soto, a traumatologist and orthopedic special
 - Website: ${siteUrl}
 - Instagram: ${doctorProfile.sameAs[0]}
 - Facebook: ${doctorProfile.sameAs[1]}
+- TikTok: ${doctorProfile.sameAs[2]}
 
 ## Relevant Queries
 
@@ -61,4 +62,3 @@ The page describes specialized medical care, diagnosis, surgical treatment, mini
     },
   });
 }
-

@@ -1,8 +1,48 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import ServiceGalleryCarousel from "@/components/ServiceGalleryCarousel";
 import { absoluteUrl, doctorProfile, jsonLdScript, siteUrl } from "@/lib/seo";
 import { getAllServices, getServiceById } from "@/lib/services";
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname.replace(/^www\./, "");
+    const isAllowedHost =
+      hostname === "youtube.com" ||
+      hostname === "youtube-nocookie.com" ||
+      hostname === "youtu.be";
+
+    if (!isAllowedHost) return null;
+
+    if (hostname === "youtu.be") {
+      const id = parsedUrl.pathname.slice(1);
+      return /^[a-zA-Z0-9_-]{11}$/.test(id) ? id : null;
+    }
+
+    const vParam = parsedUrl.searchParams.get("v");
+    if (vParam) return /^[a-zA-Z0-9_-]{11}$/.test(vParam) ? vParam : null;
+
+    const parts = parsedUrl.pathname.split("/");
+    const embedIndex = parts.indexOf("embed");
+    if (embedIndex !== -1 && parts[embedIndex + 1]) {
+      const id = parts[embedIndex + 1];
+      return /^[a-zA-Z0-9_-]{11}$/.test(id) ? id : null;
+    }
+
+    const last = parts.filter(Boolean).pop();
+    return /^[a-zA-Z0-9_-]{11}$/.test(last) ? last : null;
+  } catch {
+    return null;
+  }
+}
+
+function getYouTubeEmbedUrl(url) {
+  const id = getYouTubeId(url);
+  if (!id) return null;
+  return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+}
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({
@@ -60,6 +100,7 @@ export default async function ServicioDetailPage({ params }) {
   if (!service) notFound();
 
   const gallery = service.imagesCarucel.slice(0, 4);
+  const videoEmbedUrl = getYouTubeEmbedUrl(service.videoUrl);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
@@ -103,19 +144,12 @@ export default async function ServicioDetailPage({ params }) {
       <div className="future-orb one" />
       <div className="future-orb two" />
 
-      <section className="future-hero services-hero-fix">
+      <section className="future-hero services-hero-fix service-detail-hero">
         <div className="container future-hero-shell">
-          <Link
-            href="/servicios"
-            className="future-link"
-            style={{ marginBottom: "32px" }}
-          >
-            Volver a servicios
-          </Link>
           <p className="future-eyebrow">
             {service.categoria === "tratamiento"
               ? "Tratamiento"
-              : "Patologia"}
+              : "Patología"}
           </p>
           <h1 className="future-title">
             {service.title}
@@ -129,7 +163,7 @@ export default async function ServicioDetailPage({ params }) {
           <div className="blog-article-grid">
             <article className="blog-main-content">
               <div className="blog-note-box">
-                <h2 style={{ marginTop: 0 }}>Resumen clinico</h2>
+                <h2 style={{ marginTop: 0 }}>Resumen clínico</h2>
                 <p>{service.descriptionLarga || service.description}</p>
               </div>
 
@@ -143,7 +177,7 @@ export default async function ServicioDetailPage({ params }) {
                       marginBottom: "20px",
                     }}
                   >
-                    Sintomas frecuentes
+                    Síntomas frecuentes
                   </h2>
                   <ul className="blog-check-list">
                     {service.symptoms.map((symptom) => (
@@ -163,37 +197,29 @@ export default async function ServicioDetailPage({ params }) {
                       margin: "46px 0 20px",
                     }}
                   >
-                    Galeria visual
+                    Galería visual
                   </h2>
-                  <div
-                    className="future-card-grid"
-                    style={{
-                      gridTemplateColumns:
-                        "repeat(auto-fit, minmax(220px, 1fr))",
-                    }}
-                  >
-                    {gallery.map((item, index) => (
-                      <figure
-                        key={item.image}
-                        className="future-hover-card"
-                        style={{ margin: 0 }}
-                      >
-                        <Image
-                          src={item.image}
-                          alt={item.altText || `${service.title} ${index + 1}`}
-                          width={460}
-                          height={320}
-                          style={{
-                            width: "100%",
-                            height: "auto",
-                            objectFit: "cover",
-                            borderRadius: "14px",
-                          }}
-                        />
-                      </figure>
-                    ))}
-                  </div>
+                  <ServiceGalleryCarousel
+                    gallery={gallery}
+                    title={service.title}
+                  />
                 </>
+              )}
+
+              {videoEmbedUrl && (
+                <section className="service-detail-video-section">
+                  <p className="future-eyebrow">Video explicativo</p>
+                  <div className="service-detail-video-frame">
+                    <iframe
+                      src={videoEmbedUrl}
+                      title={`Video explicativo: ${service.title}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      sandbox="allow-scripts allow-same-origin allow-presentation"
+                    />
+                  </div>
+                </section>
               )}
             </article>
 
@@ -218,8 +244,8 @@ export default async function ServicioDetailPage({ params }) {
                 <div className="future-panel-inner" style={{ padding: "24px" }}>
                   <p className="future-eyebrow">Consulta especializada</p>
                   <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
-                    La evaluacion medica permite confirmar el diagnostico y
-                    definir un plan de recuperacion ajustado a cada paciente.
+                    La evaluación médica permite confirmar el diagnóstico y
+                    definir un plan de recuperación ajustado a cada paciente.
                   </p>
                   <a
                     href={doctorProfile.whatsapp}

@@ -16,20 +16,20 @@ import {
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Dr. Alexander Soto | Traumatologo Pie y Tobillo Quito",
+    default: "Dr. Alexander Soto | Traumatólogo Pie y Tobillo Quito",
     template: "%s | Dr. Alexander Soto",
   },
   description:
-    "Dr. Alexander Soto, traumatologo especialista en pie y tobillo en Quito. Fracturas, artroscopia, lesiones deportivas y cirugia reconstructiva.",
+    "Dr. Alexander Soto, traumatólogo especialista en pie y tobillo en Quito. Fracturas, artroscopia, lesiones deportivas y cirugía reconstructiva.",
   applicationName: "Dr. Alexander Soto",
   authors: [{ name: "Dr. Alexander Soto", url: siteUrl }],
   creator: "Dr. Alexander Soto",
   publisher: "Dr. Alexander Soto",
   category: "Medical",
   keywords: [
-    "traumatologo Quito",
+    "traumatólogo Quito",
     "especialista en pie y tobillo Quito",
-    "cirugia de pie y tobillo Ecuador",
+    "cirugía de pie y tobillo Ecuador",
     "ortopedista Quito",
     "artroscopia de tobillo",
     "fracturas de tobillo y pie",
@@ -64,7 +64,7 @@ export const metadata = {
     siteName: "Dr. Alexander Soto",
     title: "Dr. Alexander Soto | Especialista en Pie y Tobillo en Quito",
     description:
-      "Traumatologia y ortopedia especializada en pie, tobillo y miembro inferior en Quito, Ecuador.",
+      "Traumatología y ortopedia especializada en pie, tobillo y miembro inferior en Quito, Ecuador.",
     images: [
       {
         url: doctorProfile.image,
@@ -78,7 +78,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Dr. Alexander Soto | Pie y Tobillo Quito",
     description:
-      "Traumatologo y ortopedista especialista en cirugia de pie y tobillo en Quito.",
+      "Traumatólogo y ortopedista especialista en cirugía de pie y tobillo en Quito.",
     images: [doctorProfile.image],
   },
   robots: {
@@ -115,7 +115,7 @@ export default function RootLayout({ children }) {
         "@type": "WebPage",
         "@id": `${siteUrl}/#webpage`,
         url: siteUrl,
-        name: "Dr. Alexander Soto - Traumatologo especialista en pie y tobillo",
+        name: "Dr. Alexander Soto - Traumatólogo especialista en pie y tobillo",
         description: doctorProfile.description,
         inLanguage: "es-EC",
         isPartOf: { "@id": `${siteUrl}/#website` },

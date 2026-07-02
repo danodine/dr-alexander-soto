@@ -5,7 +5,7 @@ import { getServicesByCategory } from "@/lib/services";
 export const metadata = {
   title: "Servicios de pie y tobillo",
   description:
-    "Patologias, tratamientos y procedimientos de pie y tobillo atendidos por el Dr. Alexander Soto en Quito.",
+    "Patologías, tratamientos y procedimientos de pie y tobillo atendidos por el Dr. Alexander Soto en Quito.",
   alternates: {
     canonical: "/servicios",
   },
@@ -14,7 +14,7 @@ export const metadata = {
     url: "/servicios",
     title: "Servicios de pie y tobillo | Dr. Alexander Soto",
     description:
-      "Atencion especializada en patologias, tratamientos y procedimientos de pie y tobillo en Quito.",
+      "Atención especializada en patologías, tratamientos y procedimientos de pie y tobillo en Quito.",
     images: [
       {
         url: "/assets/images/Dr-Alexander-Soto.webp",
@@ -125,12 +125,12 @@ export default function ServiciosPage() {
 
       <section className="future-hero services-hero-fix">
         <div className="container future-hero-shell">
-          <p className="future-eyebrow">Atencion especializada</p>
+          <p className="future-eyebrow">Atención especializada</p>
           <h1 className="future-title">
             Servicios de <span>pie y tobillo</span>
           </h1>
           <p className="future-subtitle">
-            Informacion clara sobre patologias, procedimientos quirurgicos y
+            Información clara sobre patologías, procedimientos quirúrgicos y
             alternativas de tratamiento para recuperar movilidad y aliviar dolor.
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function ServiciosPage() {
 
       <section style={{ padding: "0 0 100px" }}>
         <div className="container">
-          <ServiceGrid id="patologias" title="Patologias" services={patologias} />
+          <ServiceGrid id="patologias" title="Patologías" services={patologias} />
           <ServiceGrid
             id="tratamientos"
             title="Tratamientos y procedimientos"

@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
 
   if (!post) {
     return {
-      title: "Articulo no encontrado",
+      title: "Artículo no encontrado",
       robots: { index: false, follow: false },
     };
   }
@@ -80,10 +80,10 @@ export default async function BlogPostPage({ params }) {
           "@id": `${siteUrl}/blog/${post.slug}#blog-posting`,
         },
         about: [
-          "Traumatologia",
+          "Traumatología",
           "Ortopedia",
           "Pie y tobillo",
-          "Cirugia ortopedica",
+          "Cirugía ortopédica",
         ],
       },
       {
@@ -116,10 +116,10 @@ export default async function BlogPostPage({ params }) {
           },
         },
         about: [
-          "Traumatologia",
+          "Traumatología",
           "Ortopedia",
           "Pie y tobillo",
-          "Cirugia ortopedica",
+          "Cirugía ortopédica",
         ],
       },
     ],

@@ -2327,6 +2327,19 @@ button.future-link {
   line-height: 1.7;
 }
 
+.service-detail-hero .future-hero-shell {
+  max-width: 1180px;
+}
+
+.service-detail-hero .future-title {
+  max-width: 24ch;
+  font-size: clamp(3rem, 5.8vw, 6rem);
+}
+
+.service-detail-hero .future-subtitle {
+  max-width: 900px;
+}
+
 /* Ensure hero text always renders on services page */
 .services-future-page .future-hero-shell,
 .services-future-page .future-eyebrow,
@@ -3048,6 +3061,147 @@ a.about-institution-card:hover {
   width: 100%;
   aspect-ratio: 16 / 9;
   min-height: 240px;
+  border: 0;
+}
+
+/* Service detail carousel */
+.service-detail-carousel {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.service-detail-carousel-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(61, 215, 255, 0.1),
+      transparent 42%
+    ),
+    linear-gradient(180deg, rgba(12, 27, 48, 0.92), rgba(8, 20, 37, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.service-detail-carousel-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.service-detail-carousel-button {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(124, 234, 255, 0.28);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(7, 18, 33, 0.76);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.service-detail-carousel-button:hover,
+.service-detail-carousel-button:focus-visible {
+  transform: translateY(-50%) scale(1.06);
+  border-color: rgba(124, 234, 255, 0.58);
+  background: rgba(12, 32, 58, 0.9);
+  outline: none;
+}
+
+.service-detail-carousel-button.is-prev {
+  left: 16px;
+}
+
+.service-detail-carousel-button.is-next {
+  right: 16px;
+}
+
+.service-detail-carousel-footer {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.service-detail-carousel-footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.service-detail-carousel-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.service-detail-carousel-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid rgba(124, 234, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  cursor: pointer;
+}
+
+.service-detail-carousel-dots button.is-active {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(124, 234, 255, 0.42);
+}
+
+.service-detail-video-section {
+  margin-top: 54px;
+}
+
+.service-detail-video-section .future-eyebrow {
+  margin-bottom: 18px;
+}
+
+.service-detail-video-frame {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(61, 215, 255, 0.1),
+      transparent 42%
+    ),
+    linear-gradient(180deg, rgba(12, 27, 48, 0.92), rgba(8, 20, 37, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.service-detail-video-frame iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 260px;
   border: 0;
 }
 
@@ -5093,6 +5247,51 @@ a.about-institution-card:hover {
     margin-top: 18px;
     font-size: 0.98rem;
     line-height: 1.65;
+  }
+
+  .service-detail-hero .future-title {
+    max-width: 11ch;
+    font-size: clamp(2.55rem, 11vw, 3.45rem);
+  }
+
+  .service-detail-hero .future-subtitle {
+    max-width: 100%;
+  }
+
+  .service-detail-carousel-frame {
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
+  }
+
+  .service-detail-carousel-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .service-detail-carousel-button.is-prev {
+    left: 10px;
+  }
+
+  .service-detail-carousel-button.is-next {
+    right: 10px;
+  }
+
+  .service-detail-carousel-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-detail-video-section {
+    margin-top: 42px;
+  }
+
+  .service-detail-video-frame {
+    border-radius: 18px;
+  }
+
+  .service-detail-video-frame iframe {
+    min-height: 210px;
   }
 
   .services-physio-panel {
