@@ -23,8 +23,9 @@ export default function BlogPage() {
       const title = hero.querySelector(".future-title");
       const sub = hero.querySelector(".future-subtitle");
       const badge = hero.querySelector(".future-eyebrow");
+      const animatedItems = [badge, title, sub].filter(Boolean);
 
-      gsap.from([badge, title, sub], {
+      gsap.from(animatedItems, {
         y: 24,
         opacity: 0,
         duration: 0.9,
@@ -43,9 +44,8 @@ export default function BlogPage() {
       <div className="future-orb two" />
       <div className="future-orb three" />
 
-      <section ref={heroRef} className="future-hero">
+      <section ref={heroRef} className="future-hero blog-hero-fix">
         <div className="container future-hero-shell">
-          <p className="future-eyebrow">Knowledge archive</p>
           <h1 className="future-title">
             Medicina que <span>se entiende</span>
           </h1>

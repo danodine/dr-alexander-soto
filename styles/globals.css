@@ -2353,6 +2353,25 @@ button.future-link {
   color: var(--muted);
 }
 
+/* Blog page hero overrides */
+.blog-hero-fix {
+  min-height: clamp(420px, 52vh, 560px);
+  align-items: flex-end;
+  padding: clamp(120px, 16vh, 150px) 0 clamp(54px, 8vh, 78px);
+}
+
+.blog-hero-fix .future-title {
+  font-size: clamp(2.6rem, 5.8vw, 5.6rem);
+  max-width: 11ch;
+}
+
+.blog-hero-fix .future-subtitle {
+  max-width: 680px;
+  margin-top: 18px;
+  font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+  line-height: 1.68;
+}
+
 /* Services page hero overrides */
 .services-future-page .container {
   width: min(calc(100% - 48px), 1440px);
@@ -3108,7 +3127,7 @@ a.about-institution-card:hover {
 .svs-section {
   position: relative;
   width: 100%;
-  min-height: 100svh;
+  min-height: clamp(620px, 86svh, 820px);
   overflow: hidden;
   color: #fff;
   background: transparent;
@@ -3156,72 +3175,74 @@ a.about-institution-card:hover {
 .svs-shell {
   position: relative;
   z-index: 2;
-  min-height: 100svh;
+  min-height: clamp(620px, 86svh, 820px);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-top: clamp(80px, 10vh, 110px);
-  padding-bottom: clamp(60px, 8vh, 90px);
+  padding-top: clamp(54px, 8vh, 84px);
+  padding-bottom: clamp(54px, 8vh, 84px);
 }
 
 .svs-stage {
   position: relative;
   width: 100%;
-  max-width: 680px;
-  min-height: clamp(360px, 50vh, 540px);
+  max-width: 520px;
+  min-height: auto;
+  display: grid;
+  gap: 12px;
 }
 
 .svs-panel {
-  position: absolute;
-  inset: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  will-change: transform, opacity, filter;
+  justify-content: flex-start;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(8, 22, 42, 0.72), rgba(6, 17, 32, 0.84));
+  border: 1px solid rgba(124, 234, 255, 0.16);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .svs-eyebrow {
-  margin: 0 0 16px;
-  font-size: 0.82rem;
+  margin: 0 0 7px;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #3dd7ff;
 }
 
 .svs-heading {
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 22px;
-  font-size: clamp(2.6rem, 6vw, 6rem);
+  display: block;
+  margin: 0 0 7px;
+  font-size: clamp(1.1rem, 1.65vw, 1.55rem);
   font-weight: 700;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  line-height: 1.14;
   color: #fff;
 }
 
 .svs-heading-accent {
   color: var(--cyan);
-  text-shadow:
-    0 0 40px rgba(124, 234, 255, 0.4),
-    0 0 90px rgba(124, 234, 255, 0.18);
+  text-shadow: 0 0 18px rgba(124, 234, 255, 0.24);
 }
 
 .svs-body {
   margin: 0;
-  max-width: 52ch;
-  font-size: clamp(1rem, 1.15vw, 1.1rem);
-  line-height: 1.82;
+  max-width: 42ch;
+  font-size: clamp(0.84rem, 0.92vw, 0.94rem);
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
 }
 
 .svs-rule {
-  width: 52px;
-  height: 2px;
-  margin: 26px 0 0;
-  border-radius: var(--radius-pill);
-  background: linear-gradient(90deg, #3dd7ff, #7cecff, transparent);
+  display: none;
 }
 
 .svs-cta {
@@ -4533,6 +4554,16 @@ a.about-institution-card:hover {
   .future-title {
     font-size: clamp(2.3rem, 11vw, 4rem);
   }
+
+  .blog-hero-fix {
+    min-height: auto;
+    padding: 126px 0 54px;
+  }
+
+  .blog-hero-fix .future-subtitle {
+    max-width: 58ch;
+    line-height: 1.65;
+  }
 }
 
 /* ── ≤991.98px (tablet) ── */
@@ -5085,6 +5116,33 @@ a.about-institution-card:hover {
 
 /* ── ≤640px ── */
 @media (max-width: 640px) {
+  .blog-hero-fix {
+    min-height: auto;
+    padding: 108px 0 42px;
+  }
+
+  .blog-hero-fix .future-title {
+    max-width: 9ch;
+    font-size: clamp(2rem, 9.8vw, 2.65rem);
+    line-height: 1;
+  }
+
+  .blog-hero-fix .future-subtitle {
+    margin-top: 16px;
+    font-size: 0.92rem;
+    line-height: 1.62;
+  }
+
+  .blog-future-page .future-hover-card h3 {
+    font-size: 1.18rem !important;
+    line-height: 1.32 !important;
+  }
+
+  .blog-future-page .future-hover-card p {
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+  }
+
   .services-future-page .container {
     width: min(calc(100% - 24px), 1440px);
   }
@@ -5433,42 +5491,49 @@ a.about-institution-card:hover {
   }
 
   .svs-section {
-    min-height: 100svh;
+    min-height: clamp(560px, 82svh, 720px);
   }
 
   .svs-shell {
-    min-height: 100svh;
+    min-height: clamp(560px, 82svh, 720px);
     align-items: center;
-    padding-top: 74px;
-    padding-bottom: 54px;
+    padding-top: 58px;
+    padding-bottom: 48px;
   }
 
   .svs-stage {
     position: relative;
-    min-height: clamp(330px, 62svh, 520px);
+    min-height: auto;
     max-width: 100%;
+    gap: 10px;
   }
 
   .svs-panel {
-    position: absolute;
-    inset: 0;
-    justify-content: center;
-    padding-bottom: 0;
-    border-bottom: none;
+    position: relative;
+    inset: auto;
+    justify-content: flex-start;
+    padding: 12px 13px;
+    border-bottom: 1px solid rgba(124, 234, 255, 0.16);
   }
 
   .svs-heading {
-    font-size: clamp(2.1rem, 10vw, 3rem);
+    font-size: clamp(1rem, 5.5vw, 1.32rem);
+    margin-bottom: 6px;
+  }
+
+  .svs-eyebrow {
+    margin-bottom: 5px;
+    font-size: 0.62rem;
   }
 
   .svs-body {
-    max-width: 34ch;
-    font-size: 0.96rem;
-    line-height: 1.68;
+    max-width: 36ch;
+    font-size: 0.78rem;
+    line-height: 1.45;
   }
 
   .svs-video-wrap canvas {
-    height: 100svh !important;
+    height: 100% !important;
   }
 
   .svs-scroll-hint {

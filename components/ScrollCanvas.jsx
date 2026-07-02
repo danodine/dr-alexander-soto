@@ -113,17 +113,14 @@ const ScrollCanvas = () => {
 
           const tl = gsap.timeline({
             scrollTrigger: {
-              trigger: sectionRef.current, // We pin the section, keeping the layout stable!
-              start: "top top",
-              end: "+=600%",
-              scrub: 1,
-              pin: true,
-              pinSpacing: true,
+              trigger: sectionRef.current,
+              start: "top 78%",
+              end: "bottom 22%",
+              scrub: 0.85,
               refreshPriority: 2,
             },
           });
 
-          // 1. Animate the frames
           tl.to(
             scrollObj,
             {
@@ -136,32 +133,11 @@ const ScrollCanvas = () => {
             },
             0,
           );
-
-          // 2. Animate the Text Blocks smoothly
-          tl.to(text1Ref.current, { opacity: 0, y: -50, duration: 1 }, 2.5);
-          tl.fromTo(
-            text2Ref.current,
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1 },
-            3.5,
-          ).to(text2Ref.current, { opacity: 0, y: -50, duration: 1 }, 6.5);
-          tl.fromTo(
-            text3Ref.current,
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1 },
-            7.5,
-          );
         });
 
         mm.add("(max-width: 767px)", () => {
           const sequence = setupCanvas(2);
           if (!sequence) return;
-
-          gsap.set(text1Ref.current, { autoAlpha: 1, y: 0 });
-          gsap.set([text2Ref.current, text3Ref.current], {
-            autoAlpha: 0,
-            y: 36,
-          });
 
           const scrollObj = { frame: 0 };
 
@@ -169,12 +145,9 @@ const ScrollCanvas = () => {
             defaults: { ease: "power2.out" },
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top top",
-              end: () => `+=${window.innerHeight * 2.65}`,
+              start: "top 82%",
+              end: "bottom 18%",
               scrub: 0.85,
-              pin: true,
-              pinSpacing: true,
-              anticipatePin: 1,
               invalidateOnRefresh: true,
               refreshPriority: 2,
             },
@@ -192,19 +165,6 @@ const ScrollCanvas = () => {
             },
             0,
           );
-
-          tl.to(text1Ref.current, { autoAlpha: 0, y: -36, duration: 1 }, 2.2);
-          tl.to(
-            text2Ref.current,
-            { autoAlpha: 1, y: 0, duration: 1 },
-            3.05,
-          )
-            .to(text2Ref.current, { autoAlpha: 0, y: -36, duration: 1 }, 6)
-            .to(
-              text3Ref.current,
-              { autoAlpha: 1, y: 0, duration: 1 },
-              6.85,
-            );
 
           return () => {
             tl.scrollTrigger?.kill();
@@ -246,7 +206,7 @@ const ScrollCanvas = () => {
       style={{ mixBlendMode: "screen", position: "relative", zIndex: 1 }}
       id="tratamientos"
     >
-      {/* THE PINNED SECTION: Back in the normal layout flow, so no more overlapping! */}
+      {/* Scroll-driven video sequence that stays in the normal page flow. */}
       <section
         ref={sectionRef}
         className="svs-section"
@@ -261,7 +221,7 @@ const ScrollCanvas = () => {
             style={{
               display: "block",
               width: "100%",
-              height: "100vh",
+              height: "100%",
               objectFit: "cover",
               // 1. Delete the black background
               mixBlendMode: "screen",
@@ -293,7 +253,7 @@ const ScrollCanvas = () => {
               <div className="svs-rule"></div>
             </div>
 
-            <div ref={text2Ref} className="svs-panel" style={{ opacity: 0 }}>
+            <div ref={text2Ref} className="svs-panel">
               <span className="svs-eyebrow">Paso 2</span>
               <h2 className="svs-heading">
                 Precisión <span className="svs-heading-accent">Quirúrgica</span>
@@ -305,7 +265,7 @@ const ScrollCanvas = () => {
               <div className="svs-rule"></div>
             </div>
 
-            <div ref={text3Ref} className="svs-panel" style={{ opacity: 0 }}>
+            <div ref={text3Ref} className="svs-panel">
               <span className="svs-eyebrow">Paso 3</span>
               <h2 className="svs-heading">
                 Recupera tu{" "}
