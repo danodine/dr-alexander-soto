@@ -12,10 +12,10 @@ export default function Footer() {
           <div className="site-footer-brand">
             <div className="site-footer-brand-badge">Dr. Alexander Soto</div>
             <h2 className="site-footer-title">
-              AtenciÃ³n especializada en pie y tobillo
+              Atención especializada en pie y tobillo
             </h2>
             <p className="site-footer-description">
-              TraumatologÃ­a y ortopedia con un enfoque preciso, humano y
+              Traumatología y ortopedia con un enfoque preciso, humano y
               personalizado para recuperar tu movilidad.
             </p>
 
@@ -73,14 +73,14 @@ export default function Footer() {
 
           <div className="site-footer-grid">
             <div className="site-footer-card">
-              <p className="site-footer-card-label">Horario de atenciÃ³n</p>
+              <p className="site-footer-card-label">Horario de atención</p>
               <ul className="site-footer-list">
                 <li>
                   <span>Lunes</span>
-                  <strong>09h00 a 13h00 Â· 15h00 a 18h00 (Quito)</strong>
+                  <strong>09h00 a 13h00 · 15h00 a 18h00 (Quito)</strong>
                 </li>
                 <li>
-                  <span>MiÃ©rcoles</span>
+                  <span>Miércoles</span>
                   <strong>09h00 a 13h00 (Tumbaco - La Martina)</strong>
                   <strong>15h00 a 19h00 (Quito)</strong>
                 </li>
@@ -95,14 +95,14 @@ export default function Footer() {
               <p className="site-footer-card-label">Contacto</p>
 
               <div className="site-footer-contact-block">
-                <p className="site-footer-contact-title">UbicaciÃ³n Principal</p>
+                <p className="site-footer-contact-title">Ubicación Principal</p>
                 <a
                   className="site-footer-link"
-                  href="https://www.google.com/maps/search/?api=1&query=Av. Mariana de JesÃºs OE7-02 y NuÃ±o de Valderrama P.B., Quito"
+                  href="https://www.google.com/maps/search/?api=1&query=Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B., Quito"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Av. Mariana de JesÃºs OE7-02 y NuÃ±o de Valderrama P.B., Quito.
+                  Av. Mariana de Jesús OE7-02 y Nuño de Valderrama P.B., Quito.
                 </a>
               </div>
               <FooterContactButton />
@@ -112,7 +112,7 @@ export default function Footer() {
                 style={{ marginTop: "20px" }}
               >
                 <p className="site-footer-contact-title">
-                  AtenciÃ³n TelefÃ³nica / WhatsApp
+                  Atención Telefónica / WhatsApp
                 </p>
                 <a
                   href="tel:+593990165538"
@@ -145,7 +145,7 @@ export default function Footer() {
 
         <div className="site-footer-bottom">
           <p>
-            Â© {new Date().getFullYear()} Dr. Alexander Soto. Todos los derechos
+            © {new Date().getFullYear()} Dr. Alexander Soto. Todos los derechos
             reservados.
           </p>
 
